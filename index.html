@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Digibuilder builds stronger digital growth systems through strategy, creativity, AI, media and performance marketing.">
+<title>Digibuilder — Build your digital growth</title>
+<style>
+:root{
+ --ink:#03141f;--deep:#062b43;--teal:#1594b8;--cyan:#7cd8e3;--orange:#e76620;--gold:#f2aa28;
+ --paper:#f5f7f8;--muted:#b8cbd2;--line:rgba(159,210,223,.18);--glass:rgba(6,35,50,.72);
+ --max:1240px;--header:76px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{margin:0;background:radial-gradient(circle at 80% 5%,#0a49621f,transparent 30rem),var(--ink);color:var(--paper);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;background-image:linear-gradient(#9fd2df0b 1px,transparent 1px),linear-gradient(90deg,#9fd2df0b 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(#000,transparent 75%);z-index:-1}
+a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header);z-index:100;background:#03141fcc;border-bottom:1px solid #9fd2df1a;backdrop-filter:blur(18px)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:900;letter-spacing:.14em;font-size:.94rem;display:flex;align-items:center;gap:10px}
+.brand i{width:28px;height:28px;display:grid;place-items:center;color:var(--ink);background:linear-gradient(135deg,var(--gold),var(--orange));clip-path:polygon(50% 0,100% 25%,50% 100%,0 25%);font-style:normal}.brand span{color:var(--gold)}
+.links{display:flex;align-items:center;gap:25px;color:#9fb7bf;font-size:.72rem;text-transform:uppercase;letter-spacing:.11em}.links a:hover,.links a.active{color:var(--paper)}
+.cta,.button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:12px 20px;font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:.25s}
+.cta,.button.primary{background:linear-gradient(135deg,var(--gold),var(--orange));color:#071923;box-shadow:0 12px 30px #e7662033}.button.secondary{border:1px solid #b9dce033;background:#092d3c99;color:var(--paper)}.button:hover,.cta:hover{transform:translateY(-3px);filter:brightness(1.08)}
+.menu{display:none;background:none;color:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.hero{min-height:100svh;padding:130px 0 60px;display:grid;align-items:center}.hero-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:30px;align-items:center}
+.eyebrow,.kicker{color:var(--gold);font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:9px}.eyebrow:before,.kicker:before{content:"";width:25px;height:1px;background:currentColor}
+.hero h1{font-size:clamp(3.7rem,7.5vw,7.6rem);letter-spacing:-.09em;line-height:.88;margin:20px 0}.gradient{background:linear-gradient(110deg,var(--paper),var(--teal),var(--gold));color:transparent;background-clip:text;-webkit-background-clip:text}
+.lead{color:var(--muted);font-size:1.1rem;max-width:570px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}.meta{display:flex;gap:22px;flex-wrap:wrap;color:#87a6b1;font-size:.69rem;text-transform:uppercase;letter-spacing:.1em}.meta b{color:var(--orange);margin-right:6px}
+
+/* IMMERSIVE BUILDING */
+.tower-journey{height:700svh;position:relative}.tower-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:
+ radial-gradient(circle at 52% 48%,rgba(21,148,184,.16),transparent 25rem),
+ linear-gradient(180deg,#03141f 0%,#06243a 62%,#03141f 100%)}
+.tower-stage:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,20,31,.92),transparent 25%,transparent 75%,rgba(3,20,31,.72));pointer-events:none;z-index:1}
+.city-grid{position:absolute;left:-15%;right:-15%;bottom:-25%;height:62%;background-image:linear-gradient(#7cd8e31b 1px,transparent 1px),linear-gradient(90deg,#7cd8e31b 1px,transparent 1px);background-size:58px 58px;transform:perspective(600px) rotateX(65deg);mask-image:linear-gradient(transparent,#000 30%,#000);opacity:.65}
+.city-glow{position:absolute;width:60vw;height:60vw;max-width:850px;max-height:850px;border-radius:50%;left:50%;top:52%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(21,148,184,.13),transparent 62%);filter:blur(2px)}
+.building-scene{position:absolute;inset:0;display:grid;place-items:center;perspective:1500px;z-index:4}
+.building-camera{width:390px;height:650px;position:relative;transform-style:preserve-3d;transform:translate3d(11vw,0,0) rotateX(3deg) rotateY(-22deg);will-change:transform}
+.building{position:absolute;left:50%;bottom:55px;width:300px;height:520px;transform:translateX(-50%);transform-style:preserve-3d;filter:drop-shadow(35px 45px 38px rgba(0,0,0,.42))}
+.front-shell{position:absolute;inset:0;transform:translateZ(78px);background:
+ linear-gradient(90deg,#031521,#0b3149 10%,#0a4660 48%,#092e45 88%,#020f19);
+ border:1px solid rgba(124,216,227,.34);box-shadow:inset 0 0 55px rgba(21,148,184,.13)}
+.front-shell:before{content:"";position:absolute;inset:18px 20px 0;background:linear-gradient(180deg,rgba(124,216,227,.09),rgba(3,20,31,.05));border:1px solid rgba(159,210,223,.14)}
+.right-shell{position:absolute;right:-156px;top:0;width:156px;height:520px;transform:skewY(-20deg) rotateY(90deg);transform-origin:left center;background:linear-gradient(90deg,#061c2b,#04131e);border:1px solid rgba(124,216,227,.18)}
+.left-shell{position:absolute;left:-24px;top:0;width:24px;height:520px;transform:rotateY(90deg);transform-origin:right;background:#04131f}
+.roof{position:absolute;left:50%;top:-22px;width:300px;height:156px;transform:translateX(-50%) rotateX(72deg) translateZ(78px);transform-origin:center;background:linear-gradient(135deg,#123e55,#061a2a);border:1px solid rgba(124,216,227,.32);box-shadow:0 0 35px rgba(21,148,184,.18)}
+.roof-core{position:absolute;left:96px;top:-76px;width:108px;height:76px;background:linear-gradient(180deg,#174a61,#061b2a);transform:translateZ(78px);border:1px solid rgba(242,170,40,.38)}
+.mast{position:absolute;left:148px;top:-174px;width:4px;height:112px;background:linear-gradient(var(--gold),var(--teal));box-shadow:0 0 18px rgba(242,170,40,.5);transform:translateZ(78px)}
+.mast:after{content:"";position:absolute;top:5px;left:4px;width:55px;height:1px;background:var(--gold);box-shadow:0 17px var(--gold),0 34px var(--gold)}
+.foundation{position:absolute;left:50%;bottom:0;width:370px;height:65px;transform:translateX(-50%) skewX(-18deg);background:linear-gradient(180deg,#0a526e,#041722);border:1px solid rgba(124,216,227,.25);box-shadow:0 25px 50px rgba(0,0,0,.5)}
+.floor-frame{position:absolute;left:0;width:300px;height:78px;transform:translateZ(80px);border-top:1px solid rgba(124,216,227,.32);border-bottom:1px solid rgba(124,216,227,.12);background:rgba(2,15,25,.28)}
+.floor-frame:before{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:linear-gradient(90deg,#0b4259,#062538);transform:skewX(-16deg)}
+.floor-window{position:absolute;left:20px;right:20px;top:13px;bottom:12px;display:flex;align-items:center;gap:9px;padding:10px 14px;background:linear-gradient(90deg,rgba(2,18,29,.85),rgba(9,66,86,.34),rgba(2,18,29,.85));border:1px solid rgba(124,216,227,.17);box-shadow:inset 0 0 25px rgba(21,148,184,.12)}
+.floor-window .copy{min-width:0}.floor-window .number{font-size:10px;color:var(--gold);letter-spacing:.18em;font-weight:900}.floor-window .title{font-size:14px;line-height:1.05;font-weight:850;letter-spacing:-.025em;margin-top:3px}.floor-window .desc{font-size:9px;line-height:1.25;color:#93b3bd;margin-top:4px;max-width:195px}
+.window-lights{margin-left:auto;display:grid;grid-template-columns:repeat(2,7px);gap:6px}.window-lights i{display:block;width:7px;height:22px;background:linear-gradient(var(--cyan),rgba(21,148,184,.15));box-shadow:0 0 9px rgba(124,216,227,.4)}
+.f1{bottom:8px}.f2{bottom:91px}.f3{bottom:174px}.f4{bottom:257px}.f5{bottom:340px}.f6{bottom:423px}
+.floor-edge{position:absolute;left:0;right:0;top:-5px;height:5px;background:linear-gradient(90deg,var(--orange),var(--teal));opacity:.65}
+.building-copy{position:absolute;z-index:12;left:6vw;top:50%;transform:translateY(-50%);width:min(370px,35vw)}.building-copy .overline{color:var(--gold);font-size:11px;font-weight:850;letter-spacing:.2em;text-transform:uppercase}.building-copy h2{font-size:clamp(40px,4.7vw,70px);line-height:.9;letter-spacing:-.07em;margin:13px 0}.building-copy p{color:var(--muted);line-height:1.6;margin:0}.building-copy .floor-state{margin-top:20px;display:inline-flex;align-items:center;gap:10px;padding:8px 11px;border:1px solid var(--line);border-radius:99px;color:#a8c2ca;font-size:10px;text-transform:uppercase;letter-spacing:.12em}.floor-state i{width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange)}
+.floor-nav{position:absolute;right:5vw;top:50%;transform:translateY(-50%);z-index:20;display:grid;gap:7px}.floor-nav button{width:43px;height:36px;border:1px solid var(--line);background:#03141fb5;color:#7895a1;border-radius:8px;font-size:10px;transition:.2s}.floor-nav button.active,.floor-nav button:hover{border-color:var(--gold);color:#fff;background:#0a3446;transform:translateX(-3px)}
+.journey-ui{position:absolute;z-index:20;left:6vw;right:6vw;bottom:25px;display:flex;align-items:end;gap:25px}.journey-meter{width:230px}.journey-meter .small{display:flex;justify-content:space-between;color:#7895a1;font-size:9px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:7px}.journey-line{height:2px;background:#ffffff16}.journey-line i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--orange),var(--gold),var(--teal))}.journey-hint{margin-left:auto;color:#6e8995;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.scroll-cue{color:#a9c0c8;font-size:10px;letter-spacing:.17em;text-transform:uppercase}.scroll-cue b{font-size:16px;margin-left:6px;color:var(--gold)}
+/* General sections */
+.section{padding:112px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:42px}.section h2{font-size:clamp(2.6rem,5.5vw,5.5rem);letter-spacing:-.08em;line-height:.92;margin:12px 0}.section-head p{max-width:420px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:27px;border:1px solid var(--line);background:linear-gradient(135deg,#0a3041aa,#03141f77);border-radius:18px;min-height:230px;transition:.25s}.card:hover{border-color:#f2aa2880;transform:translateY(-5px)}.card .num{font-size:.72rem;color:var(--gold);letter-spacing:.16em}.card h3{font-size:1.3rem;margin:22px 0 10px}.card p,.muted{color:var(--muted)}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}.tag{font-size:.66rem;border:1px solid var(--line);border-radius:99px;padding:6px 9px;color:#9eb8c0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.panel{border:1px solid var(--line);border-radius:20px;padding:30px;background:#092d3c66}.steps{counter-reset:step;display:grid;gap:14px}.step{display:grid;grid-template-columns:44px 1fr;gap:17px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line)}.step:before{counter-increment:step;content:"0" counter(step);color:var(--orange);font-weight:800}.step h3{margin:0}.step p{margin:5px 0 0;color:var(--muted)}
+.band{padding:90px 0;background:linear-gradient(110deg,#07536b,#062b43 50%,#5a2b20);border-block:1px solid #9fd2df22}.quote{font-size:clamp(1.8rem,3vw,3.2rem);line-height:1.05;letter-spacing:-.06em}
+.faq{display:grid;gap:10px}.faq details{border:1px solid var(--line);padding:18px 20px;border-radius:12px;background:#092d3c55}.faq summary{font-weight:750;cursor:pointer}.faq p{color:var(--muted);margin:12px 0 0}
+.form{display:grid;gap:13px}.form label{font-size:.75rem;color:#9fb7bf;text-transform:uppercase;letter-spacing:.08em}.form input,.form textarea,.form select{width:100%;margin-top:6px;padding:13px 14px;border:1px solid var(--line);border-radius:9px;background:#03141fcc;color:var(--paper);outline:none}.form input:focus,.form textarea:focus,.form select:focus{border-color:var(--gold)}.form textarea{min-height:130px;resize:vertical}.form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{font-size:.76rem;color:#98b3bb;background:#062b43;border-left:2px solid var(--gold);padding:12px}
+.legal{max-width:840px}.legal h1{font-size:clamp(3rem,7vw,6rem);letter-spacing:-.08em;line-height:.9}.legal h2{margin-top:38px}.legal p,.legal li{color:var(--muted)}
+.footer{padding:55px 0 30px;border-top:1px solid var(--line);color:#91abb4}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px}.footer h4{color:var(--paper);margin:0 0 14px}.footer a{display:block;margin:7px 0;font-size:.9rem}.copyright{margin-top:35px;padding-top:20px;border-top:1px solid var(--line);font-size:.78rem}
+.reveal{animation:rise .7s both}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(max-width:900px){
+ .links,.nav>.cta{display:none}.menu{display:block}.hero-grid,.split{grid-template-columns:1fr;gap:25px}.hero{padding-top:115px}
+ .building-copy{left:5vw;top:auto;bottom:100px;transform:none;width:45vw}.building-copy h2{font-size:38px}.building-copy p{font-size:13px}
+ .building-camera{transform:translate3d(16vw,-4vh,0) rotateX(3deg) rotateY(-18deg) scale(.82)}.floor-nav{right:3vw}.journey-hint{display:none}.cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+ .wrap{width:min(100% - 32px,var(--max))}.hero h1{font-size:3.5rem}.cards{grid-template-columns:1fr}.form .row{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}
+ .tower-journey{height:620svh}.building-copy{left:5vw;right:5vw;bottom:82px;width:auto}.building-copy h2{font-size:34px;margin:8px 0}.building-copy p{font-size:12px;max-width:290px}.building-copy .floor-state{margin-top:10px}
+ .building-camera{transform:translate3d(12vw,-15vh,0) rotateX(4deg) rotateY(-18deg) scale(.62)}.floor-nav{top:42%;right:4vw}.floor-nav button{width:36px;height:31px}
+ .journey-ui{left:5vw;right:5vw;bottom:20px}.journey-meter{width:150px}.scroll-cue{display:none}.section{padding:80px 0}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+ <div class="wrap nav">
+  <a href="#/" class="brand"><i>◆</i>DIGI<span>BUILDER</span></a>
+  <nav class="links" id="nav"><a href="#/about">About</a><a href="#/services">Services</a><a href="#/work">Work</a><a href="#/contact">Contact</a></nav>
+  <a class="cta" href="#/contact">Book a consultation</a><button class="menu" aria-label="Open menu" id="menu">☰</button>
+ </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="footer">
+ <div class="wrap footer-grid">
+  <div><a class="brand" href="#/"><i>◆</i>DIGI<span>BUILDER</span></a><p>Digital growth systems for ambitious teams in India and worldwide.</p><a href="mailto:abdussamadvhora@gmail.com">abdussamadvhora@gmail.com</a><a href="https://wa.me/917016348927" target="_blank" rel="noopener">WhatsApp +91 70163 48927</a></div>
+  <div><h4>Explore</h4><a href="#/about">About</a><a href="#/services">Services</a><a href="#/work">Work / coming soon</a><a href="#/contact">Contact</a></div>
+  <div><h4>Legal</h4><a href="#/privacy">Privacy (draft)</a><a href="#/terms">Terms (draft)</a><p class="muted">No tracking or analytics in this static build.</p></div>
+ </div>
+ <div class="wrap copyright">© <span id="year"></span> Digibuilder. Built thoughtfully, ready to grow.</div>
+</footer>
+
+<script>
+"use strict";
+
+const services=[
+ ['strategy','01','Strategy & Consulting','Find the signal. Build the system.','Clarity before activity: positioning, research, growth roadmaps and practical priorities that connect business goals to digital action.',['Discovery & audits','Positioning','Go-to-market roadmaps','Measurement planning']],
+ ['brand','02','Branding & Creative','Make the right people remember.','A distinctive identity and creative direction that gives every touchpoint a consistent, human point of view.',['Brand strategy','Visual identity','Campaign concepts','Design systems']],
+ ['web','03','Website & E-commerce Development','Turn attention into action.','Fast, accessible, conversion-minded digital experiences built around your customers, content and commercial goals.',['UX & UI direction','Web builds','Shopify / commerce','Optimisation']],
+ ['social','04','Social Media & Content','Show up with something to say.','A sustainable content engine: platform-native ideas, editorial planning and production guidance that earns attention.',['Content strategy','Social calendars','Creative production','Community playbooks']],
+ ['seo','05','SEO & Performance Marketing','Compound the useful work.','Search and media programmes grounded in intent, good creative, clear measurement and continuous learning.',['Technical SEO','Paid media','Landing pages','Reporting frameworks']],
+ ['ai','06','AI & Automation','Give your team leverage.','Thoughtful automation that removes friction without removing judgement—mapped, tested and handed over clearly.',['Workflow mapping','AI assistants','No-code automation','Enablement & handoff']]
+];
+const serviceMap=Object.fromEntries(services.map(s=>[s[0],s]));
+const app=document.getElementById('app');
+
+function shell(eyebrow,title,copy,body=''){
+ return `<section class="section reveal"><div class="wrap"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p class="lead">${copy}</p>${body}</div></section>`;
+}
+function card(s){
+ return `<a class="card" href="#/service/${s[0]}"><span class="num">${s[1]} / 06</span><h3>${s[2]}</h3><p>${s[3]}</p><div class="tags">${s[5].slice(0,2).map(x=>`<span class="tag">${x}</span>`).join('')}</div></a>`;
+}
+function building(){
+ return `<section class="tower-journey" id="tower-journey">
+  <div class="tower-stage" id="tower-stage">
+   <div class="city-glow"></div><div class="city-grid"></div>
+   <div class="building-copy">
+    <div class="overline">The Digibuilder building</div>
+    <h2 id="tower-title">Strategy & Consulting</h2>
+    <p id="tower-desc">Clarity before activity: positioning, research, growth roadmaps and practical priorities that connect business goals to digital action.</p>
+    <span class="floor-state"><i></i><span id="tower-state">01 / 06 · FOUNDATION</span></span>
+   </div>
+   <div class="building-scene">
+    <div class="building-camera" id="building-camera">
+     <div class="building">
+      <div class="front-shell"></div><div class="right-shell"></div><div class="left-shell"></div>
+      <div class="roof"></div><div class="roof-core"></div><div class="mast"></div>
+      ${services.map(s=>`<div class="floor-frame f${s[1]}" data-index="${services.indexOf(s)}">
+        <div class="floor-edge"></div><div class="floor-window">
+         <div class="copy"><div class="number">${s[1]}</div><div class="title">${s[2]}</div><div class="desc">${s[4]}</div></div>
+         <div class="window-lights"><i></i><i></i><i></i><i></i></div>
+        </div>
+       </div>`).join('')}
+      <div class="foundation"></div>
+     </div>
+    </div>
+   </div>
+   <div class="floor-nav" id="floor-nav">${services.map((s,i)=>`<button data-index="${i}" class="${i===0?'active':''}" aria-label="Go to ${s[2]}">${s[1]}</button>`).join('')}</div>
+   <div class="journey-ui">
+    <div class="journey-meter"><div class="small"><span>Building journey</span><span id="journey-percent">0%</span></div><div class="journey-line"><i id="journey-progress"></i></div></div>
+    <div class="journey-hint">Scroll through the building · one chapter at a time</div>
+    <div class="scroll-cue">Explore <b>↓</b></div>
+   </div>
+  </div>
+ </section>`;
+}
+function home(){
+ return `<section class="hero"><div class="wrap hero-grid"><div>
+  <div class="eyebrow">Digital growth, built with intent</div>
+  <h1>Build a <span class="gradient">stronger</span> digital future.</h1>
+  <p class="lead">Digibuilder brings strategy, creativity, technology and performance together into a clearer path from ambition to momentum.</p>
+  <div class="actions"><a class="button primary" href="#/contact">Book a free consultation</a><a class="button secondary" href="#/services">Explore services</a></div>
+  <div class="meta"><span><b>●</b> India + international</span><span><b>●</b> Startups to scale-ups</span></div>
+ </div><div></div></div></section>
+ ${building()}
+ <section class="section"><div class="wrap section-head"><div><div class="eyebrow">A connected approach</div><h2>Growth is not a channel.</h2></div><p>It is the system between your story, your experience and the people you want to reach.</p></div><div class="wrap cards">${services.slice(0,3).map(card).join('')}</div></section>
+ <section class="band"><div class="wrap split"><div><div class="eyebrow">Start with a useful conversation</div><div class="quote">Bring the question. Leave with a clearer next step.</div></div><a class="button primary" href="#/contact">Talk to Digibuilder</a></div></section>`;
+}
+function about(){
+ return shell('About Digibuilder','Build the right things, in the right order.',`Digibuilder is an independent digital growth partner for teams who want thoughtful work and practical progress—not more noise. We work across India and international markets, with startups, ecommerce businesses and organisations across industries.`,
+ `<div class="split" style="margin-top:55px"><div class="panel"><div class="kicker">Our point of view</div><h2>Strategy should make the next move easier.</h2><p class="muted">We connect the dots between what a business needs to achieve and what its audience needs to believe, feel and do. Scope stays honest, language stays clear, and every engagement ends with a handoff your team can use.</p></div><div><div class="steps"><div class="step"><div><h3>Listen first</h3><p>Context, constraints and customer reality before recommendations.</p></div></div><div class="step"><div><h3>Make it tangible</h3><p>Clear artefacts, prototypes and decisions—not decks that gather dust.</p></div></div><div class="step"><div><h3>Leave capability behind</h3><p>Documentation and enablement so momentum does not depend on us.</p></div></div></div></div></div>`);
+}
+function servicesPage(){
+ return shell('Services','One tower. Six ways to move forward.','Choose the constraint that matters most right now, or combine capabilities into a focused growth sprint. Every engagement is scoped around your context.','<div class="cards" style="margin-top:55px">'+services.map(card).join('')+'</div>');
+}
+function servicePage(key){
+ let s=serviceMap[key];
+ return shell(`Service ${s[1]}`,s[2],s[3],`<div class="split" style="margin-top:55px"><div><div class="panel"><div class="kicker">What this can include</div><div class="tags">${s[5].map(x=>`<span class="tag">${x}</span>`).join('')}</div><p class="muted">We tailor the depth to your stage, team and goals. Start with a focused brief; expand only when the evidence says it is useful.</p><a class="button primary" href="#/contact">Discuss this service</a></div></div><div><div class="kicker">How we work</div><h2>Useful clarity, then momentum.</h2><div class="steps"><div class="step"><div><h3>01 — Diagnose</h3><p>Review the current state, audience and opportunity without assuming the answer.</p></div></div><div class="step"><div><h3>02 — Design</h3><p>Turn insight into a prioritised direction, system or working prototype.</p></div></div><div class="step"><div><h3>03 — Deliver & enable</h3><p>Launch what matters, measure honestly and leave your team with the keys.</p></div></div></div></div></div><div class="section-head" style="margin-top:90px"><div><div class="eyebrow">Questions worth asking</div><h2>Before we begin.</h2></div></div><div class="faq"><details open><summary>Can this be a small engagement?</summary><p>Yes. A focused audit, workshop or sprint can be the right starting point.</p></details><details><summary>Do you work with an existing team?</summary><p>Absolutely—we can complement internal marketing, product, design or engineering teams.</p></details><details><summary>What happens after the first call?</summary><p>You receive a clear suggested scope, assumptions and next step. No pressure and no mystery.</p></details></div>`);
+}
+function work(){
+ return shell('Work / case studies','Good work should be easy to verify.','We are building this portfolio in public. Rather than invent results, we prefer to show real work when the owners have approved it.','<div class="panel" style="margin-top:55px"><div class="eyebrow">Portfolio coming soon</div><h2>No fabricated projects. No borrowed logos.</h2><p class="muted">This page will become a home for approved case studies with context, contribution and outcomes. Until then, here are illustrative engagement shapes—examples of the kind of work we can explore, not actual client work or case studies.</p></div><div class="cards" style="margin-top:20px"><div class="card"><span class="num">ILLUSTRATIVE / 01</span><h3>Commerce launch system</h3><p>Positioning, storefront experience and acquisition foundations for a new product line.</p></div><div class="card"><span class="num">ILLUSTRATIVE / 02</span><h3>Founder-led content engine</h3><p>Editorial point of view, content workflow and a sustainable social rhythm for a growing team.</p></div><div class="card"><span class="num">ILLUSTRATIVE / 03</span><h3>Operational AI sprint</h3><p>Map repetitive work, prototype safe automations and document a human-in-the-loop handoff.</p></div></div><div class="notice" style="margin-top:28px">These are illustrative engagement examples only—not client names, testimonials, performance claims or completed case studies.</div>');
+}
+function contact(){
+ return shell('Contact','Bring your next move into focus.',`Tell us what you are building, where it feels stuck and what a useful outcome would look like. We will use your note to prepare a thoughtful reply.` ,`<div class="split" style="margin-top:50px"><div><div class="panel"><div class="kicker">Prefer a direct hello?</div><h2>Let’s start with context, not a sales script.</h2><p class="muted">Email <a href="mailto:abdussamadvhora@gmail.com" style="color:var(--gold)">abdussamadvhora@gmail.com</a> or message <a href="https://wa.me/917016348927" target="_blank" rel="noopener" style="color:var(--gold)">WhatsApp +91 70163 48927</a>.</p><p class="muted">Serving India and international clients. Remote-first, collaborative and transparent about fit.</p></div></div><div class="panel"><form class="form" id="contact-form"><div class="row"><label>Name *<input required name="name" autocomplete="name"></label><label>Email *<input required type="email" name="email" autocomplete="email"></label></div><div class="row"><label>Phone (optional)<input name="phone" type="tel"></label><label>Service<select name="service"><option>Not sure yet</option>${services.map(s=>`<option>${s[2]}</option>`).join('')}</select></label></div><label>Project context<textarea required name="project" placeholder="What are you building or trying to improve?"></textarea></label><div class="notice">This static site has no backend. Choose an option below to prepare a message in your own email client or WhatsApp. Nothing is sent automatically, and Digibuilder cannot see this form until you send it.</div><div class="actions"><button class="button primary" type="submit">Prepare email</button><button class="button secondary" type="button" id="wa">Prepare WhatsApp</button></div><p id="form-status" class="muted" aria-live="polite"></p></form></div></div>`);
+}
+function legal(kind){
+ let privacy=kind==='privacy';
+ return shell(privacy?'Privacy — draft':'Terms — draft',privacy?'A simple, static-site privacy note.':'A starting point for engagement terms.',privacy?`This draft reflects the current no-tracking, static handoff and should be reviewed by the owner and a qualified adviser before publication.`:`This draft is a plain-language starting point, not legal advice. The owner should review and adapt it before publishing.`,`<div class="legal" style="margin-top:45px">${privacy?`<h2>What this site does</h2><p>This static website does not intentionally use analytics, advertising pixels, cookies, accounts or behavioural tracking. The hosting provider may process technical request data under its own terms.</p><h2>Contact information</h2><p>If you use the email or WhatsApp links, your message is handled by those services. The contact form only prepares a message in your device’s chosen app; it is not submitted to a Digibuilder server.</p><h2>Owner review needed</h2><p>Confirm hosting logs, embedded services, retention practices and the applicable law for your business before launch.</p>`:`<h2>Scope</h2><p>Work begins after both parties agree a written scope, deliverables, timeline, fees and responsibilities. Changes may require a revised estimate.</p><h2>Client responsibilities</h2><p>The client provides timely access, accurate information, approvals and rights to supplied materials. Delays may affect timelines.</p><h2>Handoff and third parties</h2><p>Recommendations may involve third-party platforms. Their availability, fees and terms remain the client’s responsibility unless agreed otherwise.</p><h2>Owner review needed</h2><p>This draft does not cover every commercial, intellectual-property, payment, liability or governing-law detail. Obtain professional review before relying on it.</p>`}</div>`);
+}
+
+function prepare(mode){
+ const f=document.getElementById('contact-form'),d=new FormData(f);
+ if(!f.reportValidity())return;
+ const name=d.get('name'),email=d.get('email'),phone=d.get('phone')||'Not provided',service=d.get('service'),project=d.get('project');
+ const text=`Hello Digibuilder,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nProject context:\n${project}`;
+ if(mode==='email')location.href=`mailto:abdussamadvhora@gmail.com?subject=${encodeURIComponent('Consultation enquiry from '+name)}&body=${encodeURIComponent(text)}`;
+ else location.href=`https://wa.me/917016348927?text=${encodeURIComponent(text)}`;
+}
+
+let towerCleanup=null;
+function initTower(){
+ const journey=document.getElementById('tower-journey'); if(!journey)return;
+ const camera=document.getElementById('building-camera'),title=document.getElementById('tower-title'),desc=document.getElementById('tower-desc'),state=document.getElementById('tower-state'),prog=document.getElementById('journey-progress'),percent=document.getElementById('journey-percent');
+ const nav=[...document.querySelectorAll('#floor-nav button')],frames=[...document.querySelectorAll('.floor-frame')];
+ let rot=-22,targetRot=-22,drag=false,lastX=0,raf=0;
+
+ const setFloor=(i)=>{
+  const s=services[i];
+  title.textContent=s[2];desc.textContent=s[4];state.textContent=`${s[1]} / 06 · ${s[0].replace(/-/g,' ').toUpperCase()}`;
+  nav.forEach((b,n)=>b.classList.toggle('active',n===i));
+ };
+ const update=()=>{
+  const rect=journey.getBoundingClientRect(),max=journey.offsetHeight-innerHeight;
+  const p=Math.max(0,Math.min(1,-rect.top/max));
+  const raw=p*(services.length-1),idx=Math.min(services.length-1,Math.round(raw));
+  const within=raw-idx;
+  setFloor(idx);
+  percent.textContent=Math.round(p*100)+'%';prog.style.width=(p*100)+'%';
+
+  // The building stays physically assembled. Scroll changes camera elevation,
+  // depth, light emphasis and viewpoint rather than moving floors apart.
+  const lift=Math.sin(p*Math.PI)*28;
+  const zoom=1 + Math.sin(p*Math.PI)*.06;
+  const pitch=3 + p*4;
+  const yaw=rot + Math.sin(p*Math.PI*2)*2;
+  camera.style.transform=`translate3d(${11 + Math.sin(p*Math.PI)*2}vw,${-lift/4}px,${lift}px) rotateX(${pitch}deg) rotateY(${yaw}deg) scale(${zoom})`;
+
+  frames.forEach((el,i)=>{
+    const d=Math.abs(i-raw);
+    el.style.filter=`brightness(${1-Math.min(.25,d*.045)})`;
+    el.style.opacity=String(1-Math.min(.2,d*.035));
+  });
+  if(!raf)raf=requestAnimationFrame(()=>{raf=0;update()});
+ };
+ const go=i=>{
+  const max=journey.offsetHeight-innerHeight;
+  window.scrollTo({top:journey.offsetTop+max*(i/(services.length-1)),behavior:'smooth'});
+ };
+ nav.forEach((b,i)=>b.addEventListener('click',()=>go(i)));
+
+ const stage=document.getElementById('tower-stage');
+ stage.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;stage.setPointerCapture(e.pointerId)});
+ stage.addEventListener('pointermove',e=>{if(!drag)return;targetRot+=(e.clientX-lastX)*.22;lastX=e.clientX;rot+=(targetRot-rot)*.18});
+ stage.addEventListener('pointerup',()=>drag=false);stage.addEventListener('pointercancel',()=>drag=false);
+ window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();
+ towerCleanup=()=>{};
+}
+
+function bind(){
+ const menu=document.getElementById('menu'),nav=document.getElementById('nav');
+ if(menu)menu.addEventListener('click',()=>nav.classList.toggle('open'));
+ document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+ const form=document.getElementById('contact-form');
+ if(form){form.addEventListener('submit',e=>{e.preventDefault();prepare('email')});const wa=document.getElementById('wa');if(wa)wa.addEventListener('click',()=>prepare('wa'))}
+ initTower();
+}
+function render(){
+ const parts=location.hash.replace(/^#\/?/,'').split('/');
+ const view=parts[0]||'home';
+ let out=view==='home'?home():view==='about'?about():view==='services'?servicesPage():view==='service'&&serviceMap[parts[1]]?servicePage(parts[1]):view==='work'?work():view==='contact'?contact():view==='privacy'?legal('privacy'):view==='terms'?legal('terms'):home();
+ app.innerHTML=out;
+ document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')===`#/${view}`));
+ bind();window.scrollTo(0,0);
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+window.addEventListener('hashchange',render);render();
+</script>
+</body>
+</html>
