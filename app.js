@@ -23,32 +23,30 @@ function card(service){
 
 function building(){
   return `<section class="tower-journey" id="tower-journey" aria-label="DigiBuilder capability building journey">
-    <div class="tower-stage" id="tower-stage">
-      <div class="city-glow"></div><div class="city-grid"></div>
-      <div class="tower-heading" aria-hidden="true"><span>The DigiBuilder building</span><span>Six capability floors · top to foundation</span></div>
-      <div class="building-scene">
-        <div class="tower-cluster">
-          <div class="building-camera" id="building-camera">
-            <div class="building">
-              <div class="front-shell"></div><div class="right-shell"></div><div class="left-shell"></div>
-              <div class="roof"></div><div class="roof-core"></div><div class="mast"></div>
-              ${services.map((service,index)=>`<div class="floor-frame" data-index="${index}" aria-label="Floor ${service[1]}: ${service[2]}">
-                <div class="floor-edge"></div><div class="floor-window">
-                  <div class="copy"><div class="number">${service[1]}</div><div class="title">${service[2]}</div><div class="desc">${service[3]}</div></div>
-                  <div class="window-lights" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-                </div>
-              </div>`).join('')}
-              <div class="foundation"></div>
-            </div>
-          </div>
-          <nav class="tower-tracker" id="floor-nav" aria-label="Capability floors">
-            <div class="tracker-rail" aria-hidden="true"><i id="journey-progress"></i><b id="journey-marker"></b></div>
-            ${services.map((service,index)=>`<button data-index="${index}" class="${index===0?'active':''}" aria-label="Go to floor ${service[1]}: ${service[2]}"><span>${service[1]} / 06</span></button>`).join('')}
-          </nav>
+    <div class="tower-stage" id="tower-stage" data-floor="01">
+      <div class="tower-atmosphere" aria-hidden="true"><div class="city-glow"></div><div class="city-grid"></div></div>
+      <div class="tower-heading" aria-hidden="true"><span>The DigiBuilder tower</span><span>Six capability levels · one connected system</span></div>
+
+      <div class="tower-viewport" id="tower-viewport">
+        <div class="tower-webgl" id="tower-webgl" aria-hidden="true"></div>
+        <div class="tower-fallback" id="tower-fallback" aria-hidden="true">
+          <div class="tower-fallback-building">${services.map(()=>'<i></i>').join('')}</div>
+        </div>
+        <div class="tower-label-layer" id="tower-label-layer">
+          ${services.map((service,index)=>`<article class="tower-floor-label ${index===0?'active':''}" data-index="${index}" ${index===0?'':'aria-hidden="true"'}>
+            <span class="tower-label-number">${service[1]}</span>
+            <div class="tower-label-copy"><h3>${service[2]}</h3><p>${service[3]}</p></div>
+          </article>`).join('')}
         </div>
       </div>
+
+      <nav class="tower-tracker" id="floor-nav" aria-label="Capability floors">
+        <div class="tracker-rail" aria-hidden="true"><i id="journey-progress"></i><b id="journey-marker"></b></div>
+        ${services.map((service,index)=>`<button type="button" data-index="${index}" class="${index===0?'active':''}" aria-label="Go to floor ${service[1]}: ${service[2]}" ${index===0?'aria-current="step"':''}><span>${service[1]}</span></button>`).join('')}
+      </nav>
+
       <div class="journey-ui">
-        <div class="journey-hint"><strong id="tower-state">01 / 06</strong><span>Scroll down through the building</span></div>
+        <div class="journey-hint"><strong id="tower-state">01 / 06</strong><span>Scroll through the building</span></div>
         <div class="scroll-cue" aria-hidden="true">Explore <b>↓</b></div>
       </div>
     </div>
