@@ -11,6 +11,12 @@
     const t=clamp((value-from)/(to-from));
     return t*t*(3-(2*t));
   };
+  const easeOutCubic=t=>1-Math.pow(1-clamp(t),3);
+  const easeInOutCubic=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const cubic=(a,b,c,d,t)=>{
+    const u=1-t;
+    return (u*u*u*a)+(3*u*u*t*b)+(3*u*t*t*c)+(t*t*t*d);
+  };
 
   function canUseWebGL(){
     try{
@@ -54,10 +60,96 @@
     let accentLight=null;
     let THREE=null;
 
+    let storyFrom=-1;
+    let storyTo=-1;
+    let storyDirection=1;
+    let storyStartedAt=0;
+    let storyDuration=780;
+    let storyAnimating=false;
+    let storyFromStart=null;
+    let storyToStart=null;
+    const storyVisuals=labels.map(()=>({x:0,y:0,z:0,rx:0,ry:0,scale:1,opacity:0}));
+
     const isMobile=()=>window.innerWidth<=680;
     const isTablet=()=>window.innerWidth<=980;
     const floorProgress=value=>clamp((value-FLOOR_START)/(FLOOR_END-FLOOR_START));
     const scrollForFloor=index=>FLOOR_START+(index/(services.length-1))*(FLOOR_END-FLOOR_START);
+    const copyStoryState=value=>({...value});
+
+    const setStoryState=(index,next)=>{
+      if(index<0||index>=labels.length)return;
+      const label=labels[index];
+      storyVisuals[index]=next;
+      label.style.setProperty('--story-x',`${next.x.toFixed(2)}px`);
+      label.style.setProperty('--story-y',`${next.y.toFixed(2)}px`);
+      label.style.setProperty('--story-z',`${next.z.toFixed(2)}px`);
+      label.style.setProperty('--story-rx',`${next.rx.toFixed(2)}deg`);
+      label.style.setProperty('--story-ry',`${next.ry.toFixed(2)}deg`);
+      label.style.setProperty('--story-scale',next.scale.toFixed(4));
+      label.style.setProperty('--story-opacity',next.opacity.toFixed(4));
+    };
+
+    const hiddenStoryState=()=>({x:0,y:0,z:0,rx:0,ry:0,scale:.97,opacity:0});
+    const centeredStoryState=()=>({x:0,y:0,z:0,rx:0,ry:0,scale:1,opacity:1});
+
+    const storyMetrics=()=>{
+      if(isMobile())return{vertical:64,horizontal:0,depth:0};
+      const tablet=isTablet();
+      return{
+        vertical:tablet?Math.min(170,Math.max(132,viewportHeight*.2)):Math.min(215,Math.max(158,viewportHeight*.235)),
+        horizontal:tablet?Math.min(112,Math.max(78,viewportWidth*.085)):Math.min(158,Math.max(100,viewportWidth*.105)),
+        depth:tablet?Math.min(92,Math.max(70,viewportWidth*.067)):Math.min(128,Math.max(86,viewportWidth*.078))
+      };
+    };
+
+    const outgoingStoryState=(t,direction,metrics)=>{
+      if(isMobile()){
+        return{x:0,y:-metrics.vertical*easeOutCubic(t),z:0,rx:0,ry:0,scale:1,opacity:1-easeOutCubic(t)};
+      }
+      const side=direction>0?-1:1;
+      const eased=easeInOutCubic(t);
+      return{
+        x:cubic(0,metrics.horizontal*.42*side,metrics.horizontal*1.06*side,metrics.horizontal*.72*side,eased),
+        y:cubic(0,-metrics.vertical*.18,-metrics.vertical*.68,-metrics.vertical,eased),
+        z:cubic(0,-metrics.depth*.16,-metrics.depth*.7,-metrics.depth,eased),
+        rx:cubic(0,-.35,-1.3,-1.8,eased),
+        ry:cubic(0,side*.5,side*2.1,side*2.6,eased),
+        scale:lerp(1,.955,eased),
+        opacity:1-easeOutCubic(t)
+      };
+    };
+
+    const incomingStoryState=(t,direction,metrics)=>{
+      if(isMobile()){
+        const eased=easeOutCubic(t);
+        return{x:0,y:metrics.vertical*(1-eased),z:0,rx:0,ry:0,scale:1,opacity:eased};
+      }
+      const side=direction>0?-1:1;
+      const eased=easeOutCubic(t);
+      return{
+        x:cubic(-metrics.horizontal*.74*side,-metrics.horizontal*1.04*side,-metrics.horizontal*.48*side,0,eased),
+        y:cubic(metrics.vertical,metrics.vertical*.78,metrics.vertical*.25,0,eased),
+        z:cubic(-metrics.depth,-metrics.depth*.82,-metrics.depth*.18,0,eased),
+        rx:cubic(1.6,1.1,.3,0,eased),
+        ry:cubic(-side*2.4,-side*1.8,-side*.35,0,eased),
+        scale:lerp(.955,1,eased),
+        opacity:smoothstep(.02,.78,t)
+      };
+    };
+
+    const preserveStart=(canonical,start,base,t)=>{
+      if(!start)return canonical;
+      const carry=1-easeOutCubic(t);
+      return{
+        x:canonical.x+((start.x-base.x)*carry),
+        y:canonical.y+((start.y-base.y)*carry),
+        z:canonical.z+((start.z-base.z)*carry),
+        rx:canonical.rx+((start.rx-base.rx)*carry),
+        ry:canonical.ry+((start.ry-base.ry)*carry),
+        scale:canonical.scale+((start.scale-base.scale)*carry),
+        opacity:clamp(canonical.opacity+((start.opacity-base.opacity)*carry))
+      };
+    };
 
     const setFloor=index=>{
       if(index===activeFloor)return;
@@ -81,50 +173,84 @@
       });
     };
 
-    const updateStory=(raw,index)=>{
-      const mobile=isMobile();
+    const updateStory=now=>{
       const reduced=reducedMotion.matches;
-      labels.forEach((label,labelIndex)=>{
-        if(reduced){
-          const active=labelIndex===index;
-          label.style.setProperty('--story-x','0px');
-          label.style.setProperty('--story-y','0px');
-          label.style.setProperty('--story-z','0px');
-          label.style.setProperty('--story-rx','0deg');
-          label.style.setProperty('--story-ry','0deg');
-          label.style.setProperty('--story-scale','1');
-          label.style.setProperty('--story-opacity',active?'1':'0');
-          return;
-        }
+      if(activeFloor<0)return;
 
-        const delta=labelIndex-raw;
-        const distance=Math.abs(delta);
-        const range=mobile?.92:1.16;
-        const presence=clamp(1-(distance/range));
-        const opacity=presence*presence*(3-(2*presence));
-        const curve=mobile?0:Math.sin(delta*Math.PI*.68)*30;
-        const y=delta*(mobile?58:118);
-        const z=mobile?0:-Math.min(distance,1.15)*88;
-        const rotateX=mobile?0:-delta*1.45;
-        const rotateY=mobile?0:delta*2.15;
-        const scale=mobile?1:1-(Math.min(distance,1)*.055);
+      if(reduced){
+        storyAnimating=false;
+        labels.forEach((_label,index)=>setStoryState(index,index===activeFloor?centeredStoryState():hiddenStoryState()));
+        storyFrom=activeFloor;
+        storyTo=activeFloor;
+        return;
+      }
 
-        label.style.setProperty('--story-x',`${curve.toFixed(2)}px`);
-        label.style.setProperty('--story-y',`${y.toFixed(2)}px`);
-        label.style.setProperty('--story-z',`${z.toFixed(2)}px`);
-        label.style.setProperty('--story-rx',`${rotateX.toFixed(2)}deg`);
-        label.style.setProperty('--story-ry',`${rotateY.toFixed(2)}deg`);
-        label.style.setProperty('--story-scale',scale.toFixed(4));
-        label.style.setProperty('--story-opacity',opacity.toFixed(4));
+      if(!storyAnimating){
+        labels.forEach((_label,index)=>setStoryState(index,index===activeFloor?centeredStoryState():hiddenStoryState()));
+        return;
+      }
+
+      const t=clamp((now-storyStartedAt)/storyDuration);
+      const metrics=storyMetrics();
+      labels.forEach((_label,index)=>{
+        if(index!==storyFrom&&index!==storyTo&&storyVisuals[index].opacity!==0)setStoryState(index,hiddenStoryState());
       });
+
+      if(storyFrom>=0&&storyFrom!==storyTo){
+        const canonical=outgoingStoryState(t,storyDirection,metrics);
+        const fromState=preserveStart(canonical,storyFromStart,centeredStoryState(),t);
+        setStoryState(storyFrom,fromState);
+      }
+
+      const incomingBase=incomingStoryState(0,storyDirection,metrics);
+      const incoming=preserveStart(incomingStoryState(t,storyDirection,metrics),storyToStart,incomingBase,t);
+      setStoryState(storyTo,incoming);
+
+      if(t>=1){
+        storyAnimating=false;
+        storyFrom=storyTo=activeFloor;
+        storyFromStart=null;
+        storyToStart=null;
+        labels.forEach((_label,index)=>setStoryState(index,index===activeFloor?centeredStoryState():hiddenStoryState()));
+      }
     };
 
-    const updateTracker=value=>{
+    const startStoryTransition=(nextFloor,now)=>{
+      if(nextFloor===activeFloor)return;
+      if(activeFloor<0||reducedMotion.matches){
+        setFloor(nextFloor);
+        storyFrom=storyTo=nextFloor;
+        storyAnimating=false;
+        updateStory(now);
+        return;
+      }
+
+      updateStory(now);
+      const previousFloor=activeFloor;
+      const visibleCandidates=[storyFrom,storyTo,previousFloor]
+        .filter((index,position,array)=>index>=0&&index!==nextFloor&&array.indexOf(index)===position)
+        .sort((a,b)=>storyVisuals[b].opacity-storyVisuals[a].opacity);
+      const fromFloor=visibleCandidates[0]??previousFloor;
+      const direction=nextFloor>previousFloor?1:-1;
+      const metrics=storyMetrics();
+      const nextCurrentlyVisible=storyVisuals[nextFloor].opacity>.015;
+
+      storyFrom=fromFloor;
+      storyTo=nextFloor;
+      storyDirection=direction;
+      storyStartedAt=now;
+      storyDuration=isMobile()?520:(isTablet()?700:780);
+      storyFromStart=copyStoryState(storyVisuals[fromFloor]||centeredStoryState());
+      storyToStart=nextCurrentlyVisible?copyStoryState(storyVisuals[nextFloor]):incomingStoryState(0,direction,metrics);
+      storyAnimating=true;
+      setFloor(nextFloor);
+    };
+
+    const updateTracker=(value,now)=>{
       const raw=floorProgress(value)*(services.length-1);
       const index=Math.min(services.length-1,Math.max(0,Math.round(raw)));
       const amount=clamp(raw/(services.length-1));
-      setFloor(index);
-      updateStory(raw,index);
+      if(index!==activeFloor)startStoryTransition(index,now);
       progress.style.transform=`scaleY(${amount})`;
       marker.style.top=`${amount*100}%`;
       stage.style.setProperty('--journey-progress',String(value));
@@ -153,9 +279,9 @@
       const enter=smoothstep(0,.13,value);
       const exit=smoothstep(.89,1,value);
       if(reduced){
-        camera.position.set(mobile?2.1:5.8,.9,mobile?30:32.5);
-        camera.fov=mobile?47:39;
-        camera.lookAt(0,0,0);
+        camera.position.set(mobile?2.1:5.8,mobile?1.25:1.05,mobile?30:32.5);
+        camera.fov=mobile?48:41;
+        camera.lookAt(0,mobile?1.45:1.2,0);
         towerRoot.rotation.y=-.055;
       }else{
         const startX=mobile?2.5:(tablet?4.4:6.8);
@@ -168,12 +294,16 @@
         const settleX=focusX+(exit*(mobile?.45:1.0));
         const drift=Math.sin(focused*Math.PI*1.35)*(mobile?.08:.28);
         const lookX=0;
+        const entryCameraY=mobile?1.35:(tablet?1.2:1.08);
+        const entryLookY=mobile?1.62:(tablet?1.48:1.36);
+        const entryFov=mobile?48:(tablet?43:40.5);
+        const focusFov=mobile?44:(tablet?41:38);
 
         camera.position.x=lerp(startX,settleX,enter)+drift;
-        camera.position.y=lerp(.85,settleY,enter);
+        camera.position.y=lerp(entryCameraY,settleY,enter);
         camera.position.z=lerp(startZ,settleZ,enter);
-        camera.fov=mobile?44:(tablet?41:38);
-        const lookY=lerp(0,lerp(currentY,-4.5,exit),enter);
+        camera.fov=lerp(entryFov,focusFov,enter);
+        const lookY=lerp(entryLookY,lerp(currentY,-4.5,exit),enter);
         camera.lookAt(lookX,lookY,0);
         towerRoot.rotation.y=-.055+(Math.sin(focused*Math.PI)*.018);
       }
@@ -188,15 +318,16 @@
       renderer.render(scene,camera);
     };
 
-    const tick=()=>{
+    const tick=now=>{
       frameId=0;
       if(disposed)return;
       const reduced=reducedMotion.matches;
       visualProgress=reduced?targetProgress:lerp(visualProgress,targetProgress,.14);
       if(Math.abs(visualProgress-targetProgress)<.0005)visualProgress=targetProgress;
-      updateTracker(visualProgress);
+      updateTracker(visualProgress,now);
+      updateStory(now);
       applyScene(visualProgress);
-      if(Math.abs(visualProgress-targetProgress)>.0005)scheduleFrame();
+      if(Math.abs(visualProgress-targetProgress)>.0005||storyAnimating)scheduleFrame();
     };
 
     const scheduleFrame=()=>{
@@ -238,6 +369,7 @@
     const onMotionChange=()=>{
       stage.classList.toggle('reduced-motion',reducedMotion.matches);
       visualProgress=targetProgress;
+      storyAnimating=false;
       scheduleFrame();
     };
 
