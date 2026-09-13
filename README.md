@@ -1,16 +1,21 @@
-# React + Vite
+# DigiBuilder Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This repository contains one production website: the static, scroll-driven DigiBuilder building experience deployed at `digibuilderai.com`.
 
-Currently, two official plugins are available:
+## Production source of truth
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+GitHub Pages publishes only these files:
 
-## React Compiler
+- `index.html`
+- `styles.css`
+- `experience.css`
+- `app.js`
+- `experience.js`
+- `digibuilder-logo.webp`
+- `CNAME`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+There is no React/Vite production app and no build-output ambiguity. The deployment workflow stages only the files above into `_site` and publishes that clean directory to the `gh-pages` branch.
 
-## Expanding the Oxlint configuration
+## Deployment
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Every push to `main` triggers `.github/workflows/deploy.yml`. The workflow recreates the production artifact from the static building site and force-publishes a clean `gh-pages` branch, preventing old source files or alternate landing implementations from being served.
