@@ -11,9 +11,11 @@
     const state=document.getElementById('tower-state');
     const progress=document.getElementById('journey-progress');
     const marker=document.getElementById('journey-marker');
+    const tracker=document.getElementById('floor-nav');
+    const rail=tracker?.querySelector('.tracker-rail');
     const buttons=[...document.querySelectorAll('#floor-nav button')];
     const frames=[...document.querySelectorAll('.floor-frame')];
-    if(!journey||!stage||!camera||!state||!progress||!marker||!buttons.length||!frames.length)return;
+    if(!journey||!stage||!camera||!state||!progress||!marker||!tracker||!rail||!buttons.length||!frames.length)return;
     if(journey.dataset.experience==='ready')return;
 
     journey.dataset.experience='ready';
@@ -25,14 +27,13 @@
     let lastX=0;
 
     const getCameraPreset=()=>{
-      const heightFit=clamp((window.innerHeight-150)/650);
-      if(window.innerWidth<=600)return{scale:Math.min(.94,Math.max(.78,heightFit)),pitch:1,yaw:-7,trackerOffset:158};
-      if(window.innerWidth<=900)return{scale:Math.min(1.02,Math.max(.84,heightFit)),pitch:1.5,yaw:-9,trackerOffset:174};
-      return{scale:Math.min(1.14,Math.max(.88,heightFit*1.08)),pitch:2,yaw:-11,trackerOffset:185};
+      if(window.innerWidth<=600)return{pitch:.35,yaw:-4.5};
+      if(window.innerWidth<=900)return{pitch:.65,yaw:-6};
+      return{pitch:1,yaw:-7.5};
     };
 
     const setFloor=index=>{
-      if(index===activeFloor)return;
+      if(index===activeFloor)return false;
       activeFloor=index;
       const service=services[index];
       stage.dataset.floor=service[1];
@@ -52,6 +53,30 @@
         if(active)frame.setAttribute('aria-current','step');
         else frame.removeAttribute('aria-current');
       });
+      return true;
+    };
+
+    const syncTracker=(raw,scrollProgress)=>{
+      const trackerRect=tracker.getBoundingClientRect();
+      const centers=frames.map(frame=>{
+        const rect=frame.getBoundingClientRect();
+        return rect.top+(rect.height/2)-trackerRect.top;
+      });
+      if(!centers.length)return;
+
+      buttons.forEach((button,index)=>button.style.top=`${centers[index]}px`);
+      const start=centers[0];
+      const end=centers[centers.length-1];
+      const lower=Math.min(centers.length-1,Math.floor(raw));
+      const upper=Math.min(centers.length-1,Math.ceil(raw));
+      const fraction=raw-lower;
+      const markerY=centers[lower]+((centers[upper]-centers[lower])*fraction);
+
+      rail.style.top=`${start}px`;
+      rail.style.height=`${Math.max(0,end-start)}px`;
+      progress.style.height=`${Math.max(0,markerY-start)}px`;
+      marker.style.top=`${markerY-start}px`;
+      stage.style.setProperty('--journey-progress',String(scrollProgress));
     };
 
     const update=()=>{
@@ -63,21 +88,18 @@
       const index=Math.min(services.length-1,Math.round(raw));
       const preset=getCameraPreset();
       const motion=reducedMotion.matches?0:Math.sin(scrollProgress*Math.PI*2);
-      const pitch=preset.pitch+(motion*.35);
-      const yaw=preset.yaw+rotationOffset+(motion*.45);
+      const pitch=preset.pitch+(motion*.18);
+      const yaw=preset.yaw+rotationOffset+(motion*.28);
 
       setFloor(index);
-      stage.style.setProperty('--journey-progress',String(scrollProgress));
-      stage.style.setProperty('--tower-scale',String(preset.scale));
-      stage.style.setProperty('--tracker-offset',`${preset.trackerOffset*preset.scale}px`);
-      progress.style.transform=`scaleY(${scrollProgress})`;
-      marker.style.top=`${scrollProgress*100}%`;
-      camera.style.transform=`rotateX(${pitch}deg) rotateY(${yaw}deg) scale(${preset.scale})`;
+      camera.style.transform=`rotateX(${pitch}deg) rotateY(${yaw}deg)`;
 
       frames.forEach((frame,frameIndex)=>{
         const distance=Math.abs(frameIndex-raw);
         frame.classList.toggle('is-near',frameIndex!==index&&distance<=1.1);
       });
+
+      syncTracker(raw,scrollProgress);
     };
 
     const scheduleUpdate=()=>{
@@ -107,7 +129,7 @@
 
     const onPointerMove=event=>{
       if(!dragging)return;
-      rotationOffset=Math.max(-4,Math.min(4,rotationOffset+(event.clientX-lastX)*.04));
+      rotationOffset=Math.max(-2.5,Math.min(2.5,rotationOffset+(event.clientX-lastX)*.025));
       lastX=event.clientX;
       scheduleUpdate();
     };
