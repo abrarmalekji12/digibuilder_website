@@ -84,8 +84,8 @@ main>.hero:after{
   isolation:isolate;
   touch-action:pan-y;
   background:
-    radial-gradient(circle at 50% 43%,rgba(20,126,154,.19),transparent 31rem),
-    radial-gradient(circle at 50% 110%,rgba(231,102,32,.105),transparent 35rem),
+    radial-gradient(circle at 64% 43%,rgba(20,126,154,.19),transparent 31rem),
+    radial-gradient(circle at 57% 110%,rgba(231,102,32,.105),transparent 35rem),
     linear-gradient(180deg,#020c13 0%,#041b29 56%,#020d14 100%);
 }
 
@@ -116,9 +116,9 @@ main>.hero:after{
 .tower-atmosphere{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .city-glow{
   position:absolute;
-  left:50%;
+  left:64%;
   top:49%;
-  width:min(78vw,1040px);
+  width:min(72vw,980px);
   aspect-ratio:1;
   transform:translate(-50%,-50%);
   border-radius:50%;
@@ -169,8 +169,10 @@ main>.hero:after{
   position:absolute;
   inset:0;
   z-index:1;
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-left:27vw;
   opacity:1;
   transition:opacity .35s ease;
   pointer-events:none;
@@ -213,45 +215,101 @@ main>.hero:after{
 }
 .tower-fallback-building i:nth-child(1){top:13%}.tower-fallback-building i:nth-child(2){top:27%}.tower-fallback-building i:nth-child(3){top:41%}.tower-fallback-building i:nth-child(4){top:55%}.tower-fallback-building i:nth-child(5){top:69%}.tower-fallback-building i:nth-child(6){top:83%}
 
-.tower-label-layer{position:absolute;inset:0;z-index:8;pointer-events:none}
+/* Cinematic service story plane. Motion values are scrubbed from experience.js. */
+.tower-label-layer{
+  position:absolute;
+  z-index:8;
+  left:max(34px,5vw);
+  top:50%;
+  width:min(42vw,560px);
+  height:min(62svh,560px);
+  transform:translateY(-50%);
+  perspective:1150px;
+  perspective-origin:36% 48%;
+  pointer-events:none;
+}
 .tower-floor-label{
-  --label-x:30;
-  --label-y:50;
-  --label-visible:1;
+  --story-x:0px;
+  --story-y:0px;
+  --story-z:0px;
+  --story-rx:0deg;
+  --story-ry:0deg;
+  --story-scale:1;
+  --story-opacity:0;
   position:absolute;
   left:0;
-  top:0;
-  width:min(330px,28vw);
-  min-height:46px;
-  transform:translate3d(calc(var(--label-x) * 1px),calc(var(--label-y) * 1px),0) translate(calc(-100% - 26px),-50%);
-  opacity:calc(var(--label-visible) * .42);
-  color:#9cb4bc;
-  text-align:right;
-  filter:saturate(.72);
-  transition:opacity .3s ease,filter .3s ease;
+  top:50%;
+  width:min(40vw,520px);
+  max-width:100%;
+  transform-style:preserve-3d;
+  transform-origin:16% 50%;
+  transform:
+    translate3d(var(--story-x),calc(-50% + var(--story-y)),var(--story-z))
+    rotateX(var(--story-rx))
+    rotateY(var(--story-ry))
+    scale(var(--story-scale));
+  opacity:var(--story-opacity);
+  color:#b9cbd0;
+  text-align:left;
   will-change:transform,opacity;
+}
+.tower-floor-label:before{
+  content:"";
+  position:absolute;
+  left:-18px;
+  top:5px;
+  width:1px;
+  height:calc(100% - 8px);
+  opacity:.72;
+  background:linear-gradient(180deg,var(--gold),rgba(124,216,227,.24) 46%,transparent 100%);
+  transform:translateZ(8px);
 }
 .tower-floor-label:after{
   content:"";
   position:absolute;
-  right:-22px;
-  top:50%;
-  width:18px;
+  left:calc(100% + 18px);
+  top:30px;
+  width:min(9vw,118px);
   height:1px;
-  background:rgba(124,216,227,.28);
-  box-shadow:8px 0 0 -0.5px rgba(124,216,227,.25);
+  opacity:.42;
+  background:linear-gradient(90deg,rgba(242,170,40,.75),rgba(124,216,227,.3),transparent);
+  transform:translateZ(10px);
 }
-.tower-label-number{display:block;color:#79a1ac;font-size:8px;font-weight:900;letter-spacing:.19em;margin-bottom:2px}
-.tower-label-copy h3{margin:0;font-size:10px;line-height:1.12;font-weight:760;letter-spacing:-.01em;color:#9cb4bc}
-.tower-label-copy p{max-height:0;margin:0;overflow:hidden;opacity:0;font-size:10px;line-height:1.42;color:#91aab2;transition:max-height .3s ease,opacity .3s ease,margin .3s ease}
-.tower-floor-label.active{
-  opacity:calc(var(--label-visible) * 1);
-  filter:none;
+.tower-label-number{
+  display:block;
+  margin-bottom:14px;
+  color:var(--gold);
+  font-size:12px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.22em;
+  transform:translateZ(38px);
+  text-shadow:0 1px 0 rgba(255,255,255,.08);
 }
-.tower-floor-label.active:after{background:linear-gradient(90deg,var(--gold),var(--cyan));box-shadow:7px 0 12px rgba(242,170,40,.24)}
-.tower-floor-label.active .tower-label-number{color:var(--gold);font-size:10px}
-.tower-floor-label.active .tower-label-copy h3{font-size:clamp(17px,1.6vw,22px);line-height:1.02;color:#f4f8f9;font-weight:860;letter-spacing:-.035em}
-.tower-floor-label.active .tower-label-copy p{max-height:60px;margin-top:7px;opacity:1;color:#a9c1c8;font-size:10.5px}
+.tower-label-number:after{content:" / 06";color:#63828b;font-size:.78em;letter-spacing:.16em}
+.tower-label-copy{transform-style:preserve-3d}
+.tower-label-copy h3{
+  max-width:520px;
+  margin:0;
+  color:#f4f8f9;
+  font-size:clamp(34px,3.5vw,54px);
+  line-height:.96;
+  font-weight:850;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+  transform:translateZ(58px);
+  text-shadow:0 1px 0 rgba(255,255,255,.08),0 14px 34px rgba(0,0,0,.16);
+}
+.tower-label-copy p{
+  max-width:500px;
+  margin:18px 0 0;
+  color:#a9c1c8;
+  font-size:clamp(14px,1.05vw,17px);
+  line-height:1.58;
+  letter-spacing:-.01em;
+  transform:translateZ(24px);
+}
+.tower-floor-label.active .tower-label-copy h3{color:#fff}
 
 .tower-tracker{
   position:absolute;
@@ -351,11 +409,20 @@ main>.hero:after{
 
 @media(max-width:980px){
   .tower-journey{height:600svh}
+  .tower-stage{background:
+    radial-gradient(circle at 59% 43%,rgba(20,126,154,.18),transparent 29rem),
+    radial-gradient(circle at 54% 110%,rgba(231,102,32,.095),transparent 32rem),
+    linear-gradient(180deg,#020c13 0%,#041b29 56%,#020d14 100%)}
+  .city-glow{left:59%;width:min(80vw,900px)}
   .tower-heading{top:calc(var(--header) + 13px)}
-  .tower-floor-label{width:min(260px,31vw);transform:translate3d(calc(var(--label-x) * 1px),calc(var(--label-y) * 1px),0) translate(calc(-100% - 18px),-50%)}
-  .tower-floor-label:after{right:-15px;width:12px}
-  .tower-floor-label.active .tower-label-copy h3{font-size:16px}
+  .tower-label-layer{left:max(28px,4vw);width:40vw;height:min(60svh,520px);perspective:1000px}
+  .tower-floor-label{width:38vw}
+  .tower-label-copy h3{font-size:clamp(28px,4vw,40px);line-height:.98}
+  .tower-label-copy p{font-size:clamp(13px,1.45vw,15px);margin-top:14px;line-height:1.5}
+  .tower-label-number{font-size:10px;margin-bottom:11px}
+  .tower-floor-label:after{width:72px}
   .tower-tracker{right:20px}
+  .tower-fallback{padding-left:16vw}
 }
 
 @media(max-width:760px){
@@ -364,28 +431,44 @@ main>.hero:after{
   .hero h1{max-width:680px}
 
   .tower-journey{height:570svh}
-  .tower-stage:before{background:linear-gradient(180deg,rgba(2,12,19,.52),transparent 20%,transparent 72%,rgba(2,12,19,.84))}
+  .tower-stage{
+    background:
+      radial-gradient(circle at 50% 40%,rgba(20,126,154,.16),transparent 25rem),
+      radial-gradient(circle at 50% 108%,rgba(231,102,32,.08),transparent 27rem),
+      linear-gradient(180deg,#020c13 0%,#041b29 56%,#020d14 100%);
+  }
+  .tower-stage:before{background:linear-gradient(180deg,rgba(2,12,19,.52),transparent 20%,transparent 70%,rgba(2,12,19,.9))}
   .tower-heading{left:18px;right:72px;transform:none;justify-content:flex-start;overflow:hidden}
   .tower-heading span+span{display:none}
+  .city-glow{left:50%;top:43%;width:105vw}
   .city-grid{bottom:-27%;height:51%;background-size:48px 48px}
+  .tower-fallback{padding-left:0;align-items:flex-start;padding-top:15svh}
 
-  .tower-floor-label{
-    display:none;
-    left:20px;
-    right:76px;
+  .tower-label-layer{
+    left:18px;
+    right:68px;
     top:auto;
-    bottom:72px;
+    bottom:68px;
     width:auto;
-    min-height:0;
+    height:170px;
     transform:none;
-    text-align:left;
-    opacity:0;
+    perspective:none;
   }
-  .tower-floor-label.active{display:block;opacity:1}
+  .tower-floor-label{
+    top:50%;
+    width:100%;
+    max-width:440px;
+    transform:
+      translate3d(0,calc(-50% + var(--story-y)),0)
+      scale(1);
+    transform-style:flat;
+  }
+  .tower-floor-label:before{left:-9px;top:4px;height:calc(100% - 4px);opacity:.56;transform:none}
   .tower-floor-label:after{display:none}
-  .tower-floor-label.active .tower-label-number{font-size:9px}
-  .tower-floor-label.active .tower-label-copy h3{font-size:clamp(18px,5vw,22px);max-width:420px}
-  .tower-floor-label.active .tower-label-copy p{font-size:10px;max-width:330px;margin-top:6px}
+  .tower-label-number{margin-bottom:7px;font-size:8px;transform:none}
+  .tower-label-copy{transform-style:flat}
+  .tower-label-copy h3{max-width:420px;font-size:clamp(20px,5.5vw,28px);line-height:1;letter-spacing:-.035em;transform:none;text-shadow:0 10px 24px rgba(0,0,0,.18)}
+  .tower-label-copy p{max-width:360px;margin-top:8px;font-size:11px;line-height:1.4;transform:none}
 
   .tower-tracker{right:12px;width:45px;height:min(48svh,350px)}
   .tower-tracker button{width:45px;padding-left:15px;font-size:7px}
@@ -395,7 +478,7 @@ main>.hero:after{
   .journey-hint strong{font-size:7.5px}
   .journey-hint strong:after{width:16px;margin-left:6px}
   .scroll-cue{display:none}
-  .tower-fallback-building{width:min(62vw,310px);height:min(68svh,600px)}
+  .tower-fallback-building{width:min(62vw,310px);height:min(61svh,560px)}
 }
 
 @media(max-width:480px){
@@ -406,22 +489,26 @@ main>.hero:after{
   .hero .lead{max-width:94%}
 
   .tower-heading{font-size:8px}
-  .tower-floor-label{left:16px;right:62px;bottom:78px}
+  .tower-label-layer{left:16px;right:58px;bottom:72px;height:164px}
+  .tower-label-copy h3{font-size:clamp(19px,6vw,25px)}
+  .tower-label-copy p{font-size:10.5px;max-width:310px}
   .tower-tracker{right:6px;width:41px;height:44svh}
   .tower-tracker button{width:41px;padding-left:13px;font-size:6.6px;letter-spacing:.08em}
   .journey-ui{left:16px;right:60px}
-  .tower-fallback-building{width:min(68vw,280px);height:min(64svh,540px)}
+  .tower-fallback-building{width:min(68vw,280px);height:min(58svh,520px)}
 }
 
 @media(max-height:700px) and (min-width:761px){
   .tower-heading{display:none}
   .tower-tracker{height:50svh}
-  .tower-floor-label.active .tower-label-copy h3{font-size:16px}
-  .tower-floor-label.active .tower-label-copy p{font-size:9.5px}
+  .tower-label-layer{height:68svh}
+  .tower-label-copy h3{font-size:clamp(27px,3.2vw,42px)}
+  .tower-label-copy p{font-size:13px;margin-top:12px}
 }
 
 @media(prefers-reduced-motion:reduce){
   main>.hero:after{animation:none}
   .scroll-cue b{animation:none}
-  .tower-webgl,.tower-fallback,.tower-floor-label,.tower-label-copy p,.tower-tracker button,.tower-tracker button:before{transition:none}
+  .tower-webgl,.tower-fallback,.tower-tracker button,.tower-tracker button:before{transition:none}
+  .tower-floor-label{will-change:auto}
 }

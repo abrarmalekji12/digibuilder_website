@@ -81,34 +81,53 @@
       });
     };
 
+    const updateStory=(raw,index)=>{
+      const mobile=isMobile();
+      const reduced=reducedMotion.matches;
+      labels.forEach((label,labelIndex)=>{
+        if(reduced){
+          const active=labelIndex===index;
+          label.style.setProperty('--story-x','0px');
+          label.style.setProperty('--story-y','0px');
+          label.style.setProperty('--story-z','0px');
+          label.style.setProperty('--story-rx','0deg');
+          label.style.setProperty('--story-ry','0deg');
+          label.style.setProperty('--story-scale','1');
+          label.style.setProperty('--story-opacity',active?'1':'0');
+          return;
+        }
+
+        const delta=labelIndex-raw;
+        const distance=Math.abs(delta);
+        const range=mobile?.92:1.16;
+        const presence=clamp(1-(distance/range));
+        const opacity=presence*presence*(3-(2*presence));
+        const curve=mobile?0:Math.sin(delta*Math.PI*.68)*30;
+        const y=delta*(mobile?58:118);
+        const z=mobile?0:-Math.min(distance,1.15)*88;
+        const rotateX=mobile?0:-delta*1.45;
+        const rotateY=mobile?0:delta*2.15;
+        const scale=mobile?1:1-(Math.min(distance,1)*.055);
+
+        label.style.setProperty('--story-x',`${curve.toFixed(2)}px`);
+        label.style.setProperty('--story-y',`${y.toFixed(2)}px`);
+        label.style.setProperty('--story-z',`${z.toFixed(2)}px`);
+        label.style.setProperty('--story-rx',`${rotateX.toFixed(2)}deg`);
+        label.style.setProperty('--story-ry',`${rotateY.toFixed(2)}deg`);
+        label.style.setProperty('--story-scale',scale.toFixed(4));
+        label.style.setProperty('--story-opacity',opacity.toFixed(4));
+      });
+    };
+
     const updateTracker=value=>{
       const raw=floorProgress(value)*(services.length-1);
       const index=Math.min(services.length-1,Math.max(0,Math.round(raw)));
       const amount=clamp(raw/(services.length-1));
       setFloor(index);
+      updateStory(raw,index);
       progress.style.transform=`scaleY(${amount})`;
       marker.style.top=`${amount*100}%`;
       stage.style.setProperty('--journey-progress',String(value));
-    };
-
-    const projectLabels=()=>{
-      if(!THREE||!camera||!towerRoot||!floorAnchors.length||!renderer)return;
-      towerRoot.updateMatrixWorld(true);
-      camera.updateMatrixWorld(true);
-      const point=new THREE.Vector3();
-
-      floorAnchors.forEach((anchor,index)=>{
-        point.copy(anchor);
-        towerRoot.localToWorld(point);
-        point.project(camera);
-        const x=(point.x*.5+.5)*viewportWidth;
-        const y=(-point.y*.5+.5)*viewportHeight;
-        const visible=point.z>-1&&point.z<1&&x>-120&&x<viewportWidth+120&&y>-100&&y<viewportHeight+100;
-        const label=labels[index];
-        label.style.setProperty('--label-x',x.toFixed(2));
-        label.style.setProperty('--label-y',y.toFixed(2));
-        label.style.setProperty('--label-visible',visible?'1':'0');
-      });
     };
 
     const applyScene=value=>{
@@ -122,7 +141,9 @@
       const high=Math.min(services.length-1,Math.ceil(raw));
       const fraction=raw-low;
       const currentY=lerp(floorAnchors[low].y,floorAnchors[high].y,fraction);
+      const towerOffsetX=mobile?0:(tablet?.9:2.65);
 
+      towerRoot.position.x=towerOffsetX;
       floorMaterials.forEach((material,index)=>{
         const proximity=1-Math.min(1,Math.abs(index-raw));
         material.emissiveIntensity=.16+(proximity*(mobile?1.65:2.25));
@@ -146,24 +167,25 @@
         const settleZ=focusZ+(exit*(mobile?5.2:7.3));
         const settleX=focusX+(exit*(mobile?.45:1.0));
         const drift=Math.sin(focused*Math.PI*1.35)*(mobile?.08:.28);
+        const lookX=0;
 
         camera.position.x=lerp(startX,settleX,enter)+drift;
         camera.position.y=lerp(.85,settleY,enter);
         camera.position.z=lerp(startZ,settleZ,enter);
         camera.fov=mobile?44:(tablet?41:38);
         const lookY=lerp(0,lerp(currentY,-4.5,exit),enter);
-        camera.lookAt(0,lookY,0);
+        camera.lookAt(lookX,lookY,0);
         towerRoot.rotation.y=-.055+(Math.sin(focused*Math.PI)*.018);
       }
       camera.updateProjectionMatrix();
 
       if(accentLight){
+        accentLight.position.x=towerOffsetX;
         accentLight.position.y=currentY+.1;
         accentLight.intensity=mobile?12:20;
       }
 
       renderer.render(scene,camera);
-      projectLabels();
     };
 
     const tick=()=>{
