@@ -22,35 +22,34 @@ function card(service){
 }
 
 function building(){
-  return `<section class="tower-journey" id="tower-journey">
+  return `<section class="tower-journey" id="tower-journey" aria-label="DigiBuilder capability building journey">
     <div class="tower-stage" id="tower-stage">
       <div class="city-glow"></div><div class="city-grid"></div>
-      <div class="building-copy">
-        <div class="overline">The Digibuilder building</div>
-        <h2 id="tower-title">Strategy & Consulting</h2>
-        <p id="tower-desc">Clarity before activity: positioning, research, growth roadmaps and practical priorities that connect business goals to digital action.</p>
-        <span class="floor-state"><i></i><span id="tower-state">01 / 06 · FOUNDATION</span></span>
-      </div>
+      <div class="tower-heading" aria-hidden="true"><span>The DigiBuilder building</span><span>Six capability floors · top to foundation</span></div>
       <div class="building-scene">
-        <div class="building-camera" id="building-camera">
-          <div class="building">
-            <div class="front-shell"></div><div class="right-shell"></div><div class="left-shell"></div>
-            <div class="roof"></div><div class="roof-core"></div><div class="mast"></div>
-            ${services.map((service,index)=>`<div class="floor-frame f${service[1]}" data-index="${index}">
-              <div class="floor-edge"></div><div class="floor-window">
-                <div class="copy"><div class="number">${service[1]}</div><div class="title">${service[2]}</div><div class="desc">${service[4]}</div></div>
-                <div class="window-lights"><i></i><i></i><i></i><i></i></div>
-              </div>
-            </div>`).join('')}
-            <div class="foundation"></div>
+        <div class="tower-cluster">
+          <div class="building-camera" id="building-camera">
+            <div class="building">
+              <div class="front-shell"></div><div class="right-shell"></div><div class="left-shell"></div>
+              <div class="roof"></div><div class="roof-core"></div><div class="mast"></div>
+              ${services.map((service,index)=>`<div class="floor-frame" data-index="${index}" aria-label="Floor ${service[1]}: ${service[2]}">
+                <div class="floor-edge"></div><div class="floor-window">
+                  <div class="copy"><div class="number">${service[1]}</div><div class="title">${service[2]}</div><div class="desc">${service[3]}</div></div>
+                  <div class="window-lights" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                </div>
+              </div>`).join('')}
+              <div class="foundation"></div>
+            </div>
           </div>
+          <nav class="tower-tracker" id="floor-nav" aria-label="Capability floors">
+            <div class="tracker-rail" aria-hidden="true"><i id="journey-progress"></i><b id="journey-marker"></b></div>
+            ${services.map((service,index)=>`<button data-index="${index}" class="${index===0?'active':''}" aria-label="Go to floor ${service[1]}: ${service[2]}"><span>${service[1]} / 06</span></button>`).join('')}
+          </nav>
         </div>
       </div>
-      <div class="floor-nav" id="floor-nav">${services.map((service,index)=>`<button data-index="${index}" class="${index===0?'active':''}" aria-label="Go to ${service[2]}">${service[1]}</button>`).join('')}</div>
       <div class="journey-ui">
-        <div class="journey-meter"><div class="small"><span>Building journey</span><span id="journey-percent">0%</span></div><div class="journey-line"><i id="journey-progress"></i></div></div>
-        <div class="journey-hint">Scroll through the building · one chapter at a time</div>
-        <div class="scroll-cue">Explore <b>↓</b></div>
+        <div class="journey-hint"><strong id="tower-state">01 / 06</strong><span>Scroll down through the building</span></div>
+        <div class="scroll-cue" aria-hidden="true">Explore <b>↓</b></div>
       </div>
     </div>
   </section>`;
@@ -144,121 +143,6 @@ function prepare(mode){
   }
 }
 
-function getCameraPreset(){
-  if(window.innerWidth<=600)return{x:12,y:-window.innerHeight*.15,scale:.62,pitch:4,yaw:-18};
-  if(window.innerWidth<=900)return{x:16,y:-window.innerHeight*.04,scale:.82,pitch:3,yaw:-18};
-  return{x:11,y:0,scale:1,pitch:3,yaw:-22};
-}
-
-function initTower(){
-  const journey=document.getElementById('tower-journey');
-  if(!journey)return;
-
-  const stage=document.getElementById('tower-stage');
-  const camera=document.getElementById('building-camera');
-  const title=document.getElementById('tower-title');
-  const desc=document.getElementById('tower-desc');
-  const state=document.getElementById('tower-state');
-  const progress=document.getElementById('journey-progress');
-  const percent=document.getElementById('journey-percent');
-  const nav=[...document.querySelectorAll('#floor-nav button')];
-  const frames=[...document.querySelectorAll('.floor-frame')];
-
-  let rotationOffset=0;
-  let dragging=false;
-  let lastX=0;
-  let frameId=0;
-  let activeFloor=-1;
-
-  const setFloor=index=>{
-    if(index===activeFloor)return;
-    activeFloor=index;
-    const service=services[index];
-    title.textContent=service[2];
-    desc.textContent=service[4];
-    state.textContent=`${service[1]} / 06 · ${service[0].replace(/-/g,' ').toUpperCase()}`;
-    nav.forEach((button,buttonIndex)=>button.classList.toggle('active',buttonIndex===index));
-  };
-
-  const update=()=>{
-    frameId=0;
-    const max=Math.max(1,journey.offsetHeight-window.innerHeight);
-    const rect=journey.getBoundingClientRect();
-    const scrollProgress=Math.max(0,Math.min(1,-rect.top/max));
-    const raw=scrollProgress*(services.length-1);
-    const index=Math.min(services.length-1,Math.round(raw));
-    const preset=getCameraPreset();
-    const lift=Math.sin(scrollProgress*Math.PI)*28;
-    const zoom=1+Math.sin(scrollProgress*Math.PI)*.06;
-    const pitch=preset.pitch+scrollProgress*4;
-    const yaw=preset.yaw+rotationOffset+Math.sin(scrollProgress*Math.PI*2)*2;
-
-    setFloor(index);
-    percent.textContent=`${Math.round(scrollProgress*100)}%`;
-    progress.style.width=`${scrollProgress*100}%`;
-    camera.style.transform=`translate3d(${preset.x+Math.sin(scrollProgress*Math.PI)*2}vw,${preset.y-lift/4}px,${lift}px) rotateX(${pitch}deg) rotateY(${yaw}deg) scale(${preset.scale*zoom})`;
-
-    frames.forEach((frame,frameIndex)=>{
-      const distance=Math.abs(frameIndex-raw);
-      frame.style.filter=`brightness(${1-Math.min(.25,distance*.045)})`;
-      frame.style.opacity=String(1-Math.min(.2,distance*.035));
-    });
-  };
-
-  const scheduleUpdate=()=>{
-    if(!frameId)frameId=requestAnimationFrame(update);
-  };
-
-  const go=index=>{
-    const max=Math.max(1,journey.offsetHeight-window.innerHeight);
-    window.scrollTo({top:journey.offsetTop+max*(index/(services.length-1)),behavior:'smooth'});
-  };
-
-  const navHandlers=nav.map((button,index)=>{
-    const handler=()=>go(index);
-    button.addEventListener('click',handler);
-    return[button,handler];
-  });
-
-  const onPointerDown=event=>{
-    if(event.target.closest('button,a,input,textarea,select'))return;
-    dragging=true;
-    lastX=event.clientX;
-    stage.setPointerCapture?.(event.pointerId);
-  };
-
-  const onPointerMove=event=>{
-    if(!dragging)return;
-    rotationOffset+=(event.clientX-lastX)*.18;
-    lastX=event.clientX;
-    scheduleUpdate();
-  };
-
-  const stopDragging=event=>{
-    dragging=false;
-    if(event?.pointerId!==undefined&&stage.hasPointerCapture?.(event.pointerId))stage.releasePointerCapture(event.pointerId);
-  };
-
-  stage.addEventListener('pointerdown',onPointerDown);
-  stage.addEventListener('pointermove',onPointerMove);
-  stage.addEventListener('pointerup',stopDragging);
-  stage.addEventListener('pointercancel',stopDragging);
-  window.addEventListener('scroll',scheduleUpdate,{passive:true});
-  window.addEventListener('resize',scheduleUpdate);
-  scheduleUpdate();
-
-  towerCleanup=()=>{
-    stage.removeEventListener('pointerdown',onPointerDown);
-    stage.removeEventListener('pointermove',onPointerMove);
-    stage.removeEventListener('pointerup',stopDragging);
-    stage.removeEventListener('pointercancel',stopDragging);
-    window.removeEventListener('scroll',scheduleUpdate);
-    window.removeEventListener('resize',scheduleUpdate);
-    navHandlers.forEach(([button,handler])=>button.removeEventListener('click',handler));
-    if(frameId)cancelAnimationFrame(frameId);
-  };
-}
-
 function bind(){
   const menu=document.getElementById('menu');
   const nav=document.getElementById('nav');
@@ -278,8 +162,6 @@ function bind(){
     form.addEventListener('submit',event=>{event.preventDefault();prepare('email')});
     document.getElementById('wa')?.addEventListener('click',()=>prepare('wa'));
   }
-
-  initTower();
 }
 
 function render(){
