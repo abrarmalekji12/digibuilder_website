@@ -182,6 +182,7 @@ main>.hero:after{
   position:relative;
   width:clamp(250px,28vw,390px);
   height:min(72svh,690px);
+  margin-top:clamp(32px,4svh,48px);
   clip-path:polygon(16% 0,84% 0,94% 9%,100% 100%,0 100%,6% 9%);
   background:linear-gradient(90deg,#06131c,#0a3445 16%,#0c4c5f 51%,#082b3b 82%,#041018);
   border:1px solid rgba(124,216,227,.24);
@@ -215,17 +216,17 @@ main>.hero:after{
 }
 .tower-fallback-building i:nth-child(1){top:13%}.tower-fallback-building i:nth-child(2){top:27%}.tower-fallback-building i:nth-child(3){top:41%}.tower-fallback-building i:nth-child(4){top:55%}.tower-fallback-building i:nth-child(5){top:69%}.tower-fallback-building i:nth-child(6){top:83%}
 
-/* Cinematic service story plane. Motion values are scrubbed from experience.js. */
+/* Cinematic service story plane. Scroll chooses the active floor; experience.js owns the independent transition clock. */
 .tower-label-layer{
   position:absolute;
   z-index:8;
   left:max(34px,5vw);
   top:50%;
-  width:min(42vw,560px);
-  height:min(62svh,560px);
+  width:min(46vw,660px);
+  height:min(76svh,680px);
   transform:translateY(-50%);
-  perspective:1150px;
-  perspective-origin:36% 48%;
+  perspective:1250px;
+  perspective-origin:32% 48%;
   pointer-events:none;
 }
 .tower-floor-label{
@@ -239,7 +240,7 @@ main>.hero:after{
   position:absolute;
   left:0;
   top:50%;
-  width:min(40vw,520px);
+  width:min(40vw,540px);
   max-width:100%;
   transform-style:preserve-3d;
   transform-origin:16% 50%;
@@ -289,27 +290,40 @@ main>.hero:after{
 .tower-label-number:after{content:" / 06";color:#63828b;font-size:.78em;letter-spacing:.16em}
 .tower-label-copy{transform-style:preserve-3d}
 .tower-label-copy h3{
-  max-width:520px;
+  max-width:540px;
   margin:0;
-  color:#f4f8f9;
+  color:rgba(4,24,34,.38);
   font-size:clamp(34px,3.5vw,54px);
   line-height:.96;
   font-weight:850;
-  letter-spacing:-.045em;
+  letter-spacing:-.04em;
   text-wrap:balance;
   transform:translateZ(58px);
-  text-shadow:0 1px 0 rgba(255,255,255,.08),0 14px 34px rgba(0,0,0,.16);
+  -webkit-text-stroke:1.25px rgba(174,239,247,.94);
+  paint-order:stroke fill;
+  text-shadow:
+    -1px -1px 0 rgba(242,170,40,.38),
+    2px 2px 0 rgba(13,74,87,.94),
+    4px 4px 0 rgba(3,31,42,.84);
+  filter:drop-shadow(0 14px 24px rgba(0,0,0,.2));
 }
 .tower-label-copy p{
   max-width:500px;
   margin:18px 0 0;
-  color:#a9c1c8;
+  color:#b4cbd1;
   font-size:clamp(14px,1.05vw,17px);
   line-height:1.58;
   letter-spacing:-.01em;
   transform:translateZ(24px);
 }
-.tower-floor-label.active .tower-label-copy h3{color:#fff}
+.tower-floor-label.active .tower-label-copy h3{
+  color:rgba(8,37,48,.28);
+  -webkit-text-stroke-color:rgba(203,247,251,.98);
+  text-shadow:
+    -1px -1px 0 rgba(242,170,40,.5),
+    2px 2px 0 rgba(13,82,96,.98),
+    4px 4px 0 rgba(3,31,42,.9);
+}
 
 .tower-tracker{
   position:absolute;
@@ -415,12 +429,12 @@ main>.hero:after{
     linear-gradient(180deg,#020c13 0%,#041b29 56%,#020d14 100%)}
   .city-glow{left:59%;width:min(80vw,900px)}
   .tower-heading{top:calc(var(--header) + 13px)}
-  .tower-label-layer{left:max(28px,4vw);width:40vw;height:min(60svh,520px);perspective:1000px}
-  .tower-floor-label{width:38vw}
-  .tower-label-copy h3{font-size:clamp(28px,4vw,40px);line-height:.98}
+  .tower-label-layer{left:max(28px,4vw);width:44vw;height:min(72svh,610px);perspective:1100px}
+  .tower-floor-label{width:39vw}
+  .tower-label-copy h3{font-size:clamp(28px,4vw,40px);line-height:.98;-webkit-text-stroke-width:1.05px}
   .tower-label-copy p{font-size:clamp(13px,1.45vw,15px);margin-top:14px;line-height:1.5}
   .tower-label-number{font-size:10px;margin-bottom:11px}
-  .tower-floor-label:after{width:72px}
+  .tower-floor-label:after{width:58px}
   .tower-tracker{right:20px}
   .tower-fallback{padding-left:16vw}
 }
@@ -442,7 +456,8 @@ main>.hero:after{
   .tower-heading span+span{display:none}
   .city-glow{left:50%;top:43%;width:105vw}
   .city-grid{bottom:-27%;height:51%;background-size:48px 48px}
-  .tower-fallback{padding-left:0;align-items:flex-start;padding-top:15svh}
+  .tower-fallback{padding-left:0;align-items:flex-start;padding-top:18svh}
+  .tower-fallback-building{margin-top:0}
 
   .tower-label-layer{
     left:18px;
@@ -450,7 +465,7 @@ main>.hero:after{
     top:auto;
     bottom:68px;
     width:auto;
-    height:170px;
+    height:180px;
     transform:none;
     perspective:none;
   }
@@ -467,7 +482,16 @@ main>.hero:after{
   .tower-floor-label:after{display:none}
   .tower-label-number{margin-bottom:7px;font-size:8px;transform:none}
   .tower-label-copy{transform-style:flat}
-  .tower-label-copy h3{max-width:420px;font-size:clamp(20px,5.5vw,28px);line-height:1;letter-spacing:-.035em;transform:none;text-shadow:0 10px 24px rgba(0,0,0,.18)}
+  .tower-label-copy h3{
+    max-width:420px;
+    font-size:clamp(20px,5.5vw,28px);
+    line-height:1;
+    letter-spacing:-.03em;
+    transform:none;
+    -webkit-text-stroke-width:.85px;
+    text-shadow:-.6px -.6px 0 rgba(242,170,40,.4),1.5px 1.5px 0 rgba(13,74,87,.9),2.5px 2.5px 0 rgba(3,31,42,.78);
+    filter:drop-shadow(0 8px 18px rgba(0,0,0,.16));
+  }
   .tower-label-copy p{max-width:360px;margin-top:8px;font-size:11px;line-height:1.4;transform:none}
 
   .tower-tracker{right:12px;width:45px;height:min(48svh,350px)}
@@ -489,7 +513,7 @@ main>.hero:after{
   .hero .lead{max-width:94%}
 
   .tower-heading{font-size:8px}
-  .tower-label-layer{left:16px;right:58px;bottom:72px;height:164px}
+  .tower-label-layer{left:16px;right:58px;bottom:72px;height:172px}
   .tower-label-copy h3{font-size:clamp(19px,6vw,25px)}
   .tower-label-copy p{font-size:10.5px;max-width:310px}
   .tower-tracker{right:6px;width:41px;height:44svh}
@@ -501,7 +525,7 @@ main>.hero:after{
 @media(max-height:700px) and (min-width:761px){
   .tower-heading{display:none}
   .tower-tracker{height:50svh}
-  .tower-label-layer{height:68svh}
+  .tower-label-layer{height:74svh}
   .tower-label-copy h3{font-size:clamp(27px,3.2vw,42px)}
   .tower-label-copy p{font-size:13px;margin-top:12px}
 }
