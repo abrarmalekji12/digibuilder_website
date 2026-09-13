@@ -5,7 +5,6 @@
   const THREE_URL='https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.min.js';
   const FLOOR_START=.11;
   const FLOOR_END=.89;
-  const SNAP_DELAY=145;
   const clamp=value=>Math.max(0,Math.min(1,value));
   const lerp=(from,to,t)=>from+(to-from)*t;
   const smoothstep=(from,to,value)=>{
@@ -71,26 +70,37 @@
     let storyToStart=null;
     const storyVisuals=labels.map(()=>({x:0,y:0,z:0,rx:0,ry:0,scale:1,opacity:0}));
 
-    let lastScrollAt=0;
-    let snapPending=false;
-    let snapping=false;
-    let snapProgress=null;
-
     const isMobile=()=>window.innerWidth<=680;
     const isTablet=()=>window.innerWidth<=980;
     const floorProgress=value=>clamp((value-FLOOR_START)/(FLOOR_END-FLOOR_START));
     const scrollForFloor=index=>FLOOR_START+(index/(services.length-1))*(FLOOR_END-FLOOR_START);
     const copyStoryState=value=>({...value});
 
+    /* Keep page scroll continuous. Near a floor centre, only the rendered tower gets a
+       gentle magnetic settle; this avoids fighting the browser with a second smooth scroll. */
+    const magneticFloorRaw=raw=>{
+      if(reducedMotion.matches)return raw;
+      const nearest=Math.round(raw);
+      const delta=raw-nearest;
+      const distance=Math.abs(delta);
+      const radius=isMobile()?.16:(isTablet()?.20:.24);
+      if(!distance||distance>=radius)return raw;
+      const release=smoothstep(0,radius,distance);
+      const strength=isMobile()?.48:(isTablet()?.58:.66);
+      return raw-(delta*strength*(1-release));
+    };
+
     labels.forEach(label=>{
       const heading=label.querySelector('.tower-label-copy h3');
       if(!heading)return;
-      heading.style.background='linear-gradient(102deg,#bff5f7 0%,#46d5e7 34%,#1594b8 56%,#f2aa28 82%,#e76620 100%)';
+      heading.style.background='linear-gradient(100deg,#e6a946 0%,#da7839 100%)';
       heading.style.backgroundClip='text';
       heading.style.webkitBackgroundClip='text';
       heading.style.color='transparent';
       heading.style.webkitTextFillColor='transparent';
-      heading.style.webkitTextStroke='.85px rgba(184,238,244,.58)';
+      heading.style.webkitTextStroke='.4px rgba(246,190,89,.26)';
+      heading.style.textShadow='0 1px 0 rgba(255,197,100,.12),2px 2px 0 rgba(74,43,28,.38),0 12px 24px rgba(0,0,0,.18)';
+      heading.style.filter='drop-shadow(0 10px 20px rgba(0,0,0,.16))';
     });
 
     const setStoryState=(index,next)=>{
@@ -279,8 +289,10 @@
       const mobile=isMobile();
       const tablet=isTablet();
       const reduced=reducedMotion.matches;
-      const focused=floorProgress(value);
-      const raw=focused*(services.length-1);
+      const scrollFocused=floorProgress(value);
+      const scrollRaw=scrollFocused*(services.length-1);
+      const raw=magneticFloorRaw(scrollRaw);
+      const focused=raw/(services.length-1);
       const low=Math.floor(raw);
       const high=Math.min(services.length-1,Math.ceil(raw));
       const fraction=raw-low;
@@ -336,42 +348,16 @@
       renderer.render(scene,camera);
     };
 
-    const finishSnapIfArrived=()=>{
-      if(!snapping||snapProgress===null)return;
-      if(Math.abs(targetProgress-snapProgress)<.0018){
-        snapping=false;
-        snapProgress=null;
-      }
-    };
-
-    const beginFloorSnap=()=>{
-      if(reducedMotion.matches||snapping||!snapPending)return;
-      if(targetProgress<FLOOR_START||targetProgress>FLOOR_END){
-        snapPending=false;
-        return;
-      }
-      const raw=floorProgress(targetProgress)*(services.length-1);
-      const index=Math.min(services.length-1,Math.max(0,Math.round(raw)));
-      const nextProgress=scrollForFloor(index);
-      snapPending=false;
-      if(Math.abs(nextProgress-targetProgress)<.002)return;
-      snapping=true;
-      snapProgress=nextProgress;
-      window.scrollTo({top:journeyTop+(maxScroll*nextProgress),behavior:'smooth'});
-    };
-
     const tick=now=>{
       frameId=0;
       if(disposed)return;
       const reduced=reducedMotion.matches;
-      if(snapPending&&!snapping&&now-lastScrollAt>=SNAP_DELAY)beginFloorSnap();
       visualProgress=reduced?targetProgress:lerp(visualProgress,targetProgress,.14);
       if(Math.abs(visualProgress-targetProgress)<.0005)visualProgress=targetProgress;
       updateTracker(visualProgress,now);
       updateStory(now);
       applyScene(visualProgress);
-      finishSnapIfArrived();
-      if(Math.abs(visualProgress-targetProgress)>.0005||storyAnimating||snapPending||snapping)scheduleFrame();
+      if(Math.abs(visualProgress-targetProgress)>.0005||storyAnimating)scheduleFrame();
     };
 
     const scheduleFrame=()=>{
@@ -380,14 +366,6 @@
 
     const syncScroll=()=>{
       targetProgress=clamp((window.scrollY-journeyTop)/maxScroll);
-      if(snapping){
-        finishSnapIfArrived();
-      }else if(!reducedMotion.matches&&targetProgress>=FLOOR_START&&targetProgress<=FLOOR_END){
-        lastScrollAt=performance.now();
-        snapPending=true;
-      }else{
-        snapPending=false;
-      }
       scheduleFrame();
     };
 
@@ -408,11 +386,7 @@
     };
 
     const go=index=>{
-      const nextProgress=scrollForFloor(index);
-      snapPending=false;
-      snapping=!reducedMotion.matches;
-      snapProgress=snapping?nextProgress:null;
-      const destination=journeyTop+(maxScroll*nextProgress);
+      const destination=journeyTop+(maxScroll*scrollForFloor(index));
       window.scrollTo({top:destination,behavior:reducedMotion.matches?'auto':'smooth'});
     };
 
@@ -426,9 +400,6 @@
       stage.classList.toggle('reduced-motion',reducedMotion.matches);
       visualProgress=targetProgress;
       storyAnimating=false;
-      snapPending=false;
-      snapping=false;
-      snapProgress=null;
       scheduleFrame();
     };
 
