@@ -5,6 +5,7 @@
   const THREE_URL='https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.min.js';
   const FLOOR_START=.11;
   const FLOOR_END=.89;
+  const SNAP_DELAY=145;
   const clamp=value=>Math.max(0,Math.min(1,value));
   const lerp=(from,to,t)=>from+(to-from)*t;
   const smoothstep=(from,to,value)=>{
@@ -64,17 +65,33 @@
     let storyTo=-1;
     let storyDirection=1;
     let storyStartedAt=0;
-    let storyDuration=780;
+    let storyDuration=840;
     let storyAnimating=false;
     let storyFromStart=null;
     let storyToStart=null;
     const storyVisuals=labels.map(()=>({x:0,y:0,z:0,rx:0,ry:0,scale:1,opacity:0}));
+
+    let lastScrollAt=0;
+    let snapPending=false;
+    let snapping=false;
+    let snapProgress=null;
 
     const isMobile=()=>window.innerWidth<=680;
     const isTablet=()=>window.innerWidth<=980;
     const floorProgress=value=>clamp((value-FLOOR_START)/(FLOOR_END-FLOOR_START));
     const scrollForFloor=index=>FLOOR_START+(index/(services.length-1))*(FLOOR_END-FLOOR_START);
     const copyStoryState=value=>({...value});
+
+    labels.forEach(label=>{
+      const heading=label.querySelector('.tower-label-copy h3');
+      if(!heading)return;
+      heading.style.background='linear-gradient(102deg,#bff5f7 0%,#46d5e7 34%,#1594b8 56%,#f2aa28 82%,#e76620 100%)';
+      heading.style.backgroundClip='text';
+      heading.style.webkitBackgroundClip='text';
+      heading.style.color='transparent';
+      heading.style.webkitTextFillColor='transparent';
+      heading.style.webkitTextStroke='.85px rgba(184,238,244,.58)';
+    });
 
     const setStoryState=(index,next)=>{
       if(index<0||index>=labels.length)return;
@@ -89,51 +106,52 @@
       label.style.setProperty('--story-opacity',next.opacity.toFixed(4));
     };
 
-    const hiddenStoryState=()=>({x:0,y:0,z:0,rx:0,ry:0,scale:.97,opacity:0});
+    const hiddenStoryState=()=>({x:0,y:0,z:0,rx:0,ry:0,scale:.985,opacity:0});
     const centeredStoryState=()=>({x:0,y:0,z:0,rx:0,ry:0,scale:1,opacity:1});
 
     const storyMetrics=()=>{
-      if(isMobile())return{vertical:64,horizontal:0,depth:0};
+      if(isMobile())return{vertical:46,horizontal:0,depth:0};
       const tablet=isTablet();
       return{
-        vertical:tablet?Math.min(170,Math.max(132,viewportHeight*.2)):Math.min(215,Math.max(158,viewportHeight*.235)),
-        horizontal:tablet?Math.min(112,Math.max(78,viewportWidth*.085)):Math.min(158,Math.max(100,viewportWidth*.105)),
-        depth:tablet?Math.min(92,Math.max(70,viewportWidth*.067)):Math.min(128,Math.max(86,viewportWidth*.078))
+        vertical:tablet?Math.min(112,Math.max(82,viewportHeight*.125)):Math.min(142,Math.max(102,viewportHeight*.15)),
+        horizontal:tablet?Math.min(62,Math.max(42,viewportWidth*.045)):Math.min(88,Math.max(56,viewportWidth*.055)),
+        depth:tablet?Math.min(42,Math.max(28,viewportWidth*.03)):Math.min(58,Math.max(36,viewportWidth*.035))
       };
     };
 
     const outgoingStoryState=(t,direction,metrics)=>{
       if(isMobile()){
-        return{x:0,y:-metrics.vertical*easeOutCubic(t),z:0,rx:0,ry:0,scale:1,opacity:1-easeOutCubic(t)};
+        const eased=easeInOutCubic(t);
+        return{x:0,y:-metrics.vertical*eased,z:0,rx:0,ry:0,scale:1,opacity:1-smoothstep(.04,.82,t)};
       }
       const side=direction>0?-1:1;
       const eased=easeInOutCubic(t);
       return{
-        x:cubic(0,metrics.horizontal*.42*side,metrics.horizontal*1.06*side,metrics.horizontal*.72*side,eased),
-        y:cubic(0,-metrics.vertical*.18,-metrics.vertical*.68,-metrics.vertical,eased),
-        z:cubic(0,-metrics.depth*.16,-metrics.depth*.7,-metrics.depth,eased),
-        rx:cubic(0,-.35,-1.3,-1.8,eased),
-        ry:cubic(0,side*.5,side*2.1,side*2.6,eased),
-        scale:lerp(1,.955,eased),
-        opacity:1-easeOutCubic(t)
+        x:cubic(0,metrics.horizontal*.18*side,metrics.horizontal*.62*side,metrics.horizontal*.32*side,eased),
+        y:cubic(0,-metrics.vertical*.1,-metrics.vertical*.48,-metrics.vertical*.82,eased),
+        z:cubic(0,-metrics.depth*.08,-metrics.depth*.5,-metrics.depth*.72,eased),
+        rx:cubic(0,-.08,-.35,-.55,eased),
+        ry:cubic(0,side*.12,side*.58,side*.82,eased),
+        scale:lerp(1,.982,eased),
+        opacity:1-smoothstep(.08,.86,t)
       };
     };
 
     const incomingStoryState=(t,direction,metrics)=>{
       if(isMobile()){
-        const eased=easeOutCubic(t);
-        return{x:0,y:metrics.vertical*(1-eased),z:0,rx:0,ry:0,scale:1,opacity:eased};
+        const eased=easeInOutCubic(t);
+        return{x:0,y:metrics.vertical*(1-eased),z:0,rx:0,ry:0,scale:1,opacity:smoothstep(.12,.9,t)};
       }
       const side=direction>0?-1:1;
-      const eased=easeOutCubic(t);
+      const eased=easeInOutCubic(t);
       return{
-        x:cubic(-metrics.horizontal*.74*side,-metrics.horizontal*1.04*side,-metrics.horizontal*.48*side,0,eased),
-        y:cubic(metrics.vertical,metrics.vertical*.78,metrics.vertical*.25,0,eased),
-        z:cubic(-metrics.depth,-metrics.depth*.82,-metrics.depth*.18,0,eased),
-        rx:cubic(1.6,1.1,.3,0,eased),
-        ry:cubic(-side*2.4,-side*1.8,-side*.35,0,eased),
-        scale:lerp(.955,1,eased),
-        opacity:smoothstep(.02,.78,t)
+        x:cubic(-metrics.horizontal*.38*side,-metrics.horizontal*.6*side,-metrics.horizontal*.2*side,0,eased),
+        y:cubic(metrics.vertical*.82,metrics.vertical*.7,metrics.vertical*.18,0,eased),
+        z:cubic(-metrics.depth*.72,-metrics.depth*.58,-metrics.depth*.12,0,eased),
+        rx:cubic(.5,.38,.08,0,eased),
+        ry:cubic(-side*.76,-side*.52,-side*.08,0,eased),
+        scale:lerp(.982,1,eased),
+        opacity:smoothstep(.08,.9,t)
       };
     };
 
@@ -239,7 +257,7 @@
       storyTo=nextFloor;
       storyDirection=direction;
       storyStartedAt=now;
-      storyDuration=isMobile()?520:(isTablet()?700:780);
+      storyDuration=isMobile()?560:(isTablet()?780:840);
       storyFromStart=copyStoryState(storyVisuals[fromFloor]||centeredStoryState());
       storyToStart=nextCurrentlyVisible?copyStoryState(storyVisuals[nextFloor]):incomingStoryState(0,direction,metrics);
       storyAnimating=true;
@@ -318,16 +336,42 @@
       renderer.render(scene,camera);
     };
 
+    const finishSnapIfArrived=()=>{
+      if(!snapping||snapProgress===null)return;
+      if(Math.abs(targetProgress-snapProgress)<.0018){
+        snapping=false;
+        snapProgress=null;
+      }
+    };
+
+    const beginFloorSnap=()=>{
+      if(reducedMotion.matches||snapping||!snapPending)return;
+      if(targetProgress<FLOOR_START||targetProgress>FLOOR_END){
+        snapPending=false;
+        return;
+      }
+      const raw=floorProgress(targetProgress)*(services.length-1);
+      const index=Math.min(services.length-1,Math.max(0,Math.round(raw)));
+      const nextProgress=scrollForFloor(index);
+      snapPending=false;
+      if(Math.abs(nextProgress-targetProgress)<.002)return;
+      snapping=true;
+      snapProgress=nextProgress;
+      window.scrollTo({top:journeyTop+(maxScroll*nextProgress),behavior:'smooth'});
+    };
+
     const tick=now=>{
       frameId=0;
       if(disposed)return;
       const reduced=reducedMotion.matches;
+      if(snapPending&&!snapping&&now-lastScrollAt>=SNAP_DELAY)beginFloorSnap();
       visualProgress=reduced?targetProgress:lerp(visualProgress,targetProgress,.14);
       if(Math.abs(visualProgress-targetProgress)<.0005)visualProgress=targetProgress;
       updateTracker(visualProgress,now);
       updateStory(now);
       applyScene(visualProgress);
-      if(Math.abs(visualProgress-targetProgress)>.0005||storyAnimating)scheduleFrame();
+      finishSnapIfArrived();
+      if(Math.abs(visualProgress-targetProgress)>.0005||storyAnimating||snapPending||snapping)scheduleFrame();
     };
 
     const scheduleFrame=()=>{
@@ -336,6 +380,14 @@
 
     const syncScroll=()=>{
       targetProgress=clamp((window.scrollY-journeyTop)/maxScroll);
+      if(snapping){
+        finishSnapIfArrived();
+      }else if(!reducedMotion.matches&&targetProgress>=FLOOR_START&&targetProgress<=FLOOR_END){
+        lastScrollAt=performance.now();
+        snapPending=true;
+      }else{
+        snapPending=false;
+      }
       scheduleFrame();
     };
 
@@ -356,7 +408,11 @@
     };
 
     const go=index=>{
-      const destination=journeyTop+(maxScroll*scrollForFloor(index));
+      const nextProgress=scrollForFloor(index);
+      snapPending=false;
+      snapping=!reducedMotion.matches;
+      snapProgress=snapping?nextProgress:null;
+      const destination=journeyTop+(maxScroll*nextProgress);
       window.scrollTo({top:destination,behavior:reducedMotion.matches?'auto':'smooth'});
     };
 
@@ -370,6 +426,9 @@
       stage.classList.toggle('reduced-motion',reducedMotion.matches);
       visualProgress=targetProgress;
       storyAnimating=false;
+      snapPending=false;
+      snapping=false;
+      snapProgress=null;
       scheduleFrame();
     };
 
