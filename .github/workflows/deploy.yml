@@ -26,6 +26,22 @@ jobs:
           set -euo pipefail
           mkdir -p _site
           cp index.html styles.css experience.css app.js experience.js digibuilder-logo.webp _site/
+
+          # GitHub Pages and browsers can keep unchanged asset URLs cached after a deploy.
+          # Version every production asset with this commit so a new release always loads
+          # its matching CSS/JS rather than mixing the new HTML with stale tower assets.
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          index = Path('_site/index.html')
+          version = os.environ['GITHUB_SHA'][:12]
+          html = index.read_text(encoding='utf-8')
+          for asset in ('styles.css', 'experience.css', 'app.js', 'experience.js', 'digibuilder-logo.webp'):
+              html = html.replace(f'"{asset}"', f'"{asset}?v={version}"')
+          index.write_text(html, encoding='utf-8')
+          PY
+
           printf 'digibuilderai.com\n' > _site/CNAME
           touch _site/.nojekyll
 
