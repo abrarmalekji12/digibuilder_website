@@ -108,7 +108,7 @@ function contact(){
     'Contact',
     'Bring your next move into focus.',
     'Tell us what you are building, where it feels stuck and what a useful outcome would look like. We will use your note to prepare a thoughtful reply.',
-    `<div class="split content-gap"><div><div class="panel"><div class="kicker">Prefer a direct hello?</div><h2>Let’s start with context, not a sales script.</h2><p class="muted">Email <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a> or message <a href="https://wa.me/917016348927" target="_blank" rel="noopener" class="accent-link">WhatsApp +91 70163 48927</a>.</p><p class="muted">Serving India and international clients. Remote-first, collaborative and transparent about fit.</p></div></div><div class="panel"><form class="form" id="contact-form"><div class="row"><label>Name *<input required name="name" autocomplete="name"></label><label>Email *<input required type="email" name="email" autocomplete="email"></label></div><div class="row"><label>Phone (optional)<input name="phone" type="tel"></label><label>Service<select name="service"><option>Not sure yet</option>${services.map(service=>`<option>${service[2]}</option>`).join('')}</select></label></div><label>Project context<textarea required name="project" placeholder="What are you building or trying to improve?"></textarea></label><div class="notice">This static site has no backend. Choose an option below to prepare a message in your own email client or WhatsApp. Nothing is sent automatically, and Digibuilder cannot see this form until you send it.</div><div class="actions"><button class="button primary" type="submit">Prepare email</button><button class="button secondary" type="button" id="wa">Prepare WhatsApp</button></div><p id="form-status" class="muted" aria-live="polite"></p></form></div></div>`
+    `<div class="split content-gap"><div><div class="panel"><div class="kicker">Prefer a direct hello?</div><h2>Let’s start with context, not a sales script.</h2><p class="muted">Email <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a> or message <a href="https://wa.me/917016348927" target="_blank" rel="noopener" class="accent-link">WhatsApp +91 70163 48927</a>.</p><p class="muted">Serving India and international clients. Remote-first, collaborative and transparent about fit.</p></div></div><div class="panel"><form class="form" id="contact-form" action="https://formspree.io/f/maenabzy" method="POST"><input type="hidden" name="_subject" value="New DigiBuilder consultation enquiry"><div class="row"><label>Name *<input required name="name" autocomplete="name"></label><label>Email *<input required type="email" name="email" autocomplete="email"></label></div><div class="row"><label>Phone (optional)<input name="phone" type="tel"></label><label>Service<select name="service"><option>Not sure yet</option>${services.map(service=>`<option>${service[2]}</option>`).join('')}</select></label></div><label>Project context<textarea required name="project" placeholder="What are you building or trying to improve?"></textarea></label><div class="notice">Submitting this form sends your details securely through Formspree so Digibuilder can reply. You can also use WhatsApp if you prefer.</div><div class="actions"><button class="button primary" type="submit">Send enquiry</button><button class="button secondary" type="button" id="wa">Message on WhatsApp</button></div><p id="form-status" class="muted" aria-live="polite"></p></form></div></div>`
   );
 }
 
@@ -118,11 +118,11 @@ function legal(kind){
     privacy?'Privacy — draft':'Terms — draft',
     privacy?'A simple, static-site privacy note.':'A starting point for engagement terms.',
     privacy?'This draft reflects the current no-tracking, static handoff and should be reviewed by the owner and a qualified adviser before publication.':'This draft is a plain-language starting point, not legal advice. The owner should review and adapt it before publishing.',
-    `<div class="legal content-gap">${privacy?`<h2>What this site does</h2><p>This static website does not intentionally use analytics, advertising pixels, cookies, accounts or behavioural tracking. The hosting provider may process technical request data under its own terms.</p><h2>Contact information</h2><p>If you use the email or WhatsApp links, your message is handled by those services. The contact form only prepares a message in your device’s chosen app; it is not submitted to a Digibuilder server.</p><h2>Owner review needed</h2><p>Confirm hosting logs, embedded services, retention practices and the applicable law for your business before launch.</p>`:`<h2>Scope</h2><p>Work begins after both parties agree a written scope, deliverables, timeline, fees and responsibilities. Changes may require a revised estimate.</p><h2>Client responsibilities</h2><p>The client provides timely access, accurate information, approvals and rights to supplied materials. Delays may affect timelines.</p><h2>Handoff and third parties</h2><p>Recommendations may involve third-party platforms. Their availability, fees and terms remain the client’s responsibility unless agreed otherwise.</p><h2>Owner review needed</h2><p>This draft does not cover every commercial, intellectual-property, payment, liability or governing-law detail. Obtain professional review before relying on it.</p>`}</div>`
+    `<div class="legal content-gap">${privacy?`<h2>What this site does</h2><p>This static website does not intentionally use analytics, advertising pixels, cookies, accounts or behavioural tracking. The hosting provider may process technical request data under its own terms.</p><h2>Contact information</h2><p>If you submit the contact form, the details you enter are sent through Formspree so Digibuilder can receive and respond to your enquiry. If you use the email or WhatsApp links instead, your message is handled by those services under their own terms.</p><h2>Owner review needed</h2><p>Confirm hosting logs, embedded services, retention practices and the applicable law for your business before launch.</p>`:`<h2>Scope</h2><p>Work begins after both parties agree a written scope, deliverables, timeline, fees and responsibilities. Changes may require a revised estimate.</p><h2>Client responsibilities</h2><p>The client provides timely access, accurate information, approvals and rights to supplied materials. Delays may affect timelines.</p><h2>Handoff and third parties</h2><p>Recommendations may involve third-party platforms. Their availability, fees and terms remain the client’s responsibility unless agreed otherwise.</p><h2>Owner review needed</h2><p>This draft does not cover every commercial, intellectual-property, payment, liability or governing-law detail. Obtain professional review before relying on it.</p>`}</div>`
   );
 }
 
-function prepare(mode){
+function prepareWhatsApp(){
   const form=document.getElementById('contact-form');
   if(!form?.reportValidity())return;
 
@@ -134,10 +134,55 @@ function prepare(mode){
   const project=data.get('project');
   const text=`Hello Digibuilder,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nProject context:\n${project}`;
 
-  if(mode==='email'){
-    location.href=`mailto:abdussamadvhora@gmail.com?subject=${encodeURIComponent(`Consultation enquiry from ${name}`)}&body=${encodeURIComponent(text)}`;
-  }else{
-    location.href=`https://wa.me/917016348927?text=${encodeURIComponent(text)}`;
+  location.href=`https://wa.me/917016348927?text=${encodeURIComponent(text)}`;
+}
+
+async function submitContact(event){
+  event.preventDefault();
+
+  const form=event.currentTarget;
+  if(!form.reportValidity())return;
+
+  const status=document.getElementById('form-status');
+  const submitButton=form.querySelector('button[type="submit"]');
+  const originalLabel=submitButton?.textContent;
+
+  if(status)status.textContent='Sending your enquiry…';
+  if(submitButton){
+    submitButton.disabled=true;
+    submitButton.textContent='Sending…';
+  }
+
+  try{
+    const response=await fetch(form.action,{
+      method:'POST',
+      body:new FormData(form),
+      headers:{Accept:'application/json'}
+    });
+
+    if(response.ok){
+      form.reset();
+      if(status)status.textContent='Thanks — your enquiry has been sent. We’ll get back to you soon.';
+      return;
+    }
+
+    let message='Sorry, your enquiry could not be sent. Please try again or use WhatsApp.';
+    try{
+      const data=await response.json();
+      if(Array.isArray(data?.errors)&&data.errors.length){
+        message=data.errors.map(error=>error.message).filter(Boolean).join(' ')||message;
+      }
+    }catch(_error){
+      // Keep the friendly fallback message when Formspree does not return JSON.
+    }
+    if(status)status.textContent=message;
+  }catch(_error){
+    if(status)status.textContent='Sorry, your enquiry could not be sent. Please check your connection or use WhatsApp.';
+  }finally{
+    if(submitButton){
+      submitButton.disabled=false;
+      submitButton.textContent=originalLabel||'Send enquiry';
+    }
   }
 }
 
@@ -157,8 +202,8 @@ function bind(){
 
   const form=document.getElementById('contact-form');
   if(form){
-    form.addEventListener('submit',event=>{event.preventDefault();prepare('email')});
-    document.getElementById('wa')?.addEventListener('click',()=>prepare('wa'));
+    form.addEventListener('submit',submitContact);
+    document.getElementById('wa')?.addEventListener('click',prepareWhatsApp);
   }
 }
 
