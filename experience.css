@@ -1,6 +1,6 @@
 /* Homepage visual experience. styles.css keeps site-wide primitives; this file is authoritative for the hero artwork and tower journey. */
 
-/* Clean hero: unchanged. */
+/* Home hero and subtly animated technical background. */
 main>.hero{
   position:relative;
   isolation:isolate;
@@ -17,11 +17,15 @@ main>.hero:before{
   inset:var(--header) 0 0 42%;
   opacity:.72;
   background-image:
-    linear-gradient(rgba(124,216,227,.065) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(124,216,227,.065) 1px,transparent 1px),
+    radial-gradient(circle,rgba(124,216,227,.55) 0 1.3px,transparent 2.2px),
+    radial-gradient(circle,rgba(242,170,40,.42) 0 1px,transparent 2px),
+    linear-gradient(rgba(124,216,227,.095) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,216,227,.095) 1px,transparent 1px),
     linear-gradient(122deg,transparent 0 48.8%,rgba(124,216,227,.11) 49%,rgba(124,216,227,.11) 49.2%,transparent 49.4%),
     linear-gradient(28deg,transparent 0 61.8%,rgba(242,170,40,.075) 62%,rgba(242,170,40,.075) 62.2%,transparent 62.4%);
-  background-size:74px 74px,74px 74px,100% 100%,100% 100%;
+  background-size:74px 74px,148px 148px,74px 74px,74px 74px,100% 100%,100% 100%;
+  background-position:0 0,37px 37px,0 0,0 0,0 0,0 0;
+  animation:hero-grid-drift 28s ease-in-out infinite alternate;
   mask-image:linear-gradient(90deg,transparent,#000 24%,#000 82%,transparent),linear-gradient(180deg,transparent,#000 15%,#000 84%,transparent);
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 24%,#000 82%,transparent);
   transform:perspective(1100px) rotateY(-9deg) rotateX(2deg) scale(1.05);
@@ -62,6 +66,11 @@ main>.hero:after{
 .hero-content{position:relative;z-index:2;max-width:var(--max)}
 .hero h1{max-width:760px}
 .hero .lead{max-width:590px}
+
+@keyframes hero-grid-drift{
+  from{background-position:0 0,37px 37px,0 0,0 0,0 0,0 0}
+  to{background-position:21px -24px,53px 6px,21px -24px,21px -24px,0 0,0 0}
+}
 
 @keyframes hero-framework{
   from{opacity:.72;transform:translateY(-46%) perspective(1000px) rotateY(-16deg) rotateX(7deg) translate3d(0,0,0)}
@@ -134,8 +143,9 @@ main>.hero:after{
   opacity:.34;
   transform:perspective(700px) rotateX(68deg);
   transform-origin:center top;
-  background-image:linear-gradient(rgba(124,216,227,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(124,216,227,.12) 1px,transparent 1px);
+  background-image:radial-gradient(circle,rgba(124,216,227,.28) 0 1.3px,transparent 2px),linear-gradient(rgba(124,216,227,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(124,216,227,.12) 1px,transparent 1px);
   background-size:68px 68px;
+  animation:tower-grid-drift 30s ease-in-out infinite alternate;
   mask-image:linear-gradient(transparent 2%,#000 37%,#000 72%,transparent 100%);
   -webkit-mask-image:linear-gradient(transparent 2%,#000 37%,#000 72%,transparent 100%);
 }
@@ -216,15 +226,20 @@ main>.hero:after{
 }
 .tower-fallback-building i:nth-child(1){top:13%}.tower-fallback-building i:nth-child(2){top:27%}.tower-fallback-building i:nth-child(3){top:41%}.tower-fallback-building i:nth-child(4){top:55%}.tower-fallback-building i:nth-child(5){top:69%}.tower-fallback-building i:nth-child(6){top:83%}
 
-/* Cinematic service story plane. Scroll chooses the active floor; experience.js owns the independent transition clock. */
+@keyframes tower-grid-drift{
+  from{background-position:0 0}
+  to{background-position:24px -16px}
+}
+
+/* Cinematic service story plane, aligned high in the scene. */
 .tower-label-layer{
   position:absolute;
   z-index:8;
   left:max(34px,5vw);
-  top:50%;
+  top:calc(var(--header) + clamp(76px,10svh,114px));
   width:min(46vw,660px);
-  height:min(76svh,680px);
-  transform:translateY(-50%);
+  height:auto;
+  transform:none;
   perspective:1250px;
   perspective-origin:32% 48%;
   pointer-events:none;
@@ -239,13 +254,13 @@ main>.hero:after{
   --story-opacity:0;
   position:absolute;
   left:0;
-  top:50%;
-  width:min(40vw,540px);
+  top:0;
+  width:min(44vw,620px);
   max-width:100%;
   transform-style:preserve-3d;
   transform-origin:16% 50%;
   transform:
-    translate3d(var(--story-x),calc(-50% + var(--story-y)),var(--story-z))
+    translate3d(var(--story-x),var(--story-y),var(--story-z))
     rotateX(var(--story-rx))
     rotateY(var(--story-ry))
     scale(var(--story-scale));
@@ -280,7 +295,7 @@ main>.hero:after{
   display:block;
   margin-bottom:14px;
   color:var(--gold);
-  font-size:12px;
+  font-size:14px;
   line-height:1;
   font-weight:900;
   letter-spacing:.22em;
@@ -290,10 +305,10 @@ main>.hero:after{
 .tower-label-number:after{content:" / 06";color:#63828b;font-size:.78em;letter-spacing:.16em}
 .tower-label-copy{transform-style:preserve-3d}
 .tower-label-copy h3{
-  max-width:540px;
+  max-width:620px;
   margin:0;
   color:rgba(4,24,34,.38);
-  font-size:clamp(34px,3.5vw,54px);
+  font-size:clamp(45px,4.7vw,70px);
   line-height:.96;
   font-weight:850;
   letter-spacing:-.04em;
@@ -308,10 +323,10 @@ main>.hero:after{
   filter:drop-shadow(0 14px 24px rgba(0,0,0,.2));
 }
 .tower-label-copy p{
-  max-width:500px;
-  margin:18px 0 0;
+  max-width:530px;
+  margin:16px 0 0;
   color:#b4cbd1;
-  font-size:clamp(14px,1.05vw,17px);
+  font-size:clamp(16px,1.25vw,19px);
   line-height:1.58;
   letter-spacing:-.01em;
   transform:translateZ(24px);
@@ -429,11 +444,11 @@ main>.hero:after{
     linear-gradient(180deg,#020c13 0%,#041b29 56%,#020d14 100%)}
   .city-glow{left:59%;width:min(80vw,900px)}
   .tower-heading{top:calc(var(--header) + 13px)}
-  .tower-label-layer{left:max(28px,4vw);width:44vw;height:min(72svh,610px);perspective:1100px}
-  .tower-floor-label{width:39vw}
-  .tower-label-copy h3{font-size:clamp(28px,4vw,40px);line-height:.98;-webkit-text-stroke-width:1.05px}
-  .tower-label-copy p{font-size:clamp(13px,1.45vw,15px);margin-top:14px;line-height:1.5}
-  .tower-label-number{font-size:10px;margin-bottom:11px}
+  .tower-label-layer{left:max(28px,4vw);top:calc(var(--header) + 80px);width:46vw;height:auto;perspective:1100px}
+  .tower-floor-label{width:100%}
+  .tower-label-copy h3{font-size:clamp(37px,4.6vw,52px);line-height:.98;-webkit-text-stroke-width:1.05px}
+  .tower-label-copy p{font-size:clamp(14px,1.6vw,17px);margin-top:14px;line-height:1.5}
+  .tower-label-number{font-size:12px;margin-bottom:11px}
   .tower-floor-label:after{width:58px}
   .tower-tracker{right:20px}
   .tower-fallback{padding-left:16vw}
@@ -462,10 +477,10 @@ main>.hero:after{
   .tower-label-layer{
     left:max(18px,env(safe-area-inset-left));
     right:68px;
-    top:auto;
-    bottom:clamp(66px,10svh,92px);
+    top:calc(var(--header) + 48px);
+    bottom:auto;
     width:auto;
-    height:clamp(180px,30svh,220px);
+    height:auto;
     transform:none;
     perspective:none;
     isolation:isolate;
@@ -475,27 +490,28 @@ main>.hero:after{
     content:"";
     position:absolute;
     z-index:-1;
-    inset:-16px -4px -14px -12px;
+    inset:-16px -4px auto -12px;
+    height:min(43svh,320px);
     border-radius:12px;
     background:linear-gradient(90deg,rgba(2,12,19,.94),rgba(2,12,19,.83) 78%,rgba(2,12,19,.18));
     pointer-events:none;
   }
   .tower-floor-label{
-    top:50%;
+    top:0;
     width:100%;
     max-width:440px;
     transform:
-      translate3d(0,calc(-50% + var(--story-y)),0)
+      translate3d(0,var(--story-y),0)
       scale(1);
     transform-style:flat;
   }
   .tower-floor-label:before{left:-9px;top:4px;height:calc(100% - 4px);opacity:.56;transform:none}
   .tower-floor-label:after{display:none}
-  .tower-label-number{margin-bottom:7px;font-size:8px;transform:none}
+  .tower-label-number{margin-bottom:10px;font-size:11px;transform:none}
   .tower-label-copy{transform-style:flat}
   .tower-label-copy h3{
     max-width:420px;
-    font-size:clamp(20px,5.5vw,28px);
+    font-size:clamp(28px,6.5vw,40px);
     line-height:1;
     letter-spacing:-.03em;
     transform:none;
@@ -503,7 +519,7 @@ main>.hero:after{
     text-shadow:-.6px -.6px 0 rgba(242,170,40,.4),1.5px 1.5px 0 rgba(13,74,87,.9),2.5px 2.5px 0 rgba(3,31,42,.78);
     filter:drop-shadow(0 8px 18px rgba(0,0,0,.16));
   }
-  .tower-label-copy p{max-width:360px;margin-top:8px;font-size:clamp(12px,2.6vw,14px);line-height:1.45;transform:none}
+  .tower-label-copy p{max-width:360px;margin-top:10px;font-size:clamp(13px,2.7vw,15px);line-height:1.45;transform:none}
 
   .tower-tracker{right:12px;width:48px;height:min(58svh,390px)}
   .tower-tracker button{width:48px;min-height:44px;padding-left:15px;font-size:8px}
@@ -517,16 +533,16 @@ main>.hero:after{
 }
 
 @media(max-width:480px){
-  main>.hero{min-height:100svh;background:radial-gradient(circle at 76% 46%,rgba(21,148,184,.11),transparent 17rem)}
-  main>.hero:before{inset:35% -28% 0 20%;opacity:.42;background-size:48px 48px,48px 48px,100% 100%,100% 100%}
+  main>.hero{min-height:0;background:radial-gradient(circle at 76% 46%,rgba(21,148,184,.11),transparent 17rem)}
+  main>.hero:before{inset:25% -28% 0 20%;opacity:.6;background-size:48px 48px,96px 96px,48px 48px,48px 48px,100% 100%,100% 100%}
   main>.hero:after{right:-40%;top:63%;width:96vw;height:42vh;opacity:.42;transform:translateY(-46%) perspective(900px) rotateY(-12deg) rotateX(7deg)}
   .hero h1{max-width:100%}
   .hero .lead{max-width:94%}
 
   .tower-heading{font-size:8px}
-  .tower-label-layer{left:max(16px,env(safe-area-inset-left));right:66px;bottom:clamp(70px,11svh,94px);height:clamp(180px,32svh,208px)}
-  .tower-label-copy h3{font-size:clamp(19px,6vw,25px)}
-  .tower-label-copy p{font-size:12px;max-width:310px}
+  .tower-label-layer{left:max(16px,env(safe-area-inset-left));right:66px;top:calc(var(--header) + 44px);bottom:auto;height:auto}
+  .tower-label-copy h3{font-size:clamp(27px,7.6vw,36px)}
+  .tower-label-copy p{font-size:13px;max-width:310px}
   .tower-tracker{right:max(6px,env(safe-area-inset-right));width:48px;height:min(58svh,360px)}
   .tower-tracker button{width:48px;min-height:44px;padding-left:15px;font-size:10px;letter-spacing:.08em}
   .journey-ui{left:max(16px,env(safe-area-inset-left));right:66px}
@@ -536,8 +552,8 @@ main>.hero:after{
 @media(max-height:700px) and (min-width:761px){
   .tower-heading{display:none}
   .tower-tracker{height:50svh}
-  .tower-label-layer{height:74svh}
-  .tower-label-copy h3{font-size:clamp(27px,3.2vw,42px)}
+  .tower-label-layer{height:auto;top:calc(var(--header) + 50px)}
+  .tower-label-copy h3{font-size:clamp(34px,3.8vw,49px)}
   .tower-label-copy p{font-size:13px;margin-top:12px}
 }
 
@@ -550,12 +566,12 @@ main>.hero:after{
     left:max(20px,env(safe-area-inset-left));
     right:auto;
     width:min(45vw,390px);
-    height:calc(100svh - var(--header) - 54px);
-    min-height:160px;
+    height:auto;
+    min-height:0;
     transform:none;
   }
-  .tower-floor-label{width:100%;top:50%}
-  .tower-label-copy h3{font-size:clamp(19px,3vw,30px)}
+  .tower-floor-label{width:100%;top:0}
+  .tower-label-copy h3{font-size:clamp(23px,3vw,32px)}
   .tower-label-copy p{font-size:11px;line-height:1.35}
   .tower-tracker{height:calc(100svh - var(--header) - 28px);min-height:0;top:calc(var(--header) + 10px);transform:none}
   .tower-tracker button{min-height:0}
@@ -571,6 +587,7 @@ main>.hero:after{
 }
 
 @media(prefers-reduced-motion:reduce){
+  main>.hero:before,.city-grid{animation:none}
   main>.hero:after{animation:none}
   .scroll-cue b{animation:none}
   .tower-webgl,.tower-fallback,.tower-tracker button,.tower-tracker button:before{transition:none}
