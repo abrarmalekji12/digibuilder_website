@@ -456,18 +456,29 @@ main>.hero:after{
   .tower-heading span+span{display:none}
   .city-glow{left:50%;top:43%;width:105vw}
   .city-grid{bottom:-27%;height:51%;background-size:48px 48px}
-  .tower-fallback{padding-left:0;align-items:flex-start;padding-top:18svh}
+  .tower-fallback{padding-left:0;align-items:flex-start;padding-top:15svh}
   .tower-fallback-building{margin-top:0}
 
   .tower-label-layer{
-    left:18px;
+    left:max(18px,env(safe-area-inset-left));
     right:68px;
     top:auto;
-    bottom:68px;
+    bottom:clamp(66px,10svh,92px);
     width:auto;
-    height:180px;
+    height:clamp(180px,30svh,220px);
     transform:none;
     perspective:none;
+    isolation:isolate;
+  }
+  /* A localized scrim keeps the story readable over animated tower detail. */
+  .tower-label-layer:before{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    inset:-16px -4px -14px -12px;
+    border-radius:12px;
+    background:linear-gradient(90deg,rgba(2,12,19,.94),rgba(2,12,19,.83) 78%,rgba(2,12,19,.18));
+    pointer-events:none;
   }
   .tower-floor-label{
     top:50%;
@@ -494,15 +505,15 @@ main>.hero:after{
   }
   .tower-label-copy p{max-width:360px;margin-top:8px;font-size:11px;line-height:1.4;transform:none}
 
-  .tower-tracker{right:12px;width:45px;height:min(48svh,350px)}
-  .tower-tracker button{width:45px;padding-left:15px;font-size:7px}
+  .tower-tracker{right:12px;width:48px;height:min(58svh,390px)}
+  .tower-tracker button{width:48px;min-height:44px;padding-left:15px;font-size:8px}
   .tracker-rail{left:6px}
   .journey-ui{left:20px;right:72px;bottom:13px}
   .journey-hint{font-size:7px;gap:6px}
   .journey-hint strong{font-size:7.5px}
   .journey-hint strong:after{width:16px;margin-left:6px}
   .scroll-cue{display:none}
-  .tower-fallback-building{width:min(62vw,310px);height:min(61svh,560px)}
+  .tower-fallback-building{width:min(62vw,310px);height:min(51svh,470px)}
 }
 
 @media(max-width:480px){
@@ -513,13 +524,13 @@ main>.hero:after{
   .hero .lead{max-width:94%}
 
   .tower-heading{font-size:8px}
-  .tower-label-layer{left:16px;right:58px;bottom:72px;height:172px}
+  .tower-label-layer{left:max(16px,env(safe-area-inset-left));right:66px;bottom:clamp(70px,11svh,94px);height:clamp(180px,32svh,208px)}
   .tower-label-copy h3{font-size:clamp(19px,6vw,25px)}
   .tower-label-copy p{font-size:10.5px;max-width:310px}
-  .tower-tracker{right:6px;width:41px;height:44svh}
-  .tower-tracker button{width:41px;padding-left:13px;font-size:6.6px;letter-spacing:.08em}
-  .journey-ui{left:16px;right:60px}
-  .tower-fallback-building{width:min(68vw,280px);height:min(58svh,520px)}
+  .tower-tracker{right:max(6px,env(safe-area-inset-right));width:48px;height:min(58svh,360px)}
+  .tower-tracker button{width:48px;min-height:44px;padding-left:15px;font-size:8px;letter-spacing:.08em}
+  .journey-ui{left:max(16px,env(safe-area-inset-left));right:66px}
+  .tower-fallback-building{width:min(68vw,280px);height:min(49svh,430px)}
 }
 
 @media(max-height:700px) and (min-width:761px){
@@ -528,6 +539,35 @@ main>.hero:after{
   .tower-label-layer{height:74svh}
   .tower-label-copy h3{font-size:clamp(27px,3.2vw,42px)}
   .tower-label-copy p{font-size:13px;margin-top:12px}
+}
+
+/* Compact landscape phones: keep copy alongside the building instead of below it. */
+@media (max-height:540px) and (pointer:coarse){
+  .tower-heading{display:none}
+  .tower-label-layer{
+    top:calc(var(--header) + 20px);
+    bottom:auto;
+    left:max(20px,env(safe-area-inset-left));
+    right:auto;
+    width:min(45vw,390px);
+    height:calc(100svh - var(--header) - 54px);
+    min-height:160px;
+    transform:none;
+  }
+  .tower-floor-label{width:100%;top:50%}
+  .tower-label-copy h3{font-size:clamp(19px,3vw,30px)}
+  .tower-label-copy p{font-size:11px;line-height:1.35}
+  .tower-tracker{height:calc(100svh - var(--header) - 28px);min-height:0;top:calc(var(--header) + 10px);transform:none}
+  .tower-tracker button{min-height:0}
+  .tower-fallback{padding:0 0 0 22vw;align-items:center}
+  .tower-fallback-building{height:65svh;width:min(26vw,270px);margin-top:var(--header)}
+  .journey-ui{bottom:7px}
+}
+
+/* Make every tracker step tappable, including coarse-pointer desktop-site mode. */
+@media(pointer:coarse) and (min-width:761px){
+  .tower-tracker{width:54px}
+  .tower-tracker button{min-height:44px;width:54px}
 }
 
 @media(prefers-reduced-motion:reduce){
