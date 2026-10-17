@@ -12,6 +12,7 @@ const services=[
 const serviceMap=Object.fromEntries(services.map(service=>[service[0],service]));
 const app=document.getElementById('app');
 let towerCleanup=null;
+let navigationBound=false;
 
 function shell(eyebrow,title,copy,body=''){
   return `<section class="section reveal"><div class="wrap"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p class="lead">${copy}</p>${body}</div></section>`;
@@ -186,19 +187,44 @@ async function submitContact(event){
   }
 }
 
+function setMenuOpen(open){
+  const menu=document.getElementById('menu');
+  const nav=document.getElementById('nav');
+  if(!menu||!nav)return;
+  nav.classList.toggle('open',open);
+  menu.setAttribute('aria-expanded',String(open));
+  menu.setAttribute('aria-label',open?'Close menu':'Open menu');
+  menu.textContent=open?'✕':'☰';
+}
+
 function bind(){
   const menu=document.getElementById('menu');
   const nav=document.getElementById('nav');
 
-  menu?.addEventListener('click',()=>{
-    const isOpen=nav.classList.toggle('open');
-    menu.setAttribute('aria-expanded',String(isOpen));
-  });
-
-  document.querySelectorAll('.links a').forEach(link=>link.addEventListener('click',()=>{
-    nav.classList.remove('open');
-    menu?.setAttribute('aria-expanded','false');
-  }));
+  // Header persists across page changes: register its listeners only once.
+  if(!navigationBound&&menu&&nav){
+    navigationBound=true;
+    menu.addEventListener('click',()=>setMenuOpen(!nav.classList.contains('open')));
+    nav.addEventListener('click',event=>{
+      if(event.target.closest('a'))setMenuOpen(false);
+    });
+    document.addEventListener('pointerdown',event=>{
+      if(nav.classList.contains('open')&&!nav.contains(event.target)&&!menu.contains(event.target)){
+        setMenuOpen(false);
+      }
+    });
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&nav.classList.contains('open')){
+        setMenuOpen(false);
+        menu.focus();
+      }
+    });
+    window.addEventListener('resize',()=>{
+      if(!window.matchMedia('(max-width:900px), (pointer:coarse) and (max-width:1100px)').matches){
+        setMenuOpen(false);
+      }
+    },{passive:true});
+  }
 
   const form=document.getElementById('contact-form');
   if(form){
@@ -216,6 +242,7 @@ function render(){
   const output=view==='home'?home():view==='about'?about():view==='services'?servicesPage():view==='service'&&serviceMap[parts[1]]?servicePage(parts[1]):view==='work'?work():view==='contact'?contact():view==='privacy'?legal('privacy'):view==='terms'?legal('terms'):home();
 
   app.innerHTML=output;
+  setMenuOpen(false);
   document.querySelectorAll('.links a').forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#/${view}`));
   bind();
   window.scrollTo(0,0);
