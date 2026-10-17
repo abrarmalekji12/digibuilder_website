@@ -286,6 +286,8 @@
 
     const applyScene=value=>{
       if(!THREE||!camera||!towerRoot||!renderer)return;
+      const bounds=stage.getBoundingClientRect();
+      if(bounds.bottom<=0||bounds.top>=window.innerHeight)return;
       const mobile=isMobile();
       const tablet=isTablet();
       const reduced=reducedMotion.matches;
@@ -377,7 +379,7 @@
 
       if(renderer&&camera){
         const mobile=isMobile();
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,mobile?1.25:1.65));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,mobile?1:1.5));
         renderer.setSize(viewportWidth,viewportHeight,false);
         camera.aspect=viewportWidth/viewportHeight;
         camera.updateProjectionMatrix();
@@ -436,7 +438,10 @@
       host.replaceChildren();
     };
 
-    if(!canUseWebGL()){
+    // Respect accessibility and data constraints: keep the styled static tower in place.
+    const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+    const lowMemoryPhone=isMobile()&&navigator.deviceMemory>0&&navigator.deviceMemory<=2;
+    if(!canUseWebGL()||reducedMotion.matches||network?.saveData||lowMemoryPhone){
       stage.classList.add('webgl-failed');
       scheduleFrame();
       return;
@@ -455,7 +460,7 @@
       scene=new THREE.Scene();
       scene.fog=new THREE.FogExp2(0x03121c,.025);
       camera=new THREE.PerspectiveCamera(38,viewportWidth/viewportHeight,.1,100);
-      renderer=new THREE.WebGLRenderer({alpha:true,antialias:!isMobile(),powerPreference:'high-performance'});
+      renderer=new THREE.WebGLRenderer({alpha:true,antialias:!isMobile(),powerPreference:isMobile()?'low-power':'high-performance'});
       renderer.setClearColor(0x000000,0);
       renderer.outputColorSpace=THREE.SRGBColorSpace;
       renderer.toneMapping=THREE.ACESFilmicToneMapping;
