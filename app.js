@@ -10,16 +10,21 @@ const services=[
 ];
 
 const serviceMap=Object.fromEntries(services.map(service=>[service[0],service]));
+const projects=['Sharp Immigration','Saathi4u','Meghreji Home Decor','Unique Led Light'];
 const app=document.getElementById('app');
 let towerCleanup=null;
 let navigationBound=false;
 
 function shell(eyebrow,title,copy,body=''){
-  return `<section class="section reveal"><div class="wrap"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p class="lead">${copy}</p>${body}</div></section>`;
+  return `<section class="section reveal"><div class="wrap"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${copy?`<p class="lead">${copy}</p>`:''}${body}</div></section>`;
 }
 
 function card(service){
   return `<a class="card" href="#/service/${service[0]}"><span class="num">${service[1]} / 06</span><h3>${service[2]}</h3><p>${service[3]}</p><div class="tags">${service[5].slice(0,2).map(item=>`<span class="tag">${item}</span>`).join('')}</div></a>`;
+}
+
+function projectCard(name,index){
+  return `<article class="card project-card"><span class="num">PROJECT / ${String(index+1).padStart(2,'0')}</span><h3>${name}</h3></article>`;
 }
 
 function building(){
@@ -63,7 +68,7 @@ function home(){
     <div class="meta"><span><b>●</b> India + international</span><span><b>●</b> Startups to scale-ups</span></div>
   </div></section>
   ${building()}
-  <section class="section"><div class="wrap section-head"><div><div class="eyebrow">A connected approach</div><h2>Growth is not a channel.</h2></div><p>It is the system between your story, your experience and the people you want to reach.</p></div><div class="wrap cards">${services.slice(0,3).map(card).join('')}</div></section>
+  <section class="section"><div class="wrap section-head"><div><div class="eyebrow">A connected approach</div><h2>Growth is not a channel.</h2></div><p>It is the system between your story, your experience and the people you want to reach.</p></div><div class="wrap cards">${services.map(card).join('')}</div></section>
   <section class="band"><div class="wrap split"><div><div class="eyebrow">Start with a useful conversation</div><div class="quote">Bring the question. Leave with a clearer next step.</div></div><a class="button primary" href="#/contact">Talk to Digibuilder</a></div></section>`;
 }
 
@@ -97,10 +102,10 @@ function servicePage(key){
 
 function work(){
   return shell(
-    'Work / case studies',
-    'Good work should be easy to verify.',
-    'We are building this portfolio in public. Rather than invent results, we prefer to show real work when the owners have approved it.',
-    `<div class="panel content-gap"><div class="eyebrow">Portfolio coming soon</div><h2>No fabricated projects. No borrowed logos.</h2><p class="muted">This page will become a home for approved case studies with context, contribution and outcomes. Until then, here are illustrative engagement shapes—examples of the kind of work we can explore, not actual client work or case studies.</p></div><div class="cards compact-gap"><div class="card"><span class="num">ILLUSTRATIVE / 01</span><h3>Commerce launch system</h3><p>Positioning, storefront experience and acquisition foundations for a new product line.</p></div><div class="card"><span class="num">ILLUSTRATIVE / 02</span><h3>Founder-led content engine</h3><p>Editorial point of view, content workflow and a sustainable social rhythm for a growing team.</p></div><div class="card"><span class="num">ILLUSTRATIVE / 03</span><h3>Operational AI sprint</h3><p>Map repetitive work, prototype safe automations and document a human-in-the-loop handoff.</p></div></div><div class="notice notice-gap">These are illustrative engagement examples only—not client names, testimonials, performance claims or completed case studies.</div>`
+    'Our work',
+    'Selected projects.',
+    '',
+    `<div class="cards project-grid content-gap">${projects.map(projectCard).join('')}</div>`
   );
 }
 
@@ -116,7 +121,7 @@ function contact(){
 function legal(kind){
   const privacy=kind==='privacy';
   return shell(
-    privacy?'Privacy — draft':'Terms — draft',
+    privacy?'Privacy':'Terms',
     privacy?'A simple, static-site privacy note.':'A starting point for engagement terms.',
     privacy?'This draft reflects the current no-tracking, static handoff and should be reviewed by the owner and a qualified adviser before publication.':'This draft is a plain-language starting point, not legal advice. The owner should review and adapt it before publishing.',
     `<div class="legal content-gap">${privacy?`<h2>What this site does</h2><p>This static website does not intentionally use analytics, advertising pixels, cookies, accounts or behavioural tracking. The hosting provider may process technical request data under its own terms.</p><h2>Contact information</h2><p>If you submit the contact form, the details you enter are sent through Formspree so Digibuilder can receive and respond to your enquiry. If you use the email or WhatsApp links instead, your message is handled by those services under their own terms.</p><h2>Owner review needed</h2><p>Confirm hosting logs, embedded services, retention practices and the applicable law for your business before launch.</p>`:`<h2>Scope</h2><p>Work begins after both parties agree a written scope, deliverables, timeline, fees and responsibilities. Changes may require a revised estimate.</p><h2>Client responsibilities</h2><p>The client provides timely access, accurate information, approvals and rights to supplied materials. Delays may affect timelines.</p><h2>Handoff and third parties</h2><p>Recommendations may involve third-party platforms. Their availability, fees and terms remain the client’s responsibility unless agreed otherwise.</p><h2>Owner review needed</h2><p>This draft does not cover every commercial, intellectual-property, payment, liability or governing-law detail. Obtain professional review before relying on it.</p>`}</div>`
