@@ -503,7 +503,7 @@ main>.hero:after{
     text-shadow:-.6px -.6px 0 rgba(242,170,40,.4),1.5px 1.5px 0 rgba(13,74,87,.9),2.5px 2.5px 0 rgba(3,31,42,.78);
     filter:drop-shadow(0 8px 18px rgba(0,0,0,.16));
   }
-  .tower-label-copy p{max-width:360px;margin-top:8px;font-size:11px;line-height:1.4;transform:none}
+  .tower-label-copy p{max-width:360px;margin-top:8px;font-size:clamp(12px,2.6vw,14px);line-height:1.45;transform:none}
 
   .tower-tracker{right:12px;width:48px;height:min(58svh,390px)}
   .tower-tracker button{width:48px;min-height:44px;padding-left:15px;font-size:8px}
@@ -526,9 +526,9 @@ main>.hero:after{
   .tower-heading{font-size:8px}
   .tower-label-layer{left:max(16px,env(safe-area-inset-left));right:66px;bottom:clamp(70px,11svh,94px);height:clamp(180px,32svh,208px)}
   .tower-label-copy h3{font-size:clamp(19px,6vw,25px)}
-  .tower-label-copy p{font-size:10.5px;max-width:310px}
+  .tower-label-copy p{font-size:12px;max-width:310px}
   .tower-tracker{right:max(6px,env(safe-area-inset-right));width:48px;height:min(58svh,360px)}
-  .tower-tracker button{width:48px;min-height:44px;padding-left:15px;font-size:8px;letter-spacing:.08em}
+  .tower-tracker button{width:48px;min-height:44px;padding-left:15px;font-size:10px;letter-spacing:.08em}
   .journey-ui{left:max(16px,env(safe-area-inset-left));right:66px}
   .tower-fallback-building{width:min(68vw,280px);height:min(49svh,430px)}
 }
