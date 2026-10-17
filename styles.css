@@ -55,6 +55,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,t
 
 /* General sections */
 .section{padding:var(--section-space) 0;border-top:1px solid var(--line)}
+/* Hash-routed inner pages start below the fixed navigation, even on short phones. */
+main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:clamp(24px,5vw,64px);margin-bottom:clamp(30px,4vw,44px)}
 .section-head>*{min-width:0}
 .section h1,.section h2{font-size:clamp(2.6rem,5.5vw,5.5rem);letter-spacing:-.075em;line-height:.94;margin:12px 0 18px}
