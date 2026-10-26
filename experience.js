@@ -2,7 +2,7 @@
 
 /* Homepage-only WebGL tower controller. app.js owns routing/markup; this file owns the 3D tower and scroll journey. */
 (() => {
-  const THREE_URL='https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.min.js';
+  const THREE_URL='https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js';
   const FLOOR_START=.11;
   const FLOOR_END=.89;
   const clamp=value=>Math.max(0,Math.min(1,value));
@@ -300,7 +300,7 @@
       const high=Math.min(services.length-1,Math.ceil(raw));
       const fraction=raw-low;
       const currentY=lerp(floorAnchors[low].y,floorAnchors[high].y,fraction);
-      const towerOffsetX=mobile?0:(tablet?.9:2.65);
+      const towerOffsetX=mobile?.15:(tablet?.9:2.65);
 
       towerRoot.position.x=towerOffsetX;
       floorMaterials.forEach((material,index)=>{
@@ -312,31 +312,31 @@
       const enter=smoothstep(0,.13,value);
       const exit=smoothstep(.89,1,value);
       if(reduced){
-        camera.position.set(mobile?2.1:5.8,mobile?1.25:1.05,mobile?30:32.5);
-        camera.fov=mobile?48:41;
-        camera.lookAt(0,mobile?1.45:1.2,0);
+        camera.position.set(mobile?3.6:5.8,mobile?5.0:1.05,mobile?36:32.5);
+        camera.fov=mobile?50:41;
+        camera.lookAt(0,mobile?6.7:1.2,0);
         towerRoot.rotation.y=-.055;
       }else{
-        const startX=mobile?2.5:(tablet?4.4:6.8);
-        const focusX=mobile?1.45:(tablet?3.6:5.1);
-        const startZ=mobile?30:(tablet?32:34);
-        const focusZ=mobile?20.2:(tablet?20:18.5);
+        const startX=mobile?4.1:(tablet?4.4:6.8);
+        const focusX=mobile?3.2:(tablet?3.6:5.1);
+        const startZ=mobile?36:(tablet?32:34);
+        const focusZ=mobile?24:(tablet?20:18.5);
         const focusY=currentY+.12;
         const settleY=lerp(focusY,-3.8,exit);
         const settleZ=focusZ+(exit*(mobile?5.2:7.3));
         const settleX=focusX+(exit*(mobile?.45:1.0));
         const drift=Math.sin(focused*Math.PI*1.35)*(mobile?.08:.28);
         const lookX=0;
-        const entryCameraY=mobile?1.35:(tablet?1.2:1.08);
-        const entryLookY=mobile?1.62:(tablet?1.48:1.36);
-        const entryFov=mobile?48:(tablet?43:40.5);
-        const focusFov=mobile?44:(tablet?41:38);
+        const entryCameraY=mobile?5:(tablet?1.2:1.08);
+        const entryLookY=mobile?6.1:(tablet?1.48:1.36);
+        const entryFov=mobile?50:(tablet?43:40.5);
+        const focusFov=mobile?47:(tablet?41:38);
 
         camera.position.x=lerp(startX,settleX,enter)+drift;
         camera.position.y=lerp(entryCameraY,settleY,enter);
         camera.position.z=lerp(startZ,settleZ,enter);
         camera.fov=lerp(entryFov,focusFov,enter);
-        const lookY=lerp(entryLookY,lerp(currentY,-4.5,exit),enter);
+        const lookY=lerp(entryLookY,lerp(currentY+(mobile?1.7:0),-4.5,exit),enter);
         camera.lookAt(lookX,lookY,0);
         towerRoot.rotation.y=-.055+(Math.sin(focused*Math.PI)*.018);
       }
@@ -380,7 +380,9 @@
 
       if(renderer&&camera){
         const mobile=isMobile();
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,mobile?1:1.5));
+        // Cap high-DPR phones rather than disabling the real 3D tower.
+        const lowMemory=navigator.deviceMemory>0&&navigator.deviceMemory<=2;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,mobile?(lowMemory?1:1.25):1.5));
         renderer.setSize(viewportWidth,viewportHeight,false);
         camera.aspect=viewportWidth/viewportHeight;
         camera.updateProjectionMatrix();
@@ -440,10 +442,11 @@
       host.replaceChildren();
     };
 
-    // Respect accessibility and data constraints: keep the styled static tower in place.
+    // Normal phones should render the same 3D tower as desktop.
+    // Keep the CSS scene only when WebGL is unavailable or the visitor requests data saving.
+    // Reduced-motion phones still get a static 3D camera without animated transitions.
     const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-    const lowMemoryPhone=isMobile()&&navigator.deviceMemory>0&&navigator.deviceMemory<=2;
-    if(!canUseWebGL()||reducedMotion.matches||network?.saveData||lowMemoryPhone||(isMobile()&&window.innerWidth<=480)){
+    if(!canUseWebGL()||network?.saveData){
       stage.classList.add('webgl-failed');
       scheduleFrame();
       return;
@@ -478,12 +481,24 @@
       scene=new THREE.Scene();
       scene.fog=new THREE.FogExp2(0x03121c,.025);
       camera=new THREE.PerspectiveCamera(38,viewportWidth/viewportHeight,.1,100);
-      renderer=new THREE.WebGLRenderer({alpha:true,antialias:!isMobile(),powerPreference:isMobile()?'low-power':'high-performance'});
+      renderer=new THREE.WebGLRenderer({alpha:true,antialias:!isMobile(),powerPreference:isMobile()?'default':'high-performance'});
       renderer.setClearColor(0x000000,0);
       renderer.outputColorSpace=THREE.SRGBColorSpace;
       renderer.toneMapping=THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure=1.08;
       renderer.domElement.className='tower-canvas';
+      renderer.domElement.addEventListener('webglcontextlost',event=>{
+        event.preventDefault();
+        stage.classList.remove('webgl-ready');
+        stage.classList.add('webgl-failed');
+      });
+      renderer.domElement.addEventListener('webglcontextrestored',()=>{
+        if(!disposed){
+          stage.classList.add('webgl-ready');
+          stage.classList.remove('webgl-failed');
+          scheduleFrame();
+        }
+      });
       host.replaceChildren(renderer.domElement);
 
       const geometryCache=new Map();
