@@ -53,7 +53,7 @@ function shell(eyebrow,title,copy,body=''){
 }
 
 function card(service){
-  return `<a class="card" href="/service/${service[0]}"><span class="num">${service[1]} / 06</span><h3>${service[2]}</h3><p>${service[3]}</p><div class="tags">${service[5].slice(0,2).map(item=>`<span class="tag">${item}</span>`).join('')}</div></a>`;
+  return `<a class="card" href="/service/${service[0]}/"><span class="num">${service[1]} / 06</span><h3>${service[2]}</h3><p>${service[3]}</p><div class="tags">${service[5].slice(0,2).map(item=>`<span class="tag">${item}</span>`).join('')}</div></a>`;
 }
 
 function projectCard(name,index){
