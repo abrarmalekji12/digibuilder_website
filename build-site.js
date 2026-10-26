@@ -11,6 +11,7 @@ const OUT=path.join(__dirname,'_site');
 const template=fs.readFileSync(path.join(__dirname,'index.html'),'utf8');
 const source=fs.readFileSync(path.join(__dirname,'app.js'),'utf8');
 const cacheVersion=(process.env.GITHUB_SHA||'local').slice(0,12);
+const googleVerification=(process.env.GOOGLE_SITE_VERIFICATION||'').trim();
 const app={innerHTML:'',dataset:{}};
 const location={hash:'#/',pathname:'/'};
 const document={
@@ -114,6 +115,7 @@ function head(page){
     '  <meta name="description" content="'+description+'">',
     '  <title>'+title+'</title>',
     '  <link rel="canonical" href="'+url+'">',
+    ...(googleVerification&&page.route==='/'?['  <meta name="google-site-verification" content="'+escaped(googleVerification)+'">']:[]),
     '  <link rel="icon" href="/digibuilder-logo.webp" type="image/webp">',
     '  <link rel="preload" as="image" href="/digibuilder-logo.webp">',
     '  <meta property="og:type" content="website">',
