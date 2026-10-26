@@ -129,7 +129,7 @@ main>.hero:after{
   top:49%;
   width:min(72vw,980px);
   aspect-ratio:1;
-  transform:translate(-50%,-50%);
+  transform:translate(calc(-50% + var(--ambient-x)),calc(-50% + var(--ambient-y)));
   border-radius:50%;
   background:radial-gradient(circle,rgba(21,148,184,.17),rgba(21,148,184,.055) 34%,transparent 69%);
   filter:blur(3px);
