@@ -1,16 +1,49 @@
 "use strict";
 
 const services=[
-  ['strategy','01','Strategy & Consulting','Find the signal. Build the system.','Clarity before activity: positioning, research, growth roadmaps and practical priorities that connect business goals to digital action.',['Discovery & audits','Positioning','Go-to-market roadmaps','Measurement planning']],
-  ['brand','02','Branding & Creative','Make the right people remember.','A distinctive identity and creative direction that gives every touchpoint a consistent, human point of view.',['Brand strategy','Visual identity','Campaign concepts','Design systems']],
-  ['web','03','Website & E-commerce Development','Turn attention into action.','Fast, accessible, conversion-minded digital experiences built around your customers, content and commercial goals.',['UX & UI direction','Web builds','Shopify / commerce','Optimisation']],
-  ['social','04','Social Media & Content','Show up with something to say.','A sustainable content engine: platform-native ideas, editorial planning and production guidance that earns attention.',['Content strategy','Social calendars','Creative production','Community playbooks']],
-  ['seo','05','SEO & Performance Marketing','Compound the useful work.','Search and media programmes grounded in intent, good creative, clear measurement and continuous learning.',['Technical SEO','Paid media','Landing pages','Reporting frameworks']],
-  ['ai','06','AI & Automation','Give your team leverage.','Thoughtful automation that removes friction without removing judgement—mapped, tested and handed over clearly.',['Workflow mapping','AI assistants','No-code automation','Enablement & handoff']]
+  ["strategy","01","Strategy & Growth Consulting","Know where to focus next.","We turn scattered marketing activity into a practical plan, from audience research and positioning to campaigns and measurement.",["Growth strategy","Market research","Positioning","Marketing audits"]],
+  ["brand","02","Branding & Creative","Look distinctive. Sound like yourself.","From naming and visual identity to campaign design, we build brands that feel consistent, recognisable and ready to grow.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
+  ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
+  ["social","04","Social Media, Reels & Video","Make content worth watching.","We plan and create social-first content, from Instagram reels and video shoots to editing, design and publishing ideas.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
+  ["seo","05","SEO, Advertising & Performance","Get found by the right audience.","Build visibility through search engine optimisation, thoughtful Google and social advertising, and landing pages built to convert.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
+  ["ai","06","AI Automation & Workflows","Spend less time on repeat work.","We explore where practical AI tools and automation can speed up everyday tasks while keeping people in control.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
 ];
 
+const serviceDetails={
+  "strategy": [
+    "The problem usually isn't a lack of ideas. It's deciding what matters, who it matters to and what to do first.",
+    "We audit your current channels, clarify your positioning and build a growth roadmap your team can actually use.",
+    "You'll leave with priorities, recommended experiments and a clearer way to measure what is working."
+  ],
+  "brand": [
+    "A good brand does more than look polished. It helps people recognise you, understand you and remember why they chose you.",
+    "We shape the identity around the business: visual direction, messaging, social creatives and the little details that tie everything together.",
+    "The result is a usable creative foundation for websites, reels, ads, print and everyday marketing."
+  ],
+  "web": [
+    "Your website should answer questions quickly and make taking the next step feel obvious, whether someone visits on a phone or laptop.",
+    "We design and build mobile-friendly websites, service pages, landing pages and e-commerce experiences with speed, accessibility and search in mind.",
+    "We focus on clear offers, smooth navigation and calls to action that respect the visitor's time."
+  ],
+  "social": [
+    "Posting more is not the same as connecting better. Strong social media starts with knowing your audience and telling stories they care about.",
+    "From content planning and social media management to reel concepts, on-location video shoots and professional editing, we connect ideas with execution.",
+    "We balance attention-grabbing creative with a consistent voice and a publishing rhythm you can maintain."
+  ],
+  "seo": [
+    "Being visible matters most when the people finding you are already looking for what you offer.",
+    "We work across on-page SEO, technical SEO, local search, Google Ads, Meta advertising and conversion-focused landing pages.",
+    "You get clear reporting, useful experiments and a strategy that can change with real evidence—not vague ranking promises."
+  ],
+  "ai": [
+    "If your team repeats the same admin steps every day, there may be a smarter way to work.",
+    "We map the process first, then prototype AI-assisted workflows for enquiries, reporting, content operations and routine handoffs.",
+    "You stay in control with documented workflows, sensible safeguards and a clear path for your team to use them."
+  ]
+};
+
 const serviceMap=Object.fromEntries(services.map(service=>[service[0],service]));
-const projects=['Sharp Immigration','Saathi4u','Meghreji Home Decor','Unique Led Light'];
+const projects=['Sharp Immigration','Saathi4u','Meghreji Home Decor','Unique Led Light','Simun Bake & Cake (Simun Tea)','Gulbarg Garden Restaurant & Party Plot','Palate Restaurant','Recut','Cubixcraft','Crabby Hunt','NDS Life Coaching'];
 const app=document.getElementById('app');
 let towerCleanup=null;
 let navigationBound=false;
@@ -20,7 +53,7 @@ function shell(eyebrow,title,copy,body=''){
 }
 
 function card(service){
-  return `<a class="card" href="#/service/${service[0]}"><span class="num">${service[1]} / 06</span><h3>${service[2]}</h3><p>${service[3]}</p><div class="tags">${service[5].slice(0,2).map(item=>`<span class="tag">${item}</span>`).join('')}</div></a>`;
+  return `<a class="card" href="/service/${service[0]}"><span class="num">${service[1]} / 06</span><h3>${service[2]}</h3><p>${service[3]}</p><div class="tags">${service[5].slice(0,2).map(item=>`<span class="tag">${item}</span>`).join('')}</div></a>`;
 }
 
 function projectCard(name,index){
@@ -61,50 +94,52 @@ function building(){
 
 function home(){
   return `<section class="hero"><div class="wrap hero-content">
-    <div class="eyebrow">Digital growth, built with intent</div>
-    <h1>Build a <span class="gradient">stronger</span> digital future.</h1>
-    <p class="lead">Digibuilder brings strategy, creativity, technology and performance together into a clearer path from ambition to momentum.</p>
-    <div class="actions"><a class="button primary" href="#/contact">Book a free consultation</a><a class="button secondary" href="#/services">Explore services</a></div>
-    <div class="meta"><span><b>●</b> India + international</span><span><b>●</b> Startups to scale-ups</span></div>
+    <div class="eyebrow">Digital marketing, built around your business</div>
+    <h1>Ideas that look <span class="gradient">good.</span> Growth that makes sense.</h1>
+    <p class="lead">DigiBuilder brings branding, digital marketing, social media reels, websites, advertising and AI automation into one thoughtful growth partner.</p>
+    <div class="actions"><a class="button primary" href="/contact/">Let's talk about your project</a><a class="button secondary" href="/services/">Explore our services</a></div>
+    <div class="meta"><span><b>●</b> Based in Gujarat, India</span><span><b>●</b> Working across time zones</span></div>
   </div></section>
   ${building()}
-  <section class="section"><div class="wrap section-head"><div><div class="eyebrow">A connected approach</div><h2>Growth is not a channel.</h2></div><p>It is the system between your story, your experience and the people you want to reach.</p></div><div class="wrap cards">${services.map(card).join('')}</div></section>
-  <section class="band"><div class="wrap split"><div><div class="eyebrow">Start with a useful conversation</div><div class="quote">Bring the question. Leave with a clearer next step.</div></div><a class="button primary" href="#/contact">Talk to Digibuilder</a></div></section>`;
+  <section class="section"><div class="wrap section-head"><div><div class="eyebrow">What we can help with</div><h2>One team. Six ways to grow.</h2></div><p>From a sharper brand to the content, website and campaigns behind it, we help you choose the right next move.</p></div><div class="wrap cards">${services.map(card).join('')}</div></section>
+  <section class="section markets-section"><div class="wrap split"><div><div class="eyebrow">Local insight. Remote collaboration.</div><h2>Built in Gujarat. Open to the world.</h2><p class="muted">Looking for a digital marketing agency in Modasa or elsewhere in Gujarat? We're here to talk. We also work remotely with businesses considering projects in Sydney, Brampton and London—without pretending to have an office in every city.</p></div><div class="panel"><div class="kicker">What matters to us</div><h3>Less noise, more useful work.</h3><p>Honest conversations, creative thinking and practical delivery. Whether it's a brand refresh, a reel shoot, a better website or an automation idea, we start with the problem you're trying to solve.</p><a class="button secondary" href="/about/">Meet DigiBuilder</a></div></div></section>
+  <section class="band"><div class="wrap split"><div><div class="eyebrow">Let's make your next move count</div><div class="quote">Tell us what's on your mind. We'll help you find a sensible place to start.</div></div><a class="button primary" href="/contact/">Start a conversation</a></div></section>`;
 }
 
 function about(){
   return shell(
-    'About Digibuilder',
-    'Build the right things, in the right order.',
-    'Digibuilder is an independent digital growth partner for teams who want thoughtful work and practical progress—not more noise. We work across India and international markets, with startups, ecommerce businesses and organisations across industries.',
-    `<div class="split content-gap"><div class="panel"><div class="kicker">Our point of view</div><h2>Strategy should make the next move easier.</h2><p class="muted">We connect the dots between what a business needs to achieve and what its audience needs to believe, feel and do. Scope stays honest, language stays clear, and every engagement ends with a handoff your team can use.</p></div><div><div class="steps"><div class="step"><div><h3>Listen first</h3><p>Context, constraints and customer reality before recommendations.</p></div></div><div class="step"><div><h3>Make it tangible</h3><p>Clear artefacts, prototypes and decisions—not decks that gather dust.</p></div></div><div class="step"><div><h3>Leave capability behind</h3><p>Documentation and enablement so momentum does not depend on us.</p></div></div></div></div></div>`
+    'About DigiBuilder',
+    'Creative thinking, practical follow-through.',
+    'We are a digital marketing and branding team rooted in Gujarat, India. We bring strategy, design, content, advertising, websites and AI automation together so growing businesses do not have to connect every piece themselves.',
+    `<div class="split content-gap"><div class="panel"><div class="kicker">How we think</div><h2>First understand the business. Then build the marketing.</h2><p class="muted">Every business has a different story, budget and audience. We ask questions, look at what is already working and recommend what is worth doing next—rather than selling a long list of services you may not need.</p></div><div><div class="steps"><div class="step"><div><h3>Listen and learn</h3><p>We understand your customers, goals, challenges and where opportunities might be hiding.</p></div></div><div class="step"><div><h3>Create with purpose</h3><p>From a visual identity to a campaign or video, each decision has a reason behind it.</p></div></div><div class="step"><div><h3>Improve together</h3><p>We review the work, make changes with real feedback and keep communication straightforward.</p></div></div></div></div></div><div class="panel content-gap"><div class="kicker">Where we work</div><p>Our roots are in Modasa, Gujarat. We welcome enquiries from across India, and we can collaborate remotely with teams in markets including Sydney, Brampton and London. Project requirements, availability and local production needs are discussed before we agree on a scope.</p></div>`
   );
 }
 
 function servicesPage(){
   return shell(
-    'Services',
-    'One tower. Six ways to move forward.',
-    'Choose the constraint that matters most right now, or combine capabilities into a focused growth sprint. Every engagement is scoped around your context.',
-    `<div class="cards content-gap">${services.map(card).join('')}</div>`
+    'Digital marketing services',
+    'The right mix makes the difference.',
+    'Need a brand people remember, better social media content, an advertising campaign or an easier way to handle enquiries? Start with what matters to your business. We can help with one focused project or connect several services.',
+    `<div class="cards content-gap">${services.map(card).join('')}</div><div class="panel content-gap"><div class="kicker">Not sure where to start?</div><h2>Tell us what you want to change.</h2><p>We will help you narrow down the next practical step before discussing the scope.</p><a href="/contact/" class="button primary">Discuss your goals</a></div>`
   );
 }
 
 function servicePage(key){
   const service=serviceMap[key];
+  const detail=serviceDetails[key];
   return shell(
-    `Service ${service[1]}`,
+    'What we do / '+service[1],
     service[2],
-    service[3],
-    `<div class="split content-gap"><div><div class="panel"><div class="kicker">What this can include</div><div class="tags">${service[5].map(item=>`<span class="tag">${item}</span>`).join('')}</div><p class="muted">We tailor the depth to your stage, team and goals. Start with a focused brief; expand only when the evidence says it is useful.</p><a class="button primary" href="#/contact">Discuss this service</a></div></div><div><div class="kicker">How we work</div><h2>Useful clarity, then momentum.</h2><div class="steps"><div class="step"><div><h3>01 — Diagnose</h3><p>Review the current state, audience and opportunity without assuming the answer.</p></div></div><div class="step"><div><h3>02 — Design</h3><p>Turn insight into a prioritised direction, system or working prototype.</p></div></div><div class="step"><div><h3>03 — Deliver & enable</h3><p>Launch what matters, measure honestly and leave your team with the keys.</p></div></div></div></div></div><div class="section-head section-followup"><div><div class="eyebrow">Questions worth asking</div><h2>Before we begin.</h2></div></div><div class="faq"><details open><summary>Can this be a small engagement?</summary><p>Yes. A focused audit, workshop or sprint can be the right starting point.</p></details><details><summary>Do you work with an existing team?</summary><p>Absolutely—we can complement internal marketing, product, design or engineering teams.</p></details><details><summary>What happens after the first call?</summary><p>You receive a clear suggested scope, assumptions and next step. No pressure and no mystery.</p></details></div>`
+    detail[0],
+    `<div class="split content-gap"><div><div class="panel"><div class="kicker">How we can help</div><p>${detail[1]}</p><div class="tags">${service[5].map(item=>`<span class="tag">${item}</span>`).join('')}</div></div></div><div><div class="kicker">The outcome</div><h2>Work that earns its place.</h2><p class="muted">${detail[2]}</p><a class="button primary" href="/contact/">Discuss this service</a></div></div><div class="section-head section-followup"><div><div class="eyebrow">Your questions</div><h2>How do we get started?</h2></div></div><div class="faq"><details><summary>Can we begin with a small project?</summary><p>Yes. We can start with an audit, a shoot, a landing page or another clearly defined first step, depending on what you need.</p></details><details><summary>Can DigiBuilder work with our existing team?</summary><p>Absolutely. We can support your in-house marketers, designers or developers and agree who owns each part of the work.</p></details><details><summary>Will you share a clear scope?</summary><p>Yes. Before work starts, we'll talk through deliverables, responsibilities, timelines and fees.</p></details></div>`
   );
 }
 
 function work(){
   return shell(
     'Our work',
-    'Selected projects.',
-    '',
+    'The names behind the projects.',
+    'Here are projects from our growing portfolio. We will add each project’s industry, services delivered and the work involved as those details are documented.',
     `<div class="cards project-grid content-gap">${projects.map(projectCard).join('')}</div>`
   );
 }
