@@ -22,6 +22,8 @@ jobs:
 
       # Generate static page HTML and metadata without introducing a runtime framework.
       - name: Build crawlable website
+        env:
+          GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
         run: node build-site.js
 
       - name: Deploy building landing page
