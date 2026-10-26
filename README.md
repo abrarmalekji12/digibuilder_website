@@ -49,7 +49,7 @@ The privacy and terms pages describe the form, hosting, optional CDN and current
 ## Performance and access
 
 - HTML is prerendered for crawlers and quick content display.
-- Small phones, reduced-motion, save-data and low-memory contexts use the tower's CSS fallback.
+- Phones with WebGL support render the real 3D tower, including screens 480px and below. Small/touch devices use capped pixel ratios and no multisample antialiasing to control GPU cost. Reduced-motion visitors see the 3D tower without animated camera travel. The CSS tower remains available when WebGL is unavailable, loading fails, or Save-Data is enabled.
 - WebGL initializes only when the tower approaches the viewport.
 - Pointer animation runs only on fine-pointer non-reduced-motion devices.
 - No analytics or advertising pixel is installed in this source.
