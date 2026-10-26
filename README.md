@@ -34,7 +34,7 @@ The site is **prepared for verification**, but ownership verification is not com
 4. After the updated site is deployed, submit `https://digibuilderai.com/sitemap.xml` through **Sitemaps** and inspect priority URLs with **URL Inspection**.
 5. Check **Pages**, **Core Web Vitals** and **Search performance** over time; indexing and rankings are not guaranteed or immediate.
 
-An alternative **URL-prefix property** supports a unique HTML meta tag or HTML verification file supplied by Google. That token/file must be added to the published site before clicking Verify. The email address alone cannot be used to establish site ownership.
+An alternative **URL-prefix property** supports a unique HTML meta tag or HTML verification file supplied by Google. To use the tag method, add only the **verification content/token** from the Google-provided tag to the GitHub repository Actions variable `GOOGLE_SITE_VERIFICATION`; the next `main` deployment will include it on the homepage. An HTML verification file must instead be added with its exact Google-provided name and contents. Click Verify after the live deployment. The email address alone cannot establish site ownership.
 
 ## Location and local SEO
 
