@@ -59,6 +59,7 @@
     let floorAnchors=[];
     let accentLight=null;
     let THREE=null;
+    let wakeRender=null;
 
     let storyFrom=-1;
     let storyTo=-1;
@@ -99,8 +100,8 @@
       heading.style.color='transparent';
       heading.style.webkitTextFillColor='transparent';
       heading.style.webkitTextStroke='.4px rgba(246,190,89,.26)';
-      heading.style.textShadow='0 1px 0 rgba(255,197,100,.12),2px 2px 0 rgba(74,43,28,.38),0 12px 24px rgba(0,0,0,.18)';
-      heading.style.filter='drop-shadow(0 10px 20px rgba(0,0,0,.16))';
+      heading.style.textShadow='none';
+      heading.style.filter='none';
     });
 
     const setStoryState=(index,next)=>{
@@ -414,6 +415,7 @@
 
     towerCleanup=()=>{
       disposed=true;
+      wakeRender?.();
       window.removeEventListener('scroll',syncScroll);
       window.removeEventListener('resize',measure);
       reducedMotion.removeEventListener?.('change',onMotionChange);
@@ -441,10 +443,26 @@
     // Respect accessibility and data constraints: keep the styled static tower in place.
     const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
     const lowMemoryPhone=isMobile()&&navigator.deviceMemory>0&&navigator.deviceMemory<=2;
-    if(!canUseWebGL()||reducedMotion.matches||network?.saveData||lowMemoryPhone){
+    if(!canUseWebGL()||reducedMotion.matches||network?.saveData||lowMemoryPhone||(isMobile()&&window.innerWidth<=480)){
       stage.classList.add('webgl-failed');
       scheduleFrame();
       return;
+    }
+
+    // Let the hero become interactive before fetching a 3D engine.
+    if('IntersectionObserver' in window){
+      await new Promise(resolve=>{
+        const observer=new IntersectionObserver(entries=>{
+          if(entries.some(entry=>entry.isIntersecting)){
+            observer.disconnect();
+            resolve();
+          }
+        },{rootMargin:'0px 0px -18% 0px'});
+        wakeRender=()=>{observer.disconnect();resolve();};
+        observer.observe(journey);
+      });
+      wakeRender=null;
+      if(disposed)return;
     }
 
     try{

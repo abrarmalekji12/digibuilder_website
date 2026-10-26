@@ -129,7 +129,7 @@ main>.hero:after{
   top:49%;
   width:min(72vw,980px);
   aspect-ratio:1;
-  transform:translate(-50%,-50%);
+  transform:translate(calc(-50% + var(--ambient-x)),calc(-50% + var(--ambient-y)));
   border-radius:50%;
   background:radial-gradient(circle,rgba(21,148,184,.17),rgba(21,148,184,.055) 34%,transparent 69%);
   filter:blur(3px);
@@ -316,11 +316,8 @@ main>.hero:after{
   transform:translateZ(58px);
   -webkit-text-stroke:1.25px rgba(174,239,247,.94);
   paint-order:stroke fill;
-  text-shadow:
-    -1px -1px 0 rgba(242,170,40,.38),
-    2px 2px 0 rgba(13,74,87,.94),
-    4px 4px 0 rgba(3,31,42,.84);
-  filter:drop-shadow(0 14px 24px rgba(0,0,0,.2));
+  text-shadow:none;
+  filter:none;
 }
 .tower-label-copy p{
   max-width:530px;
@@ -334,10 +331,7 @@ main>.hero:after{
 .tower-floor-label.active .tower-label-copy h3{
   color:rgba(8,37,48,.28);
   -webkit-text-stroke-color:rgba(203,247,251,.98);
-  text-shadow:
-    -1px -1px 0 rgba(242,170,40,.5),
-    2px 2px 0 rgba(13,82,96,.98),
-    4px 4px 0 rgba(3,31,42,.9);
+  text-shadow:none;
 }
 
 .tower-tracker{
@@ -485,17 +479,8 @@ main>.hero:after{
     perspective:none;
     isolation:isolate;
   }
-  /* A localized scrim keeps the story readable over animated tower detail. */
-  .tower-label-layer:before{
-    content:"";
-    position:absolute;
-    z-index:-1;
-    inset:-16px -4px auto -12px;
-    height:min(43svh,320px);
-    border-radius:12px;
-    background:linear-gradient(90deg,rgba(2,12,19,.94),rgba(2,12,19,.83) 78%,rgba(2,12,19,.18));
-    pointer-events:none;
-  }
+  /* Service titles sit directly on the tower scene, without a dark backing card. */
+  .tower-label-layer:before{display:none}
   .tower-floor-label{
     top:0;
     width:100%;
@@ -516,8 +501,8 @@ main>.hero:after{
     letter-spacing:-.03em;
     transform:none;
     -webkit-text-stroke-width:.85px;
-    text-shadow:-.6px -.6px 0 rgba(242,170,40,.4),1.5px 1.5px 0 rgba(13,74,87,.9),2.5px 2.5px 0 rgba(3,31,42,.78);
-    filter:drop-shadow(0 8px 18px rgba(0,0,0,.16));
+    text-shadow:none;
+    filter:none;
   }
   .tower-label-copy p{max-width:360px;margin-top:10px;font-size:clamp(13px,2.7vw,15px);line-height:1.45;transform:none}
 
