@@ -72,6 +72,7 @@
     const storyVisuals=labels.map(()=>({x:0,y:0,z:0,rx:0,ry:0,scale:1,opacity:0}));
 
     const isMobile=()=>window.innerWidth<=680;
+    const isTouchDevice=()=>window.matchMedia('(pointer:coarse)').matches;
     const isTablet=()=>window.innerWidth<=980;
     const floorProgress=value=>clamp((value-FLOOR_START)/(FLOOR_END-FLOOR_START));
     const scrollForFloor=index=>FLOOR_START+(index/(services.length-1))*(FLOOR_END-FLOOR_START);
@@ -319,8 +320,11 @@
       }else{
         const startX=mobile?4.1:(tablet?4.4:6.8);
         const focusX=mobile?3.2:(tablet?3.6:5.1);
-        const startZ=mobile?36:(tablet?32:34);
-        const focusZ=mobile?24:(tablet?20:18.5);
+        // Keep the actual 3D model inside very narrow portrait viewports.
+        const aspect=viewportWidth/viewportHeight;
+        const mobileFit=mobile?Math.max(1,Math.min(1.3,.46/aspect)):1;
+        const startZ=mobile?36*mobileFit:(tablet?32:34);
+        const focusZ=mobile?24*mobileFit:(tablet?20:18.5);
         const focusY=currentY+.12;
         const settleY=lerp(focusY,-3.8,exit);
         const settleZ=focusZ+(exit*(mobile?5.2:7.3));
@@ -382,7 +386,7 @@
         const mobile=isMobile();
         // Cap high-DPR phones rather than disabling the real 3D tower.
         const lowMemory=navigator.deviceMemory>0&&navigator.deviceMemory<=2;
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,mobile?(lowMemory?1:1.25):1.5));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,(mobile||isTouchDevice())?(lowMemory?1:1.25):1.5));
         renderer.setSize(viewportWidth,viewportHeight,false);
         camera.aspect=viewportWidth/viewportHeight;
         camera.updateProjectionMatrix();
@@ -481,7 +485,7 @@
       scene=new THREE.Scene();
       scene.fog=new THREE.FogExp2(0x03121c,.025);
       camera=new THREE.PerspectiveCamera(38,viewportWidth/viewportHeight,.1,100);
-      renderer=new THREE.WebGLRenderer({alpha:true,antialias:!isMobile(),powerPreference:isMobile()?'default':'high-performance'});
+      renderer=new THREE.WebGLRenderer({alpha:true,antialias:!(isMobile()||isTouchDevice()),powerPreference:(isMobile()||isTouchDevice())?'default':'high-performance'});
       renderer.setClearColor(0x000000,0);
       renderer.outputColorSpace=THREE.SRGBColorSpace;
       renderer.toneMapping=THREE.ACESFilmicToneMapping;
