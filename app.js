@@ -154,12 +154,57 @@ function contact(){
 }
 
 function legal(kind){
-  const privacy=kind==='privacy';
+  if(kind==='privacy'){
+    return shell(
+      'Privacy policy',
+      'Your enquiry is your information.',
+      'Last updated: 26 October 2026. This policy explains how DigiBuilder handles the information you choose to share when you contact us.',
+      `<div class="legal content-gap">
+        <h2>1. Information we receive</h2>
+        <p>When you send an enquiry through our website, the form asks for your name, email address, project context and the service you are interested in. Your phone number is optional. If you contact us by email or WhatsApp, we also receive the information included in that conversation.</p>
+        <h2>2. Why we use it</h2>
+        <p>We use your details to read your enquiry, reply to you, understand the project, prepare a proposal if requested and keep a record of our business conversation. We do not sell the contact information you submit.</p>
+        <h2>3. Forms and service providers</h2>
+        <p>Our contact form is processed by <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener" class="accent-link">Formspree</a>. Direct messages use your email provider or <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener" class="accent-link">WhatsApp</a>. Our site is published using GitHub Pages, and the optional 3D experience may load a JavaScript library from jsDelivr. These providers may process technical information under their own privacy policies.</p>
+        <h2>4. Cookies, analytics and technical data</h2>
+        <p>At the time of this update, DigiBuilder has not installed advertising pixels or visitor analytics scripts on this website. The site itself does not ask you to create an account. Hosting, CDN and messaging providers may maintain server logs or use their own technical storage. We will update this policy if our practices change.</p>
+        <h2>5. Who can access the details</h2>
+        <p>Enquiries are used by DigiBuilder to respond and manage work. We use relevant service providers to deliver the form, hosting and communication functions described above. We may disclose information when required by applicable law.</p>
+        <h2>6. How long information is kept</h2>
+        <p>We keep conversations and project information for as long as reasonably needed to respond, manage an enquiry or engagement, maintain records and meet applicable obligations. We do not promise a fixed deletion timeline because the purpose and legal requirements can vary.</p>
+        <h2>7. Your choices and requests</h2>
+        <p>You can ask to access, correct or delete personal information you've shared with us, subject to any legal or legitimate record-keeping requirements. Email <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a> and describe your request. We may need to confirm that it relates to your information.</p>
+        <h2>8. Visitors outside India</h2>
+        <p>We work remotely with international enquiries. Depending on the providers involved, information may be processed or stored in other countries under their respective arrangements.</p>
+        <h2>9. Changes and contact</h2>
+        <p>We may revise this page if our website tools or business practices change. The latest version will appear here with an updated date. For questions about this policy, contact <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a>.</p>
+      </div>`
+    );
+  }
   return shell(
-    privacy?'Privacy':'Terms',
-    privacy?'A simple, static-site privacy note.':'A starting point for engagement terms.',
-    privacy?'This draft reflects the current no-tracking, static handoff and should be reviewed by the owner and a qualified adviser before publication.':'This draft is a plain-language starting point, not legal advice. The owner should review and adapt it before publishing.',
-    `<div class="legal content-gap">${privacy?`<h2>What this site does</h2><p>This static website does not intentionally use analytics, advertising pixels, cookies, accounts or behavioural tracking. The hosting provider may process technical request data under its own terms.</p><h2>Contact information</h2><p>If you submit the contact form, the details you enter are sent through Formspree so Digibuilder can receive and respond to your enquiry. If you use the email or WhatsApp links instead, your message is handled by those services under their own terms.</p><h2>Owner review needed</h2><p>Confirm hosting logs, embedded services, retention practices and the applicable law for your business before launch.</p>`:`<h2>Scope</h2><p>Work begins after both parties agree a written scope, deliverables, timeline, fees and responsibilities. Changes may require a revised estimate.</p><h2>Client responsibilities</h2><p>The client provides timely access, accurate information, approvals and rights to supplied materials. Delays may affect timelines.</p><h2>Handoff and third parties</h2><p>Recommendations may involve third-party platforms. Their availability, fees and terms remain the client’s responsibility unless agreed otherwise.</p><h2>Owner review needed</h2><p>This draft does not cover every commercial, intellectual-property, payment, liability or governing-law detail. Obtain professional review before relying on it.</p>`}</div>`
+    'Website terms',
+    'Clear expectations make better work.',
+    'Last updated: 26 October 2026. These terms describe use of the DigiBuilder website. Any paid project is governed by the written proposal or agreement accepted by both sides.',
+    `<div class="legal content-gap">
+      <h2>1. Using this website</h2>
+      <p>You are welcome to explore our services, work and contact details. Please do not misuse the site, attempt unauthorised access or use its content in ways that infringe someone else's rights.</p>
+      <h2>2. Website information</h2>
+      <p>We aim to describe our services accurately, but the website is general information—not a binding offer, a fixed price list or a guarantee of particular marketing results. Availability, deliverables and estimates depend on your brief.</p>
+      <h2>3. Starting a project</h2>
+      <p>Before we begin paid work, we discuss the brief and agree a written scope that can include deliverables, timelines, payment milestones, review rounds, approvals and responsibilities. A website enquiry or introductory conversation does not, by itself, create a paid engagement.</p>
+      <h2>4. Feedback, changes and timelines</h2>
+      <p>Projects work best when materials, access and approvals arrive on time. If the scope changes after an agreement, we will discuss the effect on fees and timing before moving ahead with the added work.</p>
+      <h2>5. Materials and ownership</h2>
+      <p>Please share only brand assets, images, music, copy and other material you have permission to use. Ownership and permitted use of any work we create are governed by the agreed project terms; third-party fonts, stock assets and software may have their own licences.</p>
+      <h2>6. Third-party tools and advertising</h2>
+      <p>Services may involve platforms such as Google, Meta, website hosts and AI tools. Their fees, account rules, availability and policies are separate from ours unless the agreed scope says otherwise. Advertising or search performance can change due to factors outside any agency's control.</p>
+      <h2>7. Project results and examples</h2>
+      <p>Every business and campaign is different. We do not guarantee rankings, reach, leads or sales from the website descriptions alone. Project names shown in our portfolio do not imply a particular service or result unless we describe it on that project.</p>
+      <h2>8. External websites</h2>
+      <p>Links to third-party websites are offered for convenience. Their content, policies and services are managed by those providers.</p>
+      <h2>9. Questions and updates</h2>
+      <p>We may update these website terms to reflect changes to our services or online presence. For questions about an engagement or this page, write to <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a>. A separately signed agreement takes precedence for the specific work it covers.</p>
+    </div>`
   );
 }
 
@@ -273,21 +318,71 @@ function bind(){
   }
 }
 
+const routePaths={
+  home:'/',about:'/about/',services:'/services/',work:'/work/',contact:'/contact/',
+  privacy:'/privacy/',terms:'/terms/'
+};
+function legacyHashTarget(){
+  const match=location.hash.match(/^#\/(about|services|work|contact|privacy|terms|service\/[^/]+)\/?$/);
+  if(!match)return null;
+  return match[1].startsWith('service/')?'/'+match[1]+'/':routePaths[match[1]];
+}
+
 function render(){
+  const legacy=legacyHashTarget();
+  if(legacy && typeof location.replace==='function'){
+    location.replace(legacy);
+    return;
+  }
+
+  // Pre-rendered pages already contain their SEO-readable content.
+  // Only attach the menu and contact form interactions in the browser.
+  if(app.dataset?.prerendered==='true'){
+    const view=location.pathname.split('/').filter(Boolean)[0]||'home';
+    document.querySelectorAll('.links a').forEach(link=>{
+      const href=link.getAttribute('href');
+      link.classList.toggle('active',href===routePaths[view]||(view==='service'&&href==='/services/'));
+    });
+    bind();
+    return;
+  }
+
   towerCleanup?.();
   towerCleanup=null;
-
   const parts=location.hash.replace(/^#\/?/,'').split('/');
-  const view=parts[0]||'home';
-  const output=view==='home'?home():view==='about'?about():view==='services'?servicesPage():view==='service'&&serviceMap[parts[1]]?servicePage(parts[1]):view==='work'?work():view==='contact'?contact():view==='privacy'?legal('privacy'):view==='terms'?legal('terms'):home();
-
+  const path=location.pathname.split('/').filter(Boolean);
+  const view=parts[0]||path[0]||'home';
+  const key=parts[1]||path[1];
+  const output=view==='home'?home():view==='about'?about():view==='services'?servicesPage():view==='service'&&serviceMap[key]?servicePage(key):view==='work'?work():view==='contact'?contact():view==='privacy'?legal('privacy'):view==='terms'?legal('terms'):home();
   app.innerHTML=output;
   setMenuOpen(false);
-  document.querySelectorAll('.links a').forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#/${view}`));
   bind();
   window.scrollTo(0,0);
 }
 
+function initAmbientPointer(){
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const root=document.documentElement;
+  let targetX=0,targetY=0,x=0,y=0,frame=0;
+  const step=()=>{
+    frame=0;
+    x+=(targetX-x)*.065;
+    y+=(targetY-y)*.065;
+    root.style.setProperty('--ambient-x',x.toFixed(2)+'px');
+    root.style.setProperty('--ambient-y',y.toFixed(2)+'px');
+    if(Math.abs(targetX-x)>.1||Math.abs(targetY-y)>.1)frame=requestAnimationFrame(step);
+  };
+  window.addEventListener('pointermove',event=>{
+    targetX=((event.clientX/window.innerWidth)-.5)*22;
+    targetY=((event.clientY/window.innerHeight)-.5)*22;
+    if(!frame && !document.hidden)frame=requestAnimationFrame(step);
+  },{passive:true});
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden&&frame){cancelAnimationFrame(frame);frame=0}
+  });
+}
+
 document.getElementById('year').textContent=new Date().getFullYear();
+initAmbientPointer();
 window.addEventListener('hashchange',render);
 render();
