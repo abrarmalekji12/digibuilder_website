@@ -26,17 +26,17 @@ body:before,body:after{
   transform:translate3d(var(--ambient-x),var(--ambient-y),0);
 }
 body:before{
-  opacity:.52;
+  /* One dot field shared by the entire site; no overlapping accent-dot layers. */
+  opacity:.58;
   background-image:
-    radial-gradient(circle,rgba(124,216,227,.45) 0 1.2px,transparent 2px),
-    radial-gradient(circle,rgba(242,170,40,.35) 0 1px,transparent 1.9px),
-    linear-gradient(rgba(124,216,227,.073) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(124,216,227,.073) 1px,transparent 1px);
-  background-size:88px 88px,176px 176px,88px 88px,88px 88px;
-  background-position:0 0,44px 44px,0 0,0 0;
+    radial-gradient(circle,rgba(124,216,227,.42) 0 1.15px,transparent 1.85px),
+    linear-gradient(rgba(124,216,227,.067) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,216,227,.067) 1px,transparent 1px);
+  background-size:88px 88px;
+  background-position:0 0;
   -webkit-mask-image:linear-gradient(110deg,transparent 5%,#000 40%,#000 80%,transparent 100%);
   mask-image:linear-gradient(110deg,transparent 5%,#000 40%,#000 80%,transparent 100%);
-  animation:ambient-drift 52s ease-in-out infinite alternate;
+  animation:ambient-drift 36s ease-in-out infinite alternate;
 }
 body:after{
   opacity:.23;
@@ -46,7 +46,8 @@ body:after{
   animation:ambient-glow 20s ease-in-out infinite alternate;
 }
 @keyframes ambient-drift{
-  to{background-position:34px -20px,61px 18px,34px -20px,34px -20px}
+  from{background-position:0 0}
+  to{background-position:54px -36px}
 }
 @keyframes ambient-glow{to{opacity:.44}}
 main#app,.footer{position:relative;z-index:1}
