@@ -33,7 +33,7 @@ const serviceDetails={
   "seo": [
     "Being visible matters most when the people finding you are already looking for what you offer.",
     "We work across on-page SEO, technical SEO, local search, Google Ads, Meta advertising and conversion-focused landing pages.",
-    "You get clear reporting, useful experiments and a strategy that can change with real evidence—not vague ranking promises."
+    "You get clear reporting, useful experiments and a strategy shaped by real evidence, not vague ranking promises."
   ],
   "ai": [
     "If your team repeats the same admin steps every day, there may be a smarter way to work.",
@@ -102,7 +102,7 @@ function home(){
   </div></section>
   ${building()}
   <section class="section"><div class="wrap section-head"><div><div class="eyebrow">What we can help with</div><h2>One team. Six ways to grow.</h2></div><p>From a sharper brand to the content, website and campaigns behind it, we help you choose the right next move.</p></div><div class="wrap cards">${services.map(card).join('')}</div></section>
-  <section class="section markets-section"><div class="wrap split"><div><div class="eyebrow">Local insight. Remote collaboration.</div><h2>Built in Gujarat. Open to the world.</h2><p class="muted">Looking for a digital marketing agency in Modasa or elsewhere in Gujarat? We're here to talk. We also work remotely with businesses considering projects in Sydney, Brampton and London—without pretending to have an office in every city.</p></div><div class="panel"><div class="kicker">What matters to us</div><h3>Less noise, more useful work.</h3><p>Honest conversations, creative thinking and practical delivery. Whether it's a brand refresh, a reel shoot, a better website or an automation idea, we start with the problem you're trying to solve.</p><a class="button secondary" href="/about/">Meet DigiBuilder</a></div></div></section>
+  <section class="section markets-section"><div class="wrap split"><div><div class="eyebrow">Local insight. Remote collaboration.</div><h2>Built in Gujarat. Open to the world.</h2><p class="muted">Looking for a digital marketing agency in Modasa or elsewhere in Gujarat? We're here to talk. We also work remotely with businesses considering projects in Sydney, Brampton and London. We do not claim to have an office in every city.</p></div><div class="panel"><div class="kicker">What matters to us</div><h3>Less noise, more useful work.</h3><p>Honest conversations, creative thinking and practical delivery. Whether it's a brand refresh, a reel shoot, a better website or an automation idea, we start with the problem you're trying to solve.</p><a class="button secondary" href="/about/">Meet DigiBuilder</a></div></div></section>
   <section class="band"><div class="wrap split"><div><div class="eyebrow">Let's make your next move count</div><div class="quote">Tell us what's on your mind. We'll help you find a sensible place to start.</div></div><a class="button primary" href="/contact/">Start a conversation</a></div></section>`;
 }
 
@@ -111,7 +111,7 @@ function about(){
     'About DigiBuilder',
     'Creative thinking, practical follow-through.',
     'We are a digital marketing and branding team rooted in Gujarat, India. We bring strategy, design, content, advertising, websites and AI automation together so growing businesses do not have to connect every piece themselves.',
-    `<div class="split content-gap"><div class="panel"><div class="kicker">How we think</div><h2>First understand the business. Then build the marketing.</h2><p class="muted">Every business has a different story, budget and audience. We ask questions, look at what is already working and recommend what is worth doing next—rather than selling a long list of services you may not need.</p></div><div><div class="steps"><div class="step"><div><h3>Listen and learn</h3><p>We understand your customers, goals, challenges and where opportunities might be hiding.</p></div></div><div class="step"><div><h3>Create with purpose</h3><p>From a visual identity to a campaign or video, each decision has a reason behind it.</p></div></div><div class="step"><div><h3>Improve together</h3><p>We review the work, make changes with real feedback and keep communication straightforward.</p></div></div></div></div></div><div class="panel content-gap"><div class="kicker">Where we work</div><p>Our roots are in Modasa, Gujarat. We welcome enquiries from across India, and we can collaborate remotely with teams in markets including Sydney, Brampton and London. Project requirements, availability and local production needs are discussed before we agree on a scope.</p></div>`
+    `<div class="split content-gap"><div class="panel"><div class="kicker">How we think</div><h2>First understand the business. Then build the marketing.</h2><p class="muted">Every business has a different story, budget and audience. We ask questions, look at what is already working and recommend the next useful move instead of selling services you may not need.</p></div><div><div class="steps"><div class="step"><div><h3>Listen and learn</h3><p>We understand your customers, goals, challenges and where opportunities might be hiding.</p></div></div><div class="step"><div><h3>Create with purpose</h3><p>From a visual identity to a campaign or video, each decision has a reason behind it.</p></div></div><div class="step"><div><h3>Improve together</h3><p>We review the work, make changes with real feedback and keep communication straightforward.</p></div></div></div></div></div><div class="panel content-gap"><div class="kicker">Where we work</div><p>Our roots are in Modasa, Gujarat. We welcome enquiries from across India, and we can collaborate remotely with teams in markets including Sydney, Brampton and London. Project requirements, availability and local production needs are discussed before we agree on a scope.</p></div>`
   );
 }
 
@@ -189,7 +189,7 @@ function legal(kind){
       <h2>1. Using this website</h2>
       <p>You are welcome to explore our services, work and contact details. Please do not misuse the site, attempt unauthorised access or use its content in ways that infringe someone else's rights.</p>
       <h2>2. Website information</h2>
-      <p>We aim to describe our services accurately, but the website is general information—not a binding offer, a fixed price list or a guarantee of particular marketing results. Availability, deliverables and estimates depend on your brief.</p>
+      <p>We aim to describe our services accurately, but the website provides general information. It is not a binding offer, a fixed price list or a guarantee of particular marketing results. Availability, deliverables and estimates depend on your brief.</p>
       <h2>3. Starting a project</h2>
       <p>Before we begin paid work, we discuss the brief and agree a written scope that can include deliverables, timelines, payment milestones, review rounds, approvals and responsibilities. A website enquiry or introductory conversation does not, by itself, create a paid engagement.</p>
       <h2>4. Feedback, changes and timelines</h2>
@@ -248,7 +248,7 @@ async function submitContact(event){
 
     if(response.ok){
       form.reset();
-      if(status)status.textContent='Thanks — your enquiry has been sent. We’ll get back to you soon.';
+      if(status)status.textContent='Thanks! Your enquiry has been sent. We’ll get back to you soon.';
       return;
     }
 
@@ -361,20 +361,23 @@ function render(){
 }
 
 function initAmbientPointer(){
+  // Subtle easing with more visible travel on pointer-equipped desktops.
+  // Touch devices and reduced-motion users keep the ambient field static.
   if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const root=document.documentElement;
   let targetX=0,targetY=0,x=0,y=0,frame=0;
   const step=()=>{
     frame=0;
-    x+=(targetX-x)*.065;
-    y+=(targetY-y)*.065;
+    x+=(targetX-x)*.075;
+    y+=(targetY-y)*.075;
     root.style.setProperty('--ambient-x',x.toFixed(2)+'px');
     root.style.setProperty('--ambient-y',y.toFixed(2)+'px');
     if(Math.abs(targetX-x)>.1||Math.abs(targetY-y)>.1)frame=requestAnimationFrame(step);
   };
   window.addEventListener('pointermove',event=>{
-    targetX=((event.clientX/window.innerWidth)-.5)*22;
-    targetY=((event.clientY/window.innerHeight)-.5)*22;
+    // Maximum displacement: about 36px from center, without abrupt snapping.
+    targetX=((event.clientX/window.innerWidth)-.5)*72;
+    targetY=((event.clientY/window.innerHeight)-.5)*72;
     if(!frame && !document.hidden)frame=requestAnimationFrame(step);
   },{passive:true});
   document.addEventListener('visibilitychange',()=>{
