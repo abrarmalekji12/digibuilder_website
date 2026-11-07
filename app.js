@@ -157,27 +157,40 @@ function legal(kind){
   if(kind==='privacy'){
     return shell(
       'Privacy policy',
-      'Your enquiry is your information.',
-      'Last updated: 26 October 2026. This policy explains how DigiBuilder handles the information you choose to share when you contact us.',
+      'Your trust matters. So does your privacy.',
+      'Last updated: 7 November 2026. This policy covers DigiBuilder’s website, its website-based features in the DigiBuilder Android app, and enquiries sent to our team.',
       `<div class="legal content-gap">
-        <h2>1. Information we receive</h2>
-        <p>When you send an enquiry through our website, the form asks for your name, email address, project context and the service you are interested in. Your phone number is optional. If you contact us by email or WhatsApp, we also receive the information included in that conversation.</p>
-        <h2>2. Why we use it</h2>
-        <p>We use your details to read your enquiry, reply to you, understand the project, prepare a proposal if requested and keep a record of our business conversation. We do not sell the contact information you submit.</p>
-        <h2>3. Forms and service providers</h2>
-        <p>Our contact form is processed by <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener" class="accent-link">Formspree</a>. Direct messages use your email provider or <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener" class="accent-link">WhatsApp</a>. Our site is published using GitHub Pages, and the optional 3D experience may load a JavaScript library from jsDelivr. These providers may process technical information under their own privacy policies.</p>
-        <h2>4. Cookies, analytics and technical data</h2>
-        <p>At the time of this update, DigiBuilder has not installed advertising pixels or visitor analytics scripts on this website. The site itself does not ask you to create an account. Hosting, CDN and messaging providers may maintain server logs or use their own technical storage. We will update this policy if our practices change.</p>
-        <h2>5. Who can access the details</h2>
-        <p>Enquiries are used by DigiBuilder to respond and manage work. We use relevant service providers to deliver the form, hosting and communication functions described above. We may disclose information when required by applicable law.</p>
-        <h2>6. How long information is kept</h2>
-        <p>We keep conversations and project information for as long as reasonably needed to respond, manage an enquiry or engagement, maintain records and meet applicable obligations. We do not promise a fixed deletion timeline because the purpose and legal requirements can vary.</p>
-        <h2>7. Your choices and requests</h2>
-        <p>You can ask to access, correct or delete personal information you've shared with us, subject to any legal or legitimate record-keeping requirements. Email <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a> and describe your request. We may need to confirm that it relates to your information.</p>
-        <h2>8. Visitors outside India</h2>
-        <p>We work remotely with international enquiries. Depending on the providers involved, information may be processed or stored in other countries under their respective arrangements.</p>
-        <h2>9. Changes and contact</h2>
-        <p>We may revise this page if our website tools or business practices change. The latest version will appear here with an updated date. For questions about this policy, contact <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a>.</p>
+        <h2>1. Who we are</h2>
+        <p>DigiBuilder is a digital marketing and creative services business based in Modasa, Gujarat, India. This Privacy Policy explains how we handle personal information when you visit <a href="https://digibuilderai.com/" class="accent-link">digibuilderai.com</a>, use DigiBuilder website features in our Android app, or contact us about our services. For privacy questions or requests, email <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a>.</p>
+        <h2>2. Information you choose to share</h2>
+        <p>Our contact form requests your name, email address and project details. It also includes a service selection and an optional phone number. If you email or message us on WhatsApp, we receive the details you include in that conversation. If you decide to work with us, we may receive additional project information you provide in the course of that engagement.</p>
+        <p>Please avoid sending passwords, financial account information, government identification numbers or sensitive personal details through our enquiry form.</p>
+        <h2>3. Technical information when you visit</h2>
+        <p>When you access the website or its pages through an app, our hosting and delivery providers may automatically process technical information such as your IP address, browser or device type, requested pages and time of access. GitHub Pages, our website hosting service, logs visitor IP addresses for security purposes. We do not operate a visitor account system on this website.</p>
+        <h2>4. How and why we use information</h2>
+        <p>We use the information you share to respond to enquiries, discuss your requirements, arrange conversations, prepare requested proposals and manage any resulting business relationship. We may also use relevant records to protect the website from misuse, resolve disputes and comply with applicable legal obligations. Where the law requires a legal basis, this may be your request or consent, steps toward a service agreement, our legitimate business interests, or a legal obligation, as applicable.</p>
+        <p>We do not sell your enquiry details or add you to unrelated marketing mailing lists merely because you contacted us.</p>
+        <h2>5. Contact forms, email and WhatsApp</h2>
+        <p>Our website enquiry form sends the details you enter to <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" class="accent-link">Formspree</a> for processing and delivery to DigiBuilder. If you choose the WhatsApp option, the website prepares a message using the information you entered; that information goes to WhatsApp only if you choose to continue and send it. Emails and WhatsApp messages are handled by their respective providers, subject to their policies. See <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="accent-link">WhatsApp’s Privacy Policy</a>.</p>
+        <h2>6. Hosting and other service providers</h2>
+        <p>The website is hosted through GitHub Pages. Some pages may load a visual JavaScript library from jsDelivr to display the 3D experience. Hosting, content-delivery, form and communications providers may process limited personal or technical data to deliver their services. Their own privacy notices apply to information handled independently by them.</p>
+        <p>We share enquiry information only with people working on the relevant request, service providers needed to operate these functions, or others when required by law. We do not share submitted enquiries with advertisers for targeted advertising.</p>
+        <h2>7. DigiBuilder Android app</h2>
+        <p>When the DigiBuilder Android app displays pages or enquiry features from our website, the same information practices described above apply to those features. The website content itself does not request access to your camera, microphone, contacts, precise location or device files. Your Android device, Google Play, network provider and any separately integrated app components may handle technical information under their own policies. Any additional app permissions, analytics or services introduced in a release must be reviewed and reflected in this policy and the app’s Google Play Data safety disclosures.</p>
+        <h2>8. Cookies, analytics and advertising</h2>
+        <p>As of the date above, the DigiBuilder website source does not include visitor analytics trackers, advertising pixels or a site-managed marketing cookie system. Providers that deliver hosting, form submissions or external links may use their own logs, cookies or other necessary technologies. If we introduce analytics, advertising technologies or new forms of tracking, we will update this policy and provide any notices or choices required by law.</p>
+        <h2>9. How long we keep information</h2>
+        <p>We retain enquiries and related messages while needed to respond, follow up on a requested service, manage an active project and maintain necessary business or legal records. Retention varies with the nature of the conversation and applicable obligations; we do not apply a single fixed period to every enquiry. When the information is no longer needed, we aim to delete it or limit its retention, subject to lawful record-keeping and the retention practices of our service providers.</p>
+        <h2>10. Security</h2>
+        <p>We take reasonable steps to protect information under our control, including limiting access to those who need it for business purposes and using established hosting and communications services. No online transmission or storage method can be guaranteed completely secure, so please do not submit confidential credentials or unnecessary sensitive information.</p>
+        <h2>11. Your privacy choices and requests</h2>
+        <p>You may contact us to ask what personal information we hold about you or to request a correction or deletion. Depending on the law that applies to you, you may also be able to withdraw consent, object to certain processing or exercise other privacy rights. Send your request to <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a>. We may need to verify your identity before acting, and some information may need to be retained to comply with legal obligations. You can also raise concerns with the relevant data protection authority where applicable.</p>
+        <h2>12. International visitors and data processing</h2>
+        <p>DigiBuilder accepts enquiries from India and other countries. Depending on where you are and which providers are involved, personal information may be transferred to or processed in countries other than your own. We use service providers for the purposes described here and take applicable legal requirements into account when handling international information.</p>
+        <h2>13. Children and external links</h2>
+        <p>Our services and enquiry form are intended for businesses and people seeking professional services, not for children. We do not knowingly seek personal information from children. If you believe a child has sent us personal data, please contact us so we can review the request. Our website may link to independent sites and apps; their own privacy practices apply when you visit them.</p>
+        <h2>14. Updates and contact</h2>
+        <p>We may update this policy when our website, app, service providers or legal obligations change. We will post the revised policy here with a new “Last updated” date. For any privacy question, access request or deletion request, contact DigiBuilder at <a href="mailto:abdussamadvhora@gmail.com" class="accent-link">abdussamadvhora@gmail.com</a> or through our <a href="/contact/" class="accent-link">contact page</a>.</p>
       </div>`
     );
   }
