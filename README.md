@@ -44,7 +44,9 @@ The 11 project names are listed without invented service assignments, results or
 
 ## Privacy and compliance
 
-The privacy and terms pages describe the form, hosting, optional CDN and current website practices. The business owner should verify actual data handling, record retention, provider terms and any relevant jurisdiction-specific legal requirements before publishing those pages as legal policy.
+The /privacy/ page covers DigiBuilder website enquiries and the website-based features that may appear in the Android app. It explains Formspree processing, hosting and CDN access logs, communication providers, retention and privacy requests. The business owner should verify actual data handling, provider terms, retention and relevant jurisdiction-specific requirements before publication.
+
+**Android release check:** This repository contains the website, not the Android app source. Before using `https://digibuilderai.com/privacy/` in Google Play, audit the actual Android build for permissions, SDKs (including analytics, ads and crash-reporting), device identifiers, WebView behavior and any other data collection. Update the privacy policy and Google Play Data safety declaration to match the shipped app; ensure the policy is publicly reachable and linked inside the app. Never assume website source code proves the native app collects no data.
 
 ## Performance and access
 
