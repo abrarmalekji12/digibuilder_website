@@ -36,7 +36,7 @@ const pages=[
  {route:'/services/',hash:'#/services',title:'Digital Marketing, Branding & AI Automation Services | DigiBuilder',description:'Explore DigiBuilder services: brand identity, social media marketing, reels and video editing, websites, Google Ads, local SEO and AI automation.',name:'Services'},
  {route:'/work/',hash:'#/work',title:'Our Work | Branding & Digital Marketing Projects | DigiBuilder',description:'Explore the DigiBuilder project list across businesses and brands. Project industries, services delivered and details are being documented.',name:'Work'},
  {route:'/contact/',hash:'#/contact',title:'Contact DigiBuilder | Digital Marketing Agency in Modasa',description:'Tell DigiBuilder about your project. Contact our Gujarat-based team for branding, social media, advertising, web design, SEO and AI automation.',name:'Contact'},
- {route:'/privacy/',hash:'#/privacy',title:'Privacy Policy | DigiBuilder',description:'Learn how DigiBuilder handles website enquiries, contact details, form submissions and third-party services.',name:'Privacy'},
+ {route:'/privacy/',hash:'#/privacy',title:'Privacy Policy | DigiBuilder',description:'DigiBuilder privacy policy for website and Android app visitors: enquiries, personal data, Formspree, hosting, retention, deletion requests and contact details.',name:'Privacy'},
  {route:'/terms/',hash:'#/terms',title:'Website Terms & Project Enquiries | DigiBuilder',description:'Read DigiBuilder website terms, project enquiry expectations, creative work, third-party platforms and scope agreements.',name:'Terms'}
 ];
 const serviceMeta={
