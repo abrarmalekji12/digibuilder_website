@@ -47,66 +47,67 @@ const projects=[
   {
     "name": "Sharp Immigration",
     "regions": "Canada, India, Nigeria",
-    "spriteIndex": 0
+    "logo": "/project-logos/sharp-immigration.webp"
   },
   {
     "name": "Saathi4u",
     "regions": "Canada, India, USA",
-    "spriteIndex": 1
+    "logo": "/project-logos/saathi4u.webp"
   },
   {
     "name": "Meghreji Home Decor",
-    "spriteIndex": 2
+    "logo": "/project-logos/meghreji-home-decor.webp"
   },
   {
     "name": "Unique Led Light",
     "category": "E-Commerce Business",
-    "spriteIndex": 3
+    "logo": "/project-logos/unique-led-light.webp"
   },
   {
     "name": "Simun Bake & Cake (Simun Tea)",
-    "spriteIndex": 4
+    "logo": "/project-logos/simun-bake-cake.webp"
   },
   {
     "name": "Gulbarg Garden Restaurant & Party Plot",
-    "spriteIndex": 5
+    "logo": "/project-logos/gulbarg-garden.webp"
   },
   {
     "name": "Palate Restaurant",
-    "spriteIndex": 6
+    "logo": "/project-logos/palate-restaurant.webp"
   },
   {
     "name": "Recut",
-    "spriteIndex": 7
+    "logo": "/project-logos/recut.webp"
   },
   {
     "name": "Cubixcraft",
-    "spriteIndex": 8
+    "logo": "/project-logos/cubixcraft.webp"
   },
   {
     "name": "Crabby Hunt",
     "category": "E-Commerce Business",
-    "spriteIndex": 9
+    "logo": "/project-logos/crabby-hunt.webp"
   },
   {
-    "name": "NDS Life Coaching"
+    "name": "NDS Life Coaching",
+    "logo": "/project-logos/nds-life-coaching.webp"
   },
   {
     "name": "Sharp Travel",
     "regions": "Canada, India",
-    "spriteIndex": 11
+    "logo": "/project-logos/sharp-travel.webp"
   },
   {
     "name": "Mahenoor Foods",
-    "spriteIndex": 12
+    "logo": "/project-logos/mahenoor-foods.webp"
   },
   {
     "name": "Zapnut",
-    "spriteIndex": 13
+    "logo": "/project-logos/zapnut.webp"
   },
   {
     "name": "Raj Shah Photography",
-    "spriteIndex": 14
+    "logo": "/project-logos/raj-shah-photography.webp"
   },
   {
     "name": "Pink Nail Art",
@@ -115,29 +116,30 @@ const projects=[
   {
     "name": "Dental Spot",
     "regions": "USA",
-    "spriteIndex": 16
+    "logo": "/project-logos/dental-spot.webp"
   },
   {
     "name": "Distric Dentistry",
     "regions": "USA",
-    "spriteIndex": 17
+    "logo": "/project-logos/distric-dentistry.webp"
   },
   {
-    "name": "Sydney Taxi Service",
-    "regions": "Australia"
+    "name": "Sydney Premium Taxi Service",
+    "regions": "Australia",
+    "logo": "/project-logos/sydney-premium-taxi.webp"
   },
   {
     "name": "SKA Moto Bike",
     "regions": "UK",
-    "spriteIndex": 19
+    "logo": "/project-logos/ska-moto-bike.webp"
   },
   {
     "name": "Flutter Pilot",
-    "spriteIndex": 20
+    "logo": "/project-logos/flutter-pilot.webp"
   },
   {
     "name": "Scholar Career Academy",
-    "spriteIndex": 21
+    "logo": "/project-logos/scholar-career-academy.webp"
   }
 ];
 const app=document.getElementById('app');
@@ -154,14 +156,9 @@ function card(service){
 }
 
 function projectIdentity(project){
-  // Approved individual logos override the shared optimized sprite when later supplied.
+  // Each project displays its own optimized, high-resolution logo asset.
   if(project.logo){
     return `<img class="project-logo" src="${project.logo}" alt="${project.name} logo" loading="lazy" decoding="async">`;
-  }
-  if(Number.isInteger(project.spriteIndex)){
-    const x=(project.spriteIndex%6)*20;
-    const y=Math.floor(project.spriteIndex/6)*(100/3);
-    return `<span class="project-sprite-logo" role="img" aria-label="${project.name} logo" style="background-position:${x}% ${y}%"></span>`;
   }
   // Pink Nails' uploaded artwork was a photo held by hands. Use a clean,
   // selectable hand-free text wordmark until an approved isolated logo arrives.
