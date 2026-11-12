@@ -40,7 +40,19 @@ An alternative **URL-prefix property** supports a unique HTML meta tag or HTML v
 
 DigiBuilder describes its base as **Modasa, Gujarat** and availability for remote work in Sydney, Brampton and London. These are service markets, **not claimed branch addresses or verified physical offices**. Do not create city landing pages, business listings or fake address schema without genuine local business evidence. Update content once local client and service details are available.
 
-The 11 project names are listed without invented service assignments, results or testimonials. Add case studies with verified project scope, assets, permission and outcomes later.
+The 20 project names are listed without invented service assignments, results or testimonials. Location tags reflect the user's supplied project descriptions and do not imply DigiBuilder offices. Add case studies with verified project scope, assets, permission and outcomes later.
+
+## Project showcase and future logos
+
+The homepage includes all 20 projects in a vertical-scroll-driven, horizontally moving 3D-style card stack before the "Built in Gujarat" section. The Work page uses the same `projects` data in `app.js`. The stack needs no 3D library, does not intercept scrolling, and falls back to a swipeable horizontal row with JavaScript disabled or reduced-motion enabled.
+
+Each project currently uses a **text wordmark**. To replace it with a real approved logo:
+
+1. Add an optimized file (preferably WebP or SVG with appropriate permission) to `project-logos/` at the repository root.
+2. In `app.js`, add a `logo` field to that project's object, e.g. `{name:"Sharp Travel",regions:"Canada, India",logo:"/project-logos/sharp-travel.webp"}`.
+3. Run `node build-site.js`. The builder copies the entire `project-logos/` directory into `_site/`. The same logo is then shown on the homepage stack and the Work page, without a markup rewrite.
+
+Keep names visible as accessible image alt text and provide logos only once the owner approves their use.
 
 ## Privacy and compliance
 
