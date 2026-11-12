@@ -4,7 +4,7 @@ const services=[
   ["strategy","01","Strategy & Growth Consulting","Know your roots. Grow with purpose.","We uncover your business DNA, legacy and customer connections before shaping brand positioning, marketing strategy and a practical growth plan.",["Business DNA discovery","Brand positioning","Growth roadmaps","Marketing strategy"]],
   ["brand","02","Branding & Creative","Build a brand people can feel and remember.","Identity design built on business roots, clear positioning, emotional storytelling and creative that feels consistent wherever customers meet your brand.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
   ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
-  ["social","04","Social Media, Reels & Video","Make content worth watching.","We plan and create social-first content, from Instagram reels and video shoots to editing, design and publishing ideas.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
+  ["social","04","Social Media, Reels & Video","Tell stories people want to watch.","Audience-led social media marketing with meaningful content ideas, reel and video shoots, thoughtful editing and a practical publishing rhythm.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
   ["seo","05","SEO, Advertising & Performance","Get found by the right audience.","Build visibility through search engine optimisation, thoughtful Google and social advertising, and landing pages built to convert.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
   ["ai","06","AI Automation & Workflows","Spend less time on repeat work.","We explore where practical AI tools and automation can speed up everyday tasks while keeping people in control.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
 ];
@@ -126,6 +126,77 @@ function servicesPage(){
 
 /* Long-form service narratives share one layout but keep distinct content. */
 const detailedServicePages={
+  "social":{
+  "eyebrow": "Social media marketing, reels and video content",
+  "title": "Make content people <span class=\"gradient\">want to spend time with.</span>",
+  "lead": "A busy content calendar is not the same as a meaningful social presence. We start with the people you want to reach, the stories your brand can honestly tell and the moments worth showing. Then we shape ideas for reels, videos, visuals and conversations that feel like your business.",
+  "note": "DigiBuilder connects content strategy with creative production, so your social media has a purpose beyond posting just to stay visible.",
+  "pillars": [
+    "Audience insights",
+    "Content direction",
+    "Reel shoots and editing",
+    "Consistent publishing"
+  ],
+  "chapters": [
+    {
+      "step": "Listen",
+      "slug": "audience",
+      "title": "We learn what your audience actually cares about.",
+      "paragraphs": [
+        "Before suggesting trending audio or filming the first reel, we look at your business and your audience. What do customers ask before making a decision? What do they enjoy learning, seeing or sharing? What parts of your day-to-day work would help someone understand the care behind your products or services?",
+        "We review your current social presence, the content that has resonated, the questions people ask and the platforms where your audience is likely to spend time. A restaurant, home decor brand, professional service and local retailer should not follow the same content formula. Their customers, buying journeys and reasons for trust are different."
+      ],
+      "takeaway": "An audience-led social media direction connected to real customer interests, not generic trends."
+    },
+    {
+      "step": "Plan",
+      "slug": "pillars",
+      "title": "We turn your business story into content people can follow.",
+      "paragraphs": [
+        "The best ideas usually come from something real: a person, a process, a product detail, a customer question or a meaningful transformation. We turn those insights into content pillars that your brand can own. These might include helpful explanations, behind-the-scenes moments, founder stories, product demonstrations, community conversations and timely campaigns.",
+        "From there we shape a practical content calendar, deciding which messages work as Instagram reels, carousels, photography, short-form videos or longer explanations. We think about hooks, captions, calls to action and how one story can work in several formats without feeling repeated. The goal is a rhythm your business can sustain."
+      ],
+      "takeaway": "Clear content pillars, campaign ideas and a realistic calendar that supports your wider brand strategy."
+    },
+    {
+      "step": "Create",
+      "slug": "production",
+      "title": "We bring the ideas to life through reels, shoots and edits.",
+      "paragraphs": [
+        "A strong video does not need to feel like a television advertisement. Sometimes a thoughtful close-up, a confident explanation or a genuine moment with your team says more than an elaborate production. We plan scenes around the story: what should viewers notice first, what should they understand and what feeling should stay with them?",
+        "Depending on the agreed project, we can develop reel concepts, shot lists, on-location video shoots, product or service footage, photography direction, editing, captions, motion graphics and sound choices. We also consider vertical framing, mobile readability and the opening seconds that help people decide whether to keep watching."
+      ],
+      "takeaway": "Social-first video and creative content built to communicate something meaningful, not merely fill a feed."
+    },
+    {
+      "step": "Connect",
+      "slug": "community",
+      "title": "We help your brand show up consistently and naturally.",
+      "paragraphs": [
+        "Publishing is only part of social media marketing. People notice how often a brand responds, how useful the information is and whether the personality in its posts matches the real experience. We focus on a voice that feels consistent without becoming mechanical, and content that gives people a reason to return.",
+        "That can mean planning posts around launches, festivals, customer questions or everyday business moments, while building sensible workflows for approvals and community responses. We can also connect organic content with focused advertising when it suits the objective. The platform should serve the business rather than dictate its entire identity."
+      ],
+      "takeaway": "A more coherent social media presence, with clear messaging and an achievable publishing process."
+    },
+    {
+      "step": "Improve",
+      "slug": "learning",
+      "title": "We use the response to make the next idea stronger.",
+      "paragraphs": [
+        "Not every reel will reach thousands of people, and not every post is meant to sell. Some content helps people discover you, some builds familiarity and some answers the question that leads to an enquiry. We look at performance in context, including watch time, saves, useful comments, profile activity, enquiries and what your team hears directly from customers.",
+        "We use those signals to refine content topics, video openings, creative formats and publishing priorities. The aim is steady improvement and a stronger relationship with the people who matter, rather than chasing a viral moment that has little connection to your business goals."
+      ],
+      "takeaway": "A learning-led content process that balances creativity, audience connection and business objectives.",
+      "related": "Give your content a stronger foundation through <a href=\"/service/brand/\">brand identity</a>, <a href=\"/service/strategy/\">growth strategy</a> and <a href=\"/service/seo/\">paid media and search visibility</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "Content with a human point of view",
+    "title": "Your business already has stories worth telling. Let's tell them well.",
+    "copy": "We want people to notice more than a polished edit. We want them to recognise the people, values and attention behind your work. Whether you need a thoughtful reel shoot, a content plan or ongoing social media support, the story should always feel like yours.",
+    "cta": "Plan your next content project"
+  }
+},
   "brand":{
   "eyebrow": "Brand identity, positioning and creative design",
   "title": "Your brand deserves to be <span class=\"gradient\">recognised and remembered.</span>",
