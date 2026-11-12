@@ -34,7 +34,7 @@ const pages=[
  {route:'/',hash:'#/',title:'Digital Marketing & Branding Agency in Modasa, Gujarat | DigiBuilder',description:'DigiBuilder helps brands grow with digital marketing, branding, social media reels, websites, SEO, advertising and AI automation in Modasa, Gujarat and beyond.',name:'Home'},
  {route:'/about/',hash:'#/about',title:'About DigiBuilder | Creative Digital Marketing Team in Gujarat',description:'Meet DigiBuilder, a creative digital marketing team based in Modasa, Gujarat. Branding, content, websites, performance marketing and practical AI workflows.',name:'About'},
  {route:'/services/',hash:'#/services',title:'Digital Marketing, Branding & AI Automation Services | DigiBuilder',description:'Explore DigiBuilder services: brand identity, social media marketing, reels and video editing, websites, Google Ads, local SEO and AI automation.',name:'Services'},
- {route:'/work/',hash:'#/work',title:'Our Work | Branding & Digital Marketing Projects | DigiBuilder',description:'Explore the DigiBuilder project list across businesses and brands. Project industries, services delivered and details are being documented.',name:'Work'},
+ {route:'/work/',hash:'#/work',title:'Our Work | Branding & Digital Projects | DigiBuilder',description:'Explore DigiBuilder’s growing project portfolio, including Sharp Immigration, Saathi4u, Sharp Travel, Mahenoor Foods and more. Project details are coming soon.',name:'Work'},
  {route:'/contact/',hash:'#/contact',title:'Contact DigiBuilder | Digital Marketing Agency in Modasa',description:'Tell DigiBuilder about your project. Contact our Gujarat-based team for branding, social media, advertising, web design, SEO and AI automation.',name:'Contact'},
  {route:'/privacy/',hash:'#/privacy',title:'Privacy Policy | DigiBuilder',description:'Learn how DigiBuilder handles website enquiries, contact details, form submissions and third-party services.',name:'Privacy'},
  {route:'/terms/',hash:'#/terms',title:'Website Terms & Project Enquiries | DigiBuilder',description:'Read DigiBuilder website terms, project enquiry expectations, creative work, third-party platforms and scope agreements.',name:'Terms'}
@@ -140,6 +140,12 @@ fs.mkdirSync(OUT,{recursive:true});
 for(const asset of ['styles.css','experience.css','app.js','experience.js','digibuilder-logo.webp']){
   fs.copyFileSync(path.join(__dirname,asset),path.join(OUT,asset));
 }
+// Future client logos placed in project-logos/ are copied automatically on build.
+const projectLogoDir=path.join(__dirname,'project-logos');
+if(fs.existsSync(projectLogoDir)&&fs.statSync(projectLogoDir).isDirectory()){
+  fs.cpSync(projectLogoDir,path.join(OUT,'project-logos'),{recursive:true});
+}
+
 for(const page of pages){
   location.hash=page.hash;
   location.pathname=page.route;
