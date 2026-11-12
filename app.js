@@ -124,6 +124,52 @@ function servicesPage(){
   );
 }
 
+/* Long-form service narratives share one layout but keep distinct content. */
+const detailedServicePages={
+};
+
+function detailedServicePage(key){
+  const page=detailedServicePages[key];
+  const firstId=key+'-approach';
+  const chapters=page.chapters.map((chapter,index)=>{
+    const headingId=key+'-'+chapter.slug;
+    return `<section class="section service-story-chapter" ${index===0?`id="${firstId}"`:''} aria-labelledby="${headingId}">
+      <div class="wrap service-story-chapter-layout">
+        <div class="service-story-chapter-heading">
+          <div class="eyebrow">${String(index+1).padStart(2,'0')} / ${chapter.step}</div>
+          <h2 id="${headingId}">${chapter.title}</h2>
+        </div>
+        <div class="service-story-chapter-copy">
+          ${chapter.paragraphs.map(paragraph=>`<p>${paragraph}</p>`).join('')}
+          <p class="service-story-takeaway"><strong>What this creates:</strong> ${chapter.takeaway}</p>
+          ${chapter.related?`<p class="service-story-related">${chapter.related}</p>`:''}
+        </div>
+      </div>
+    </section>`;
+  }).join('');
+  const finishId=key+'-finish';
+  return `<section class="section service-story-intro" aria-labelledby="${key}-title">
+    <div class="wrap">
+      <div class="eyebrow">${page.eyebrow}</div>
+      <h1 id="${key}-title">${page.title}</h1>
+      <p class="lead">${page.lead}</p>
+      <p class="service-story-intro-note">${page.note}</p>
+      <div class="actions"><a class="button primary" href="/contact/">${page.finish.cta}</a><a class="button secondary" href="#${firstId}">Explore our approach</a></div>
+      <div class="service-story-essentials" aria-label="Our key priorities">${page.pillars.map(pillar=>`<span>${pillar}</span>`).join('')}</div>
+    </div>
+  </section>
+  ${chapters}
+  <section class="section service-story-finish" aria-labelledby="${finishId}">
+    <div class="wrap">
+      <div class="eyebrow">${page.finish.eyebrow}</div>
+      <h2 id="${finishId}">${page.finish.title}</h2>
+      <p>${page.finish.copy}</p>
+      <div class="actions"><a class="button primary" href="/contact/">${page.finish.cta}</a><a class="button secondary" href="/services/">Explore all services</a></div>
+      <p class="service-story-location">DigiBuilder is based in Modasa, Gujarat and works remotely with teams across India and internationally.</p>
+    </div>
+  </section>`;
+}
+
 function strategyPage(){
   return `<section class="section strategy-intro" aria-labelledby="strategy-title">
     <div class="wrap">
@@ -205,6 +251,7 @@ function strategyPage(){
 
 function servicePage(key){
   if(key==='strategy')return strategyPage();
+  if(detailedServicePages[key])return detailedServicePage(key);
   const service=serviceMap[key];
   const detail=serviceDetails[key];
   return shell(
