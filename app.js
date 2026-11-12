@@ -43,7 +43,28 @@ const serviceDetails={
 };
 
 const serviceMap=Object.fromEntries(services.map(service=>[service[0],service]));
-const projects=['Sharp Immigration','Saathi4u','Meghreji Home Decor','Unique Led Light','Simun Bake & Cake (Simun Tea)','Gulbarg Garden Restaurant & Party Plot','Palate Restaurant','Recut','Cubixcraft','Crabby Hunt','NDS Life Coaching'];
+const projects=[
+  {"name":"Sharp Immigration","regions":"Canada, India, Nigeria"},
+  {"name":"Saathi4u","regions":"Canada, India, USA"},
+  {"name":"Meghreji Home Decor"},
+  {"name":"Unique Led Light"},
+  {"name":"Simun Bake & Cake (Simun Tea)"},
+  {"name":"Gulbarg Garden Restaurant & Party Plot"},
+  {"name":"Palate Restaurant"},
+  {"name":"Recut"},
+  {"name":"Cubixcraft"},
+  {"name":"Crabby Hunt"},
+  {"name":"NDS Life Coaching"},
+  {"name":"Sharp Travel","regions":"Canada, India"},
+  {"name":"Mahenoor Foods"},
+  {"name":"Zapnut"},
+  {"name":"Raj Shah Photography"},
+  {"name":"Pink Nail Art"},
+  {"name":"Dental Spot","regions":"USA"},
+  {"name":"Distric Dentistry","regions":"USA"},
+  {"name":"Sydney Taxi Service","regions":"Australia"},
+  {"name":"SKA Moto Bike","regions":"UK"}
+];
 const app=document.getElementById('app');
 let towerCleanup=null;
 let navigationBound=false;
@@ -56,8 +77,49 @@ function card(service){
   return `<a class="card" href="/service/${service[0]}/"><span class="num">${service[1]} / 06</span><h3>${service[2]}</h3><p>${service[3]}</p><div class="tags">${service[5].slice(0,2).map(item=>`<span class="tag">${item}</span>`).join('')}</div></a>`;
 }
 
-function projectCard(name,index){
-  return `<article class="card project-card"><span class="num">PROJECT / ${String(index+1).padStart(2,'0')}</span><h3>${name}</h3></article>`;
+function projectIdentity(project){
+  // Replace the text wordmark with the supplied project logo when assets are available.
+  return project.logo
+    ? `<img class="project-logo" src="${project.logo}" alt="${project.name} logo" loading="lazy" decoding="async">`
+    : `<span class="project-wordmark">${project.name}</span>`;
+}
+
+function projectCard(project,index){
+  return `<article class="card project-card" aria-label="${project.name}${project.regions?', '+project.regions:''}">
+    <span class="num">PROJECT / ${String(index+1).padStart(2,'0')}</span>
+    <div class="project-logo-slot" data-project-logo-slot>${projectIdentity(project)}</div>
+    ${project.regions?`<p class="project-regions">(${project.regions})</p>`:''}
+  </article>`;
+}
+
+function projectShowcase(){
+  return `<section class="project-journey" id="project-journey" aria-labelledby="project-journey-title">
+    <div class="project-sticky">
+      <div class="wrap project-journey-heading">
+        <div>
+          <div class="eyebrow">Explore our projects</div>
+          <h2 id="project-journey-title">Different names. <span class="gradient">Distinct stories.</span></h2>
+        </div>
+        <p>Scroll down to explore our project portfolio as the cards move across the screen. More project details will be added as they're documented.</p>
+      </div>
+      <div class="project-stage" id="project-stage" aria-label="Project cards">
+        <div class="project-track">
+          ${projects.map((project,index)=>`<article class="project-slide" data-project-index="${index}" aria-label="${project.name}${project.regions?', '+project.regions:''}">
+            <div class="project-slide-top"><span>PROJECT / ${String(index+1).padStart(2,'0')}</span><span class="project-slide-symbol" aria-hidden="true">✳</span></div>
+            <div class="project-slide-brand" data-project-logo-slot>${projectIdentity(project)}</div>
+            <div class="project-slide-bottom">
+              ${project.regions?`<span class="project-slide-regions">(${project.regions})</span>`:'<span class="project-slide-caption">DigiBuilder portfolio</span>'}
+              <span class="project-slide-index">${String(index+1).padStart(2,'0')} / ${String(projects.length).padStart(2,'0')}</span>
+            </div>
+          </article>`).join('')}
+        </div>
+      </div>
+      <div class="wrap project-journey-footer">
+        <span><strong id="project-journey-count" aria-label="Current project">01 / ${String(projects.length).padStart(2,'0')}</strong><span class="project-scroll-hint"> Scroll vertically to move horizontally</span></span>
+        <a class="project-all-link" href="/work/">View all projects <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>`;
 }
 
 function building(){
@@ -102,6 +164,7 @@ function home(){
   </div></section>
   ${building()}
   <section class="section"><div class="wrap section-head"><div><div class="eyebrow">What we can help with</div><h2>One team. Six ways to grow.</h2></div><p>From a sharper brand to the content, website and campaigns behind it, we help you choose the right next move.</p></div><div class="wrap cards">${services.map(card).join('')}</div></section>
+  ${projectShowcase()}
   <section class="section markets-section"><div class="wrap split"><div><div class="eyebrow">Local insight. Remote collaboration.</div><h2>Built in Gujarat. Open to the world.</h2><p class="muted">Looking for a digital marketing agency in Modasa or elsewhere in Gujarat? We're here to talk. We also work remotely with businesses considering projects in Sydney, Brampton and London. We do not claim to have an office in every city.</p></div><div class="panel"><div class="kicker">What matters to us</div><h3>Less noise, more useful work.</h3><p>Honest conversations, creative thinking and practical delivery. Whether it's a brand refresh, a reel shoot, a better website or an automation idea, we start with the problem you're trying to solve.</p><a class="button secondary" href="/about/">Meet DigiBuilder</a></div></div></section>
   <section class="band"><div class="wrap split"><div><div class="eyebrow">Let's make your next move count</div><div class="quote">Tell us what's on your mind. We'll help you find a sensible place to start.</div></div><a class="button primary" href="/contact/">Start a conversation</a></div></section>`;
 }
@@ -219,7 +282,7 @@ function work(){
   return shell(
     'Our work',
     'The names behind the projects.',
-    'Here are projects from our growing portfolio. We will add each project’s industry, services delivered and the work involved as those details are documented.',
+    'Explore the names in our growing project portfolio. We will add each project’s industry, services delivered and the work involved as those details are confirmed.',
     `<div class="cards project-grid content-gap">${projects.map(projectCard).join('')}</div>`
   );
 }
