@@ -2,11 +2,11 @@
 
 const services=[
   ["strategy","01","Strategy & Growth Consulting","Know your roots. Grow with purpose.","We uncover your business DNA, legacy and customer connections before shaping brand positioning, marketing strategy and a practical growth plan.",["Business DNA discovery","Brand positioning","Growth roadmaps","Marketing strategy"]],
-  ["brand","02","Branding & Creative","Look distinctive. Sound like yourself.","From naming and visual identity to campaign design, we build brands that feel consistent, recognisable and ready to grow.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
-  ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
-  ["social","04","Social Media, Reels & Video","Make content worth watching.","We plan and create social-first content, from Instagram reels and video shoots to editing, design and publishing ideas.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
-  ["seo","05","SEO, Advertising & Performance","Get found by the right audience.","Build visibility through search engine optimisation, thoughtful Google and social advertising, and landing pages built to convert.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
-  ["ai","06","AI Automation & Workflows","Spend less time on repeat work.","We explore where practical AI tools and automation can speed up everyday tasks while keeping people in control.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
+  ["brand","02","Branding & Creative","Build a brand people can feel and remember.","Identity design built on business roots, clear positioning, emotional storytelling and creative that feels consistent wherever customers meet your brand.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
+  ["web","03","Websites & E-commerce","Your brand deserves a better digital home.","Business-led websites and e-commerce experiences that bring your story to life through thoughtful UX, responsive design, fast development and SEO foundations.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
+  ["social","04","Social Media, Reels & Video","Tell stories people want to watch.","Audience-led social media marketing with meaningful content ideas, reel and video shoots, thoughtful editing and a practical publishing rhythm.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
+  ["seo","05","SEO, Advertising & Performance","Be found when it matters.","Technical and local SEO, customer search intent, purposeful Google and Meta advertising, useful landing pages and measurement tied to business goals.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
+  ["ai","06","AI Automation & Workflows","Save time without losing judgement.","We map business workflows first, then prototype useful AI assistants and human-supervised automation for repetitive work.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
 ];
 
 const serviceDetails={
@@ -188,87 +188,489 @@ function servicesPage(){
   );
 }
 
+/* Long-form service narratives share one layout but keep distinct content. */
+const detailedServicePages={
+  "web":{
+  "eyebrow": "Website design, development and e-commerce experiences",
+  "title": "A website that feels like <span class=\"gradient\">your brand.</span> And works for your customers.",
+  "lead": "A beautiful website is not enough if people cannot understand your business or find the next step. At DigiBuilder, we begin with your story, the customers you want to serve and what they need to believe before they take action. Then we turn that clarity into a website that looks distinctive, works smoothly and is built to grow.",
+  "note": "From a service website or focused landing page to an online store, we connect brand identity, thoughtful UX, mobile performance, SEO foundations and real business objectives.",
+  "pillars": [
+    "Business and audience discovery",
+    "UX and conversion design",
+    "Fast, accessible development",
+    "SEO and continuous improvement"
+  ],
+  "chapters": [
+    {
+      "step": "Discover",
+      "slug": "business",
+      "title": "First, we understand what your website needs to achieve.",
+      "paragraphs": [
+        "Before we open a design file or choose a technology, we want to understand your business DNA. How did the brand start? What has earned customer trust? Which services or products matter most? What questions do people ask before they decide to call, visit, book or buy? A website should carry the answers that make your business different, rather than look like the same template everyone else is using.",
+        "We look at your existing website if you have one, listen to your team, understand how enquiries arrive and learn what you want visitors to do. We consider your audience's devices, languages, location and priorities. A restaurant, an immigration service and a home decor business have very different customer journeys. Their websites should reflect that reality, not follow an identical formula."
+      ],
+      "takeaway": "A clear website brief with audience priorities, business goals and the pages that genuinely matter."
+    },
+    {
+      "step": "Structure",
+      "slug": "journey",
+      "title": "We design a customer journey that feels natural.",
+      "paragraphs": [
+        "A visitor should not have to work hard to understand who you are, what you offer or why they can trust you. We plan the information architecture around their questions: what they need to know first, where proof or helpful detail belongs and what step feels right when they are ready to enquire. That means clear navigation, meaningful page headings, readable copy and contact actions that are easy to find.",
+        "We bring your brand's emotion and personality into that journey. A premium creative business may need space for visual storytelling, while a local service provider may need a simple explanation of services, locations and how to contact the team. Good UX and conversion-focused website design do not mean pushing people with pop-ups. They mean reducing friction and making the useful next step obvious."
+      ],
+      "takeaway": "A thoughtful site structure, page-by-page messaging and a user experience built around real decisions."
+    },
+    {
+      "step": "Design",
+      "slug": "identity",
+      "title": "We turn your brand identity into a digital experience.",
+      "paragraphs": [
+        "Colours and typography matter, but so do the little interactions that make a website feel considered. We create a visual direction that respects your brand legacy, gives your content room to breathe and presents your business confidently. The design should feel like you, whether someone is browsing a portfolio, reading about a service or looking through products on a phone.",
+        "We consider responsive layouts from the start, not as a desktop design squeezed into a smaller screen later. Buttons need comfortable touch targets. Text must stay readable. Images should support the story without slowing everything down. Thoughtful motion can add character when it has a purpose, while accessibility and reduced-motion preferences ensure people can still use the experience comfortably."
+      ],
+      "takeaway": "Responsive website design with distinctive creative direction, accessible interactions and clear calls to action."
+    },
+    {
+      "step": "Build",
+      "slug": "development",
+      "title": "We build for speed, search visibility and everyday use.",
+      "paragraphs": [
+        "The best website is the one your customers can open, understand and use. We choose an appropriate approach for the agreed scope and focus on clean code, maintainability and fast loading. That can mean a lightweight business website, a campaign landing page or an e-commerce experience. We do not recommend complicated technology just because it sounds impressive.",
+        "Search engine optimisation begins with the fundamentals: useful page content, descriptive titles, logical headings, readable URLs, sensible internal links and indexable pages. We also consider mobile usability, image optimisation, page performance and structured data where it genuinely helps. For businesses serving Modasa, Gujarat or a wider market, location and service information should be accurate rather than stuffed with repeated keywords."
+      ],
+      "takeaway": "A practical website foundation that supports customers, search crawlers and future updates without unnecessary complexity."
+    },
+    {
+      "step": "Launch and learn",
+      "slug": "launch",
+      "title": "We launch carefully and improve what matters.",
+      "paragraphs": [
+        "A website is not complete when the last button is designed. We check important journeys across screen sizes, review accessibility basics, confirm that forms and contact links work and make sure the agreed pages communicate the right information. We can help plan the handover so your team understands how to maintain the site and what to review when your business changes.",
+        "After launch, we look at feedback and the signals available to the business. Are visitors finding the right services? Do enquiries include the details your team needs? Are people able to browse comfortably on mobile? We use those observations to recommend focused improvements. No website can guarantee first-place search rankings or a fixed number of sales, but a clearer experience gives your growth efforts a stronger place to land."
+      ],
+      "takeaway": "A tested launch, usable handover and a realistic improvement plan connected to your business goals.",
+      "related": "Build the bigger picture with <a href=\"/service/strategy/\">growth strategy</a>, <a href=\"/service/brand/\">brand identity</a> and <a href=\"/service/seo/\">SEO and performance marketing</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "A website with a purpose",
+    "title": "Your website should not just look impressive. It should help people choose you.",
+    "copy": "When a website understands the business behind it and the people in front of it, every page has a reason to exist. We bring strategy, creativity and practical engineering together to build digital experiences that respect your identity and help customers take the next step with confidence.",
+    "cta": "Discuss your website project"
+  }
+},
+  "ai":{
+  "eyebrow": "AI automation, assistants and business workflows",
+  "title": "Make the work <span class=\"gradient\">simpler.</span> Keep the human thinking.",
+  "lead": "AI should fit your business, not force your people into a new process they never asked for. Before suggesting an assistant or automation, we learn how the work happens, where time is being lost and which decisions still need a person.",
+  "note": "DigiBuilder explores practical, human-supervised AI workflows that reduce repetitive effort while respecting context, privacy and the way your team actually operates.",
+  "pillars": [
+    "Workflow discovery",
+    "Useful AI use cases",
+    "Careful prototypes",
+    "Human oversight"
+  ],
+  "chapters": [
+    {
+      "step": "Understand",
+      "slug": "workflow",
+      "title": "First, we understand how your business runs.",
+      "paragraphs": [
+        "The useful questions come before the tools. How does an enquiry arrive? Who responds? What information gets copied between systems? Which approvals slow down a task? What happens when someone is unavailable? We listen to the people doing the work and map the process as it really happens, including the exceptions that are easy to miss in a polished flowchart.",
+        "Sometimes a team does not need AI at all. A clearer form, a better shared document or a simple rule-based automation may solve the problem more reliably. We look for the smallest useful improvement rather than adding technology for its own sake. Your team should understand the problem before anyone tries to automate it."
+      ],
+      "takeaway": "A practical workflow map showing recurring friction, manual effort and opportunities worth exploring."
+    },
+    {
+      "step": "Prioritise",
+      "slug": "opportunities",
+      "title": "We choose AI use cases that have a real purpose.",
+      "paragraphs": [
+        "An assistant can be helpful for drafting, summarising, sorting information or helping staff find answers. Automation can support lead routing, status updates, content operations or repeatable handoffs. But each idea needs a clear benefit, an owner and a way to check whether it is helping.",
+        "We weigh potential time savings against setup effort, data sensitivity, error risk and how often the task changes. We also ask what happens when the tool produces an uncertain answer or cannot complete the job. The priority is not to automate as many tasks as possible. It is to free people to spend more attention on customers, quality and decisions that matter."
+      ],
+      "takeaway": "A ranked set of useful automation opportunities with realistic trade-offs and a human owner."
+    },
+    {
+      "step": "Prototype",
+      "slug": "experiments",
+      "title": "We test a focused solution before changing everything.",
+      "paragraphs": [
+        "Rather than promising a complicated AI system on day one, we start with a narrow, testable workflow. It could be an internal assistant that helps draft enquiry replies, a process that organises incoming requests or a small automation that keeps a team informed. We agree what the prototype should do, what it must never do and how a person can review its output.",
+        "We use representative examples to test normal situations and awkward edge cases. If the tool invents information, misclassifies a request or gets stuck, that is valuable feedback. A good pilot helps us decide what to improve, what to keep manual and whether the idea deserves further investment."
+      ],
+      "takeaway": "A useful proof of concept with clearer boundaries, review steps and evidence of what works."
+    },
+    {
+      "step": "Connect responsibly",
+      "slug": "safeguards",
+      "title": "We keep people, permissions and data in the loop.",
+      "paragraphs": [
+        "Business workflows often touch customer messages, documents, payments or internal decisions. That means access controls, consent, provider terms and information handling deserve attention from the beginning. We discuss what data is actually needed, which tools may receive it and where sensitive work should remain with an authorised person.",
+        "Where the agreed tools support it, we can explore connections between forms, team software, reporting workflows and AI assistants. We build in checkpoints for approval, error handling and a manual fallback. Automation should never quietly become the only way to complete a business-critical task, and your team should know how to pause or correct it."
+      ],
+      "takeaway": "A human-supervised workflow with transparent responsibilities and sensible safeguards."
+    },
+    {
+      "step": "Enable",
+      "slug": "adoption",
+      "title": "We make the workflow usable, measurable and maintainable.",
+      "paragraphs": [
+        "An automation that only its creator understands does not create lasting value. We document how it works, train the people who will use it and identify who should review its performance. Depending on the project, we can establish simple ways to check time saved, accuracy, handoff quality or how many steps a team no longer repeats.",
+        "Over time, tools, permissions and business requirements change. We plan for that reality by keeping the solution understandable and reviewing what needs adjustment. The objective is not to replace judgement. It is to give your team room to do more thoughtful work while everyday operations become a little easier to manage."
+      ],
+      "takeaway": "Clear handover, team confidence and a sensible plan for maintaining and improving the automation.",
+      "related": "Automation works best when connected to <a href=\"/service/strategy/\">business priorities</a>, <a href=\"/service/web/\">website journeys</a> and <a href=\"/service/social/\">content workflows</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "Technology in service of people",
+    "title": "Less repetitive work. More room for the work only your team can do.",
+    "copy": "We want AI to feel useful, understandable and under control. If your business has a repetitive process that causes delays or takes attention away from customers, we can start by understanding it together and decide whether automation is really the answer.",
+    "cta": "Explore an AI workflow"
+  }
+},
+  "seo":{
+  "eyebrow": "Search visibility, Google Ads and performance marketing",
+  "title": "Get found by the <span class=\"gradient\">right people.</span> Give them a reason to choose you.",
+  "lead": "More traffic is not always better growth. We want to understand what your customers are searching for, what they need when they arrive and which channels can help your business earn their attention. Organic SEO and paid advertising work best when both begin with a clear business goal.",
+  "note": "DigiBuilder connects search intent, trustworthy website experiences, useful creative and measured campaigns rather than chasing rankings or clicks in isolation.",
+  "pillars": [
+    "Search intent",
+    "Technical and local SEO",
+    "Google and Meta Ads",
+    "Meaningful measurement"
+  ],
+  "chapters": [
+    {
+      "step": "Diagnose",
+      "slug": "search",
+      "title": "We start by understanding demand, not just keywords.",
+      "paragraphs": [
+        "Every useful search begins with a real need. Someone may be looking for a nearby service, comparing providers, researching a purchase or trying to solve a problem. We first ask which of these moments matter to your business and what an ideal customer needs to know before getting in touch or buying.",
+        "We review the website, search visibility, competitors and the questions your customers ask. That includes checking which pages explain your services well, where visitors may get confused and where a better answer could earn attention. Keyword research helps us understand language and intent, but it should never turn your website into a collection of awkward repeated phrases."
+      ],
+      "takeaway": "A search strategy grounded in customer intent, relevant topics and actual business priorities."
+    },
+    {
+      "step": "Build",
+      "slug": "foundations",
+      "title": "We make your website easier to discover and use.",
+      "paragraphs": [
+        "Search engine optimisation starts with a website that people and crawlers can understand. We look at crawlability, indexing signals, page structure, headings, internal links, titles, descriptions, structured data where appropriate, mobile usability and loading performance. These are foundations, not shortcuts to a guaranteed first position.",
+        "We then improve the pages that matter: clear service information, helpful content, natural calls to action and a logical path through the site. Technical SEO and good writing should support each other. A page can be well optimised but still fail customers if it never answers their questions, just as great writing can remain unseen when a site is difficult to navigate."
+      ],
+      "takeaway": "Cleaner technical SEO and more helpful, accessible, conversion-focused web pages."
+    },
+    {
+      "step": "Connect locally",
+      "slug": "local",
+      "title": "We help nearby customers understand where you fit.",
+      "paragraphs": [
+        "For businesses serving a real geographic area, local SEO is about being useful and accurate. We consider location-specific search intent, clear contact details, relevant service information, local content and a Google Business Profile when the business is eligible and genuinely serves that area.",
+        "For example, a business in Modasa or elsewhere in Gujarat should be easy for local customers to understand and contact. If you also serve clients remotely, the site should explain that honestly rather than inventing office addresses in new cities. Consistency across your website and real business listings matters more than stuffing city names into every paragraph."
+      ],
+      "takeaway": "Credible local discovery that reflects where and how your business actually serves customers."
+    },
+    {
+      "step": "Accelerate",
+      "slug": "campaigns",
+      "title": "We build advertisements around a clear next action.",
+      "paragraphs": [
+        "Paid advertising can help test an offer, introduce a new product or reach people while longer-term SEO work develops. But an ad is only valuable when the audience, message, landing page and budget make sense together. We look at what you want people to do after they click and whether the experience gives them enough confidence to act.",
+        "Depending on the scope, we can plan Google Ads search campaigns, Meta advertising, audience segmentation, creative tests and landing-page improvements. We discuss budgets and expectations clearly, and distinguish media spend from the work needed to build and manage campaigns. No responsible agency can guarantee a specific number of leads, sales or top search positions."
+      ],
+      "takeaway": "A more deliberate performance marketing plan aligned with relevant audiences, offers and conversions."
+    },
+    {
+      "step": "Learn",
+      "slug": "measurement",
+      "title": "We improve the parts that matter to your business.",
+      "paragraphs": [
+        "Rankings, impressions and clicks can be useful signals, but they are only part of the picture. We also think about qualified enquiries, calls, form submissions, useful website engagement and the quality of conversations that follow. Measurement should be appropriate to the business, respectful of users and clear about its limitations.",
+        "We review what the available evidence shows, identify friction points and prioritise experiments. That might mean clarifying a landing-page message, testing different creative, improving a service page or shifting budget away from a weak audience. The goal is to make decisions with more confidence as we learn, not to produce reports that sound impressive but change nothing."
+      ],
+      "takeaway": "SEO and advertising decisions guided by practical reporting, genuine demand and continuous improvement.",
+      "related": "Search and performance work best alongside <a href=\"/service/strategy/\">business strategy</a>, <a href=\"/service/web/\">better websites</a> and <a href=\"/service/brand/\">clear brand messaging</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "Discoverability with purpose",
+    "title": "Visibility matters. What happens after someone finds you matters more.",
+    "copy": "We help businesses connect useful search visibility, honest advertising and a better digital experience. From local SEO in Gujarat to focused campaigns for a wider audience, every recommendation should lead back to the customer and the real objective behind the spend.",
+    "cta": "Discuss your search and growth goals"
+  }
+},
+  "social":{
+  "eyebrow": "Social media marketing, reels and video content",
+  "title": "Make content people <span class=\"gradient\">want to spend time with.</span>",
+  "lead": "A busy content calendar is not the same as a meaningful social presence. We start with the people you want to reach, the stories your brand can honestly tell and the moments worth showing. Then we shape ideas for reels, videos, visuals and conversations that feel like your business.",
+  "note": "DigiBuilder connects content strategy with creative production, so your social media has a purpose beyond posting just to stay visible.",
+  "pillars": [
+    "Audience insights",
+    "Content direction",
+    "Reel shoots and editing",
+    "Consistent publishing"
+  ],
+  "chapters": [
+    {
+      "step": "Listen",
+      "slug": "audience",
+      "title": "We learn what your audience actually cares about.",
+      "paragraphs": [
+        "Before suggesting trending audio or filming the first reel, we look at your business and your audience. What do customers ask before making a decision? What do they enjoy learning, seeing or sharing? What parts of your day-to-day work would help someone understand the care behind your products or services?",
+        "We review your current social presence, the content that has resonated, the questions people ask and the platforms where your audience is likely to spend time. A restaurant, home decor brand, professional service and local retailer should not follow the same content formula. Their customers, buying journeys and reasons for trust are different."
+      ],
+      "takeaway": "An audience-led social media direction connected to real customer interests, not generic trends."
+    },
+    {
+      "step": "Plan",
+      "slug": "pillars",
+      "title": "We turn your business story into content people can follow.",
+      "paragraphs": [
+        "The best ideas usually come from something real: a person, a process, a product detail, a customer question or a meaningful transformation. We turn those insights into content pillars that your brand can own. These might include helpful explanations, behind-the-scenes moments, founder stories, product demonstrations, community conversations and timely campaigns.",
+        "From there we shape a practical content calendar, deciding which messages work as Instagram reels, carousels, photography, short-form videos or longer explanations. We think about hooks, captions, calls to action and how one story can work in several formats without feeling repeated. The goal is a rhythm your business can sustain."
+      ],
+      "takeaway": "Clear content pillars, campaign ideas and a realistic calendar that supports your wider brand strategy."
+    },
+    {
+      "step": "Create",
+      "slug": "production",
+      "title": "We bring the ideas to life through reels, shoots and edits.",
+      "paragraphs": [
+        "A strong video does not need to feel like a television advertisement. Sometimes a thoughtful close-up, a confident explanation or a genuine moment with your team says more than an elaborate production. We plan scenes around the story: what should viewers notice first, what should they understand and what feeling should stay with them?",
+        "Depending on the agreed project, we can develop reel concepts, shot lists, on-location video shoots, product or service footage, photography direction, editing, captions, motion graphics and sound choices. We also consider vertical framing, mobile readability and the opening seconds that help people decide whether to keep watching."
+      ],
+      "takeaway": "Social-first video and creative content built to communicate something meaningful, not merely fill a feed."
+    },
+    {
+      "step": "Connect",
+      "slug": "community",
+      "title": "We help your brand show up consistently and naturally.",
+      "paragraphs": [
+        "Publishing is only part of social media marketing. People notice how often a brand responds, how useful the information is and whether the personality in its posts matches the real experience. We focus on a voice that feels consistent without becoming mechanical, and content that gives people a reason to return.",
+        "That can mean planning posts around launches, festivals, customer questions or everyday business moments, while building sensible workflows for approvals and community responses. We can also connect organic content with focused advertising when it suits the objective. The platform should serve the business rather than dictate its entire identity."
+      ],
+      "takeaway": "A more coherent social media presence, with clear messaging and an achievable publishing process."
+    },
+    {
+      "step": "Improve",
+      "slug": "learning",
+      "title": "We use the response to make the next idea stronger.",
+      "paragraphs": [
+        "Not every reel will reach thousands of people, and not every post is meant to sell. Some content helps people discover you, some builds familiarity and some answers the question that leads to an enquiry. We look at performance in context, including watch time, saves, useful comments, profile activity, enquiries and what your team hears directly from customers.",
+        "We use those signals to refine content topics, video openings, creative formats and publishing priorities. The aim is steady improvement and a stronger relationship with the people who matter, rather than chasing a viral moment that has little connection to your business goals."
+      ],
+      "takeaway": "A learning-led content process that balances creativity, audience connection and business objectives.",
+      "related": "Give your content a stronger foundation through <a href=\"/service/brand/\">brand identity</a>, <a href=\"/service/strategy/\">growth strategy</a> and <a href=\"/service/seo/\">paid media and search visibility</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "Content with a human point of view",
+    "title": "Your business already has stories worth telling. Let's tell them well.",
+    "copy": "We want people to notice more than a polished edit. We want them to recognise the people, values and attention behind your work. Whether you need a thoughtful reel shoot, a content plan or ongoing social media support, the story should always feel like yours.",
+    "cta": "Plan your next content project"
+  }
+},
+  "brand":{
+  "eyebrow": "Brand identity, positioning and creative design",
+  "title": "Your brand deserves to be <span class=\"gradient\">recognised and remembered.</span>",
+  "lead": "A logo is only the beginning. A meaningful brand carries your story, values and promises into every interaction. At DigiBuilder, we learn what makes your business different before deciding how it should look, sound and make people feel.",
+  "note": "Whether you are creating something new or refreshing a business with years of history, we build identity from what is real, not from a trend that will disappear next season.",
+  "pillars": [
+    "Business DNA",
+    "Brand positioning",
+    "Visual identity",
+    "Connected storytelling"
+  ],
+  "chapters": [
+    {
+      "step": "Discover",
+      "slug": "roots",
+      "title": "We begin with the story behind your business.",
+      "paragraphs": [
+        "Before colours, fonts or a logo concept, we ask why your business exists. Was it started to carry forward a family legacy, solve a problem that no one else was addressing or give customers a better kind of experience? We want to know the decisions and beliefs that shaped the business, because the most recognisable brands rarely begin with decoration.",
+        "We listen to the founder, look at the products and services, review what customers already say and examine how your brand currently appears across signs, packaging, websites and social media. We also talk about what you want to preserve as you grow. This discovery helps separate the parts of your identity that are truly yours from the parts that may be holding you back."
+      ],
+      "takeaway": "A brand foundation rooted in your purpose, history and the experience customers should remember."
+    },
+    {
+      "step": "Position",
+      "slug": "promise",
+      "title": "We find the promise that makes you worth choosing.",
+      "paragraphs": [
+        "Good branding does not try to appeal to everyone. It helps the right people understand why a business matters to them. We explore your customers' needs, the alternatives they consider and the words they use when they describe a great experience. Then we work toward a clear point of difference that your team can actually deliver.",
+        "This is where brand strategy becomes human. We connect your values with your audience's motivations, define a useful personality and shape a tone of voice that fits the business. A heritage brand may need to feel warm and trusted. An emerging business might need to communicate confidence and fresh thinking. Neither should sound like a copy of its competitors."
+      ],
+      "takeaway": "Brand positioning, messaging and a distinct voice that feel believable to your audience."
+    },
+    {
+      "step": "Design",
+      "slug": "identity",
+      "title": "We give that meaning a visual identity.",
+      "paragraphs": [
+        "Design should make the strategy visible. From the logo and typography to colour, imagery, graphic elements and layout, we work toward a consistent visual language that people can recognise in a moment. Each choice should have a reason, whether it makes the brand more legible, more expressive or easier to use across different formats.",
+        "A brand is experienced on tiny phone screens, storefronts, product packaging, presentation decks, reels and advertisements. We consider those real-world touchpoints while building the identity, not as an afterthought. The aim is not simply a beautiful mock-up. It is a usable system that looks considered wherever the business appears."
+      ],
+      "takeaway": "Thoughtful brand identity and creative direction designed for everyday use, online and offline."
+    },
+    {
+      "step": "Express",
+      "slug": "touchpoints",
+      "title": "We bring the brand into every customer touchpoint.",
+      "paragraphs": [
+        "A brand feels stronger when the same character comes through in everything it does. We think about how the message carries from a website headline to a social media post, a video, an advertisement, an email or the experience someone has while asking a question. Consistency matters, but it should never make your business sound robotic.",
+        "We can connect brand storytelling with social content, campaigns and digital experiences, helping the team create work that feels like it belongs together. This is especially valuable when different people are responsible for design, sales, customer service and marketing. They should all be able to tell the same story in their own natural way."
+      ],
+      "takeaway": "Connected storytelling, creative assets and guidelines that help your brand show up as one brand."
+    },
+    {
+      "step": "Evolve",
+      "slug": "growth",
+      "title": "We help your identity grow without losing its roots.",
+      "paragraphs": [
+        "A brand launch is a beginning, not the finish line. We plan how the identity will be introduced, what assets the team needs first and how to keep things consistent when new products, locations or campaigns arrive. Depending on the engagement, that may include launch creative, usage guidelines, templates or a practical handover for your team.",
+        "As customers respond, we look at what is clear, what causes confusion and where the brand can become more useful. Recognition and trust are built over many experiences, not by promising instant results from a design refresh. Our job is to give you a foundation that can grow with the business while still feeling unmistakably yours."
+      ],
+      "takeaway": "A lasting creative foundation with realistic next steps for launch, consistency and brand growth.",
+      "related": "A strong identity becomes even more valuable with <a href=\"/service/strategy/\">business strategy</a>, <a href=\"/service/social/\">social storytelling</a> and a <a href=\"/service/web/\">conversion-minded website</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "More than attractive design",
+    "title": "Let people recognise your business before they even read the name.",
+    "copy": "We want your brand to feel familiar, credible and full of character. Something your team is proud to represent and your customers are happy to return to. That begins by respecting what you have built, then giving it a clear identity for what comes next.",
+    "cta": "Talk about your brand"
+  }
+},
+};
+
+function detailedServicePage(key){
+  const page=detailedServicePages[key];
+  const firstId=key+'-approach';
+  const chapters=page.chapters.map((chapter,index)=>{
+    const headingId=key+'-'+chapter.slug;
+    return `<section class="section service-story-chapter" ${index===0?`id="${firstId}"`:''} aria-labelledby="${headingId}">
+      <div class="wrap service-story-chapter-layout">
+        <div class="service-story-chapter-heading">
+          <div class="eyebrow">${String(index+1).padStart(2,'0')} / ${chapter.step}</div>
+          <h2 id="${headingId}">${chapter.title}</h2>
+        </div>
+        <div class="service-story-chapter-copy">
+          ${chapter.paragraphs.map(paragraph=>`<p>${paragraph}</p>`).join('')}
+          <p class="service-story-takeaway"><strong>What this creates:</strong> ${chapter.takeaway}</p>
+          ${chapter.related?`<p class="service-story-related">${chapter.related}</p>`:''}
+        </div>
+      </div>
+    </section>`;
+  }).join('');
+  const finishId=key+'-finish';
+  return `<section class="section service-story-intro" aria-labelledby="${key}-title">
+    <div class="wrap">
+      <div class="eyebrow">${page.eyebrow}</div>
+      <h1 id="${key}-title">${page.title}</h1>
+      <p class="lead">${page.lead}</p>
+      <p class="service-story-intro-note">${page.note}</p>
+      <div class="actions"><a class="button primary" href="/contact/">${page.finish.cta}</a><a class="button secondary" href="#${firstId}">Explore our approach</a></div>
+      <div class="service-story-essentials" aria-label="Our key priorities">${page.pillars.map(pillar=>`<span>${pillar}</span>`).join('')}</div>
+    </div>
+  </section>
+  ${chapters}
+  <section class="section service-story-finish" aria-labelledby="${finishId}">
+    <div class="wrap">
+      <div class="eyebrow">${page.finish.eyebrow}</div>
+      <h2 id="${finishId}">${page.finish.title}</h2>
+      <p>${page.finish.copy}</p>
+      <div class="actions"><a class="button primary" href="/contact/">${page.finish.cta}</a><a class="button secondary" href="/services/">Explore all services</a></div>
+      <p class="service-story-location">DigiBuilder is based in Modasa, Gujarat and works remotely with teams across India and internationally.</p>
+    </div>
+  </section>`;
+}
+
 function strategyPage(){
-  return `<section class="section strategy-intro" aria-labelledby="strategy-title">
+  return `<section class="section service-story-intro" aria-labelledby="strategy-title">
     <div class="wrap">
       <div class="eyebrow">Brand strategy and growth consulting</div>
       <h1 id="strategy-title">Growth strategy starts with <span class="gradient">your business DNA.</span></h1>
       <p class="lead">Before we talk about advertisements, social media or marketing budgets, we want to understand what makes your business yours. Where did it begin? What has it stood for? Why do customers choose you, trust you and come back? At DigiBuilder, these answers come before the strategy.</p>
-      <p class="strategy-intro-note">We connect your roots, your customers and your ambition to create a brand people can genuinely relate to, supported by a clear plan for sustainable business growth.</p>
+      <p class="service-story-intro-note">We connect your roots, your customers and your ambition to create a brand people can genuinely relate to, supported by a clear plan for sustainable business growth.</p>
       <div class="actions"><a class="button primary" href="/contact/">Let's talk about your business</a><a class="button secondary" href="#our-approach">Explore our approach</a></div>
-      <div class="strategy-essentials" aria-label="Our strategic priorities"><span>Business understanding</span><span>Human connection</span><span>Brand clarity</span><span>Growth planning</span></div>
+      <div class="service-story-essentials" aria-label="Our strategic priorities"><span>Business understanding</span><span>Human connection</span><span>Brand clarity</span><span>Growth planning</span></div>
     </div>
   </section>
 
-  <section class="section strategy-chapter" id="our-approach" aria-labelledby="strategy-dna">
-    <div class="wrap strategy-chapter-layout">
-      <div class="strategy-chapter-heading"><div class="eyebrow">01 / Discover</div><h2 id="strategy-dna">First, we understand the DNA of your business.</h2></div>
-      <div class="strategy-chapter-copy">
+  <section class="section service-story-chapter" id="our-approach" aria-labelledby="strategy-dna">
+    <div class="wrap service-story-chapter-layout">
+      <div class="service-story-chapter-heading"><div class="eyebrow">01 / Discover</div><h2 id="strategy-dna">First, we understand the DNA of your business.</h2></div>
+      <div class="service-story-chapter-copy">
         <p>A business is more than a product, a logo or a service list. It is built from the founder's vision, the decisions that shaped it, the promises made to customers and the problems it set out to solve. Those details often explain why people care about a brand more than any advertising slogan could.</p>
         <p>We begin with conversations, not assumptions. We listen to your story, understand your strengths and challenges, look at how your business currently reaches customers, and ask what kind of future you want to create. We explore your products, service experience, existing marketing, customer feedback and the opportunities you may not have had time to notice.</p>
-        <p class="strategy-takeaway"><strong>Our starting point:</strong> a clearer picture of what should stay true to your business and what needs to change for it to grow.</p>
+        <p class="service-story-takeaway"><strong>Our starting point:</strong> a clearer picture of what should stay true to your business and what needs to change for it to grow.</p>
       </div>
     </div>
   </section>
 
-  <section class="section strategy-chapter" aria-labelledby="strategy-legacy">
-    <div class="wrap strategy-chapter-layout">
-      <div class="strategy-chapter-heading"><div class="eyebrow">02 / Connect</div><h2 id="strategy-legacy">We turn your legacy into a connection people can feel.</h2></div>
-      <div class="strategy-chapter-copy">
+  <section class="section service-story-chapter" aria-labelledby="strategy-legacy">
+    <div class="wrap service-story-chapter-layout">
+      <div class="service-story-chapter-heading"><div class="eyebrow">02 / Connect</div><h2 id="strategy-legacy">We turn your legacy into a connection people can feel.</h2></div>
+      <div class="service-story-chapter-copy">
         <p>Every brand carries something meaningful. It might be years of craftsmanship, a family tradition, a local reputation, the courage of a first-generation founder or a simple belief in treating customers better. That legacy should not disappear when a business goes digital. It can become the strongest part of its story.</p>
         <p>We look for the human truth behind your brand: the values you live by, the experience you want people to remember and the emotions that bring them back. Then we help shape a brand narrative, tone of voice and positioning that feel natural to you and relevant to your audience. The goal is not to manufacture emotion. It is to make the real connection easier to recognise.</p>
-        <p class="strategy-takeaway"><strong>Our focus:</strong> brand storytelling and emotional positioning that build recognition, trust and a reason to choose you.</p>
+        <p class="service-story-takeaway"><strong>Our focus:</strong> brand storytelling and emotional positioning that build recognition, trust and a reason to choose you.</p>
       </div>
     </div>
   </section>
 
-  <section class="section strategy-chapter" aria-labelledby="strategy-audience">
-    <div class="wrap strategy-chapter-layout">
-      <div class="strategy-chapter-heading"><div class="eyebrow">03 / Understand</div><h2 id="strategy-audience">We study the people your brand needs to reach.</h2></div>
-      <div class="strategy-chapter-copy">
+  <section class="section service-story-chapter" aria-labelledby="strategy-audience">
+    <div class="wrap service-story-chapter-layout">
+      <div class="service-story-chapter-heading"><div class="eyebrow">03 / Understand</div><h2 id="strategy-audience">We study the people your brand needs to reach.</h2></div>
+      <div class="service-story-chapter-copy">
         <p>The right marketing strategy starts with the people on the other side of the screen. What do they want to achieve? What do they worry about? Which questions do they ask before buying, visiting or making an enquiry? Where do they discover businesses like yours, and what helps them decide whom to trust?</p>
         <p>We use available customer insights, competitor research, search intent and your business context to find useful patterns. That could mean understanding local discovery in Modasa or Gujarat, reviewing how customers respond to content, or exploring how a remote audience may have different needs. We do not treat every platform or audience as equally important.</p>
-        <p class="strategy-takeaway"><strong>What this shapes:</strong> audience priorities, customer journeys, key messages and opportunities for more relevant marketing.</p>
+        <p class="service-story-takeaway"><strong>What this shapes:</strong> audience priorities, customer journeys, key messages and opportunities for more relevant marketing.</p>
       </div>
     </div>
   </section>
 
-  <section class="section strategy-chapter" aria-labelledby="strategy-direction">
-    <div class="wrap strategy-chapter-layout">
-      <div class="strategy-chapter-heading"><div class="eyebrow">04 / Build</div><h2 id="strategy-direction">Only then do we build the strategy.</h2></div>
-      <div class="strategy-chapter-copy">
+  <section class="section service-story-chapter" aria-labelledby="strategy-direction">
+    <div class="wrap service-story-chapter-layout">
+      <div class="service-story-chapter-heading"><div class="eyebrow">04 / Build</div><h2 id="strategy-direction">Only then do we build the strategy.</h2></div>
+      <div class="service-story-chapter-copy">
         <p>Once we understand your business and the people it serves, we turn insight into direction. We clarify how your brand should be positioned, what you want to be known for, which offers deserve attention and what a meaningful next step looks like for your customers.</p>
         <p>The plan may bring together branding, website experience, search engine optimisation, local SEO, social media marketing, content creation, video storytelling or performance advertising. But it is not about doing everything. It is about choosing the right mix, in the right order, for your goals and resources. Every recommendation should have a purpose and a reason behind it.</p>
-        <p class="strategy-takeaway"><strong>What you can work toward:</strong> a focused brand and digital marketing strategy with clear priorities rather than disconnected campaigns.</p>
-        <p class="strategy-related">Explore the connected capabilities: <a href="/service/brand/">branding and creative</a>, <a href="/service/social/">social media and video</a>, and <a href="/service/seo/">SEO and performance marketing</a>.</p>
+        <p class="service-story-takeaway"><strong>What you can work toward:</strong> a focused brand and digital marketing strategy with clear priorities rather than disconnected campaigns.</p>
+        <p class="service-story-related">Explore the connected capabilities: <a href="/service/brand/">branding and creative</a>, <a href="/service/social/">social media and video</a>, and <a href="/service/seo/">SEO and performance marketing</a>.</p>
       </div>
     </div>
   </section>
 
-  <section class="section strategy-chapter" aria-labelledby="strategy-plan">
-    <div class="wrap strategy-chapter-layout">
-      <div class="strategy-chapter-heading"><div class="eyebrow">05 / Grow</div><h2 id="strategy-plan">A strong idea needs a practical growth plan.</h2></div>
-      <div class="strategy-chapter-copy">
+  <section class="section service-story-chapter" aria-labelledby="strategy-plan">
+    <div class="wrap service-story-chapter-layout">
+      <div class="service-story-chapter-heading"><div class="eyebrow">05 / Grow</div><h2 id="strategy-plan">A strong idea needs a practical growth plan.</h2></div>
+      <div class="service-story-chapter-copy">
         <p>A strategy has value only when people know how to act on it. We break the direction into manageable steps, with suggested timelines, ownership, creative requirements, channel priorities and a realistic view of budget and capacity. Depending on your needs, that may mean a focused 90-day roadmap, a launch plan or a longer-term brand growth framework.</p>
         <p>We also decide what to learn as we go. Instead of chasing likes or making empty ranking promises, we consider meaningful signals such as qualified enquiries, website engagement, customer response, conversion opportunities and brand consistency. The plan should be flexible enough to improve when real feedback arrives, while staying connected to the purpose that started it all.</p>
-        <p class="strategy-takeaway"><strong>Our aim:</strong> thoughtful execution, honest measurement and a stronger relationship between your brand and the people it wants to serve.</p>
+        <p class="service-story-takeaway"><strong>Our aim:</strong> thoughtful execution, honest measurement and a stronger relationship between your brand and the people it wants to serve.</p>
       </div>
     </div>
   </section>
 
-  <section class="section strategy-finish" aria-labelledby="strategy-finish-title">
+  <section class="section service-story-finish" aria-labelledby="strategy-finish-title">
     <div class="wrap">
       <div class="eyebrow">More than another marketing plan</div>
       <h2 id="strategy-finish-title">We don't want your business to just be seen. We want it to be understood.</h2>
       <p>For us, growth is not only about reaching more people. It is about helping the right people recognise your value, remember your story and feel confident choosing you. Whether you're building a new venture or carrying forward a legacy business, your next chapter should feel like a natural continuation of who you are.</p>
       <div class="actions"><a class="button primary" href="/contact/">Start your strategy conversation</a><a class="button secondary" href="/services/">See all our services</a></div>
-      <p class="strategy-location">DigiBuilder is based in Modasa, Gujarat and works with businesses across India and remotely with international teams.</p>
+      <p class="service-story-location">DigiBuilder is based in Modasa, Gujarat and works with businesses across India and remotely with international teams.</p>
     </div>
   </section>`;
 }
 
 function servicePage(key){
   if(key==='strategy')return strategyPage();
+  if(detailedServicePages[key])return detailedServicePage(key);
   const service=serviceMap[key];
   const detail=serviceDetails[key];
   return shell(
