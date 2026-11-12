@@ -115,7 +115,11 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
   display:block;flex:0 1 100%;width:100%;max-width:355px;
   aspect-ratio:22/13;
   border-radius:12px;
-  background-image:url('/project-logos/client-logos.avif');
+  background-image:url('/project-logos/client-logos.webp');
+  background-image:image-set(
+    url('/project-logos/client-logos.avif') type('image/avif') 1x,
+    url('/project-logos/client-logos.webp') type('image/webp') 1x
+  );
   background-size:600% 400%;background-repeat:no-repeat;
   background-color:rgba(255,255,255,.95);
   border:1px solid rgba(255,255,255,.07);
