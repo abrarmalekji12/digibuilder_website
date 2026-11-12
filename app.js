@@ -44,26 +44,101 @@ const serviceDetails={
 
 const serviceMap=Object.fromEntries(services.map(service=>[service[0],service]));
 const projects=[
-  {"name":"Sharp Immigration","regions":"Canada, India, Nigeria"},
-  {"name":"Saathi4u","regions":"Canada, India, USA"},
-  {"name":"Meghreji Home Decor"},
-  {"name":"Unique Led Light"},
-  {"name":"Simun Bake & Cake (Simun Tea)"},
-  {"name":"Gulbarg Garden Restaurant & Party Plot"},
-  {"name":"Palate Restaurant"},
-  {"name":"Recut"},
-  {"name":"Cubixcraft"},
-  {"name":"Crabby Hunt"},
-  {"name":"NDS Life Coaching"},
-  {"name":"Sharp Travel","regions":"Canada, India"},
-  {"name":"Mahenoor Foods"},
-  {"name":"Zapnut"},
-  {"name":"Raj Shah Photography"},
-  {"name":"Pink Nail Art"},
-  {"name":"Dental Spot","regions":"USA"},
-  {"name":"Distric Dentistry","regions":"USA"},
-  {"name":"Sydney Taxi Service","regions":"Australia"},
-  {"name":"SKA Moto Bike","regions":"UK"}
+  {
+    "name": "Sharp Immigration",
+    "regions": "Canada, India, Nigeria",
+    "spriteIndex": 0
+  },
+  {
+    "name": "Saathi4u",
+    "regions": "Canada, India, USA",
+    "spriteIndex": 1
+  },
+  {
+    "name": "Meghreji Home Decor",
+    "spriteIndex": 2
+  },
+  {
+    "name": "Unique Led Light",
+    "category": "E-Commerce Business",
+    "spriteIndex": 3
+  },
+  {
+    "name": "Simun Bake & Cake (Simun Tea)",
+    "spriteIndex": 4
+  },
+  {
+    "name": "Gulbarg Garden Restaurant & Party Plot",
+    "spriteIndex": 5
+  },
+  {
+    "name": "Palate Restaurant",
+    "spriteIndex": 6
+  },
+  {
+    "name": "Recut",
+    "spriteIndex": 7
+  },
+  {
+    "name": "Cubixcraft",
+    "spriteIndex": 8
+  },
+  {
+    "name": "Crabby Hunt",
+    "category": "E-Commerce Business",
+    "spriteIndex": 9
+  },
+  {
+    "name": "NDS Life Coaching"
+  },
+  {
+    "name": "Sharp Travel",
+    "regions": "Canada, India",
+    "spriteIndex": 11
+  },
+  {
+    "name": "Mahenoor Foods",
+    "spriteIndex": 12
+  },
+  {
+    "name": "Zapnut",
+    "spriteIndex": 13
+  },
+  {
+    "name": "Raj Shah Photography",
+    "spriteIndex": 14
+  },
+  {
+    "name": "Pink Nail Art",
+    "pinkWordmark": true
+  },
+  {
+    "name": "Dental Spot",
+    "regions": "USA",
+    "spriteIndex": 16
+  },
+  {
+    "name": "Distric Dentistry",
+    "regions": "USA",
+    "spriteIndex": 17
+  },
+  {
+    "name": "Sydney Taxi Service",
+    "regions": "Australia"
+  },
+  {
+    "name": "SKA Moto Bike",
+    "regions": "UK",
+    "spriteIndex": 19
+  },
+  {
+    "name": "Flutter Pilot",
+    "spriteIndex": 20
+  },
+  {
+    "name": "Scholar Career Academy",
+    "spriteIndex": 21
+  }
 ];
 const app=document.getElementById('app');
 let towerCleanup=null;
@@ -79,16 +154,28 @@ function card(service){
 }
 
 function projectIdentity(project){
-  // Replace the text wordmark with the supplied project logo when assets are available.
-  return project.logo
-    ? `<img class="project-logo" src="${project.logo}" alt="${project.name} logo" loading="lazy" decoding="async">`
-    : `<span class="project-wordmark">${project.name}</span>`;
+  // Approved individual logos override the shared optimized sprite when later supplied.
+  if(project.logo){
+    return `<img class="project-logo" src="${project.logo}" alt="${project.name} logo" loading="lazy" decoding="async">`;
+  }
+  if(Number.isInteger(project.spriteIndex)){
+    const x=(project.spriteIndex%6)*20;
+    const y=Math.floor(project.spriteIndex/6)*(100/3);
+    return `<span class="project-sprite-logo" role="img" aria-label="${project.name} logo" style="background-position:${x}% ${y}%"></span>`;
+  }
+  // Pink Nails' uploaded artwork was a photo held by hands. Use a clean,
+  // selectable hand-free text wordmark until an approved isolated logo arrives.
+  if(project.pinkWordmark){
+    return `<span class="project-pink-wordmark"><span aria-hidden="true">✦</span><strong>PINK NAILS</strong><small>ART STUDIO</small></span>`;
+  }
+  return `<span class="project-wordmark">${project.name}</span>`;
 }
 
 function projectCard(project,index){
   return `<article class="card project-card" aria-label="${project.name}${project.regions?', '+project.regions:''}">
     <span class="num">PROJECT / ${String(index+1).padStart(2,'0')}</span>
     <div class="project-logo-slot" data-project-logo-slot>${projectIdentity(project)}</div>
+    ${project.category?`<p class="project-category">${project.category}</p>`:''}
     ${project.regions?`<p class="project-regions">(${project.regions})</p>`:''}
   </article>`;
 }
@@ -109,7 +196,7 @@ function projectShowcase(){
             <div class="project-slide-top"><span>PROJECT / ${String(index+1).padStart(2,'0')}</span><span class="project-slide-symbol" aria-hidden="true">✳</span></div>
             <div class="project-slide-brand" data-project-logo-slot>${projectIdentity(project)}</div>
             <div class="project-slide-bottom">
-              ${project.regions?`<span class="project-slide-regions">(${project.regions})</span>`:'<span class="project-slide-caption">DigiBuilder portfolio</span>'}
+              ${project.category?`<span class="project-slide-regions project-slide-category">${project.category}</span>`:project.regions?`<span class="project-slide-regions">(${project.regions})</span>`:'<span class="project-slide-caption">DigiBuilder portfolio</span>'}
               <span class="project-slide-index">${String(index+1).padStart(2,'0')} / ${String(projects.length).padStart(2,'0')}</span>
             </div>
           </article>`).join('')}
