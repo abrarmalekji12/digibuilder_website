@@ -40,7 +40,7 @@ const pages=[
  {route:'/terms/',hash:'#/terms',title:'Website Terms & Project Enquiries | DigiBuilder',description:'Read DigiBuilder website terms, project enquiry expectations, creative work, third-party platforms and scope agreements.',name:'Terms'}
 ];
 const serviceMeta={
- strategy:['Brand & Growth Strategy Consulting in Gujarat | DigiBuilder','Discover DigiBuilder’s business DNA approach to brand strategy, emotional storytelling, customer research, digital marketing planning and sustainable growth in Gujarat.'],
+ strategy:['Brand & Growth Strategy Consulting in Gujarat | DigiBuilder','Explore DigiBuilder’s business DNA approach to brand strategy, emotional storytelling, customer insights and practical digital marketing growth plans in Gujarat.'],
  brand:['Branding & Creative Design Agency in Gujarat | DigiBuilder','Build a clear identity with DigiBuilder branding, logo and creative design, ad creatives and campaign direction.'],
  web:['Website Design & E-commerce Development | DigiBuilder','Responsive website design, landing pages, online stores and conversion-focused web development from DigiBuilder.'],
  social:['Social Media Marketing, Reels & Video Production | DigiBuilder','Social media management, Instagram reels, video shoots, editing, content creation and creative campaigns by DigiBuilder.'],
