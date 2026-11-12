@@ -5,7 +5,7 @@ const services=[
   ["brand","02","Branding & Creative","Build a brand people can feel and remember.","Identity design built on business roots, clear positioning, emotional storytelling and creative that feels consistent wherever customers meet your brand.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
   ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
   ["social","04","Social Media, Reels & Video","Tell stories people want to watch.","Audience-led social media marketing with meaningful content ideas, reel and video shoots, thoughtful editing and a practical publishing rhythm.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
-  ["seo","05","SEO, Advertising & Performance","Get found by the right audience.","Build visibility through search engine optimisation, thoughtful Google and social advertising, and landing pages built to convert.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
+  ["seo","05","SEO, Advertising & Performance","Be found when it matters.","Technical and local SEO, customer search intent, purposeful Google and Meta advertising, useful landing pages and measurement tied to business goals.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
   ["ai","06","AI Automation & Workflows","Spend less time on repeat work.","We explore where practical AI tools and automation can speed up everyday tasks while keeping people in control.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
 ];
 
@@ -126,6 +126,77 @@ function servicesPage(){
 
 /* Long-form service narratives share one layout but keep distinct content. */
 const detailedServicePages={
+  "seo":{
+  "eyebrow": "Search visibility, Google Ads and performance marketing",
+  "title": "Get found by the <span class=\"gradient\">right people.</span> Give them a reason to choose you.",
+  "lead": "More traffic is not always better growth. We want to understand what your customers are searching for, what they need when they arrive and which channels can help your business earn their attention. Organic SEO and paid advertising work best when both begin with a clear business goal.",
+  "note": "DigiBuilder connects search intent, trustworthy website experiences, useful creative and measured campaigns rather than chasing rankings or clicks in isolation.",
+  "pillars": [
+    "Search intent",
+    "Technical and local SEO",
+    "Google and Meta Ads",
+    "Meaningful measurement"
+  ],
+  "chapters": [
+    {
+      "step": "Diagnose",
+      "slug": "search",
+      "title": "We start by understanding demand, not just keywords.",
+      "paragraphs": [
+        "Every useful search begins with a real need. Someone may be looking for a nearby service, comparing providers, researching a purchase or trying to solve a problem. We first ask which of these moments matter to your business and what an ideal customer needs to know before getting in touch or buying.",
+        "We review the website, search visibility, competitors and the questions your customers ask. That includes checking which pages explain your services well, where visitors may get confused and where a better answer could earn attention. Keyword research helps us understand language and intent, but it should never turn your website into a collection of awkward repeated phrases."
+      ],
+      "takeaway": "A search strategy grounded in customer intent, relevant topics and actual business priorities."
+    },
+    {
+      "step": "Build",
+      "slug": "foundations",
+      "title": "We make your website easier to discover and use.",
+      "paragraphs": [
+        "Search engine optimisation starts with a website that people and crawlers can understand. We look at crawlability, indexing signals, page structure, headings, internal links, titles, descriptions, structured data where appropriate, mobile usability and loading performance. These are foundations, not shortcuts to a guaranteed first position.",
+        "We then improve the pages that matter: clear service information, helpful content, natural calls to action and a logical path through the site. Technical SEO and good writing should support each other. A page can be well optimised but still fail customers if it never answers their questions, just as great writing can remain unseen when a site is difficult to navigate."
+      ],
+      "takeaway": "Cleaner technical SEO and more helpful, accessible, conversion-focused web pages."
+    },
+    {
+      "step": "Connect locally",
+      "slug": "local",
+      "title": "We help nearby customers understand where you fit.",
+      "paragraphs": [
+        "For businesses serving a real geographic area, local SEO is about being useful and accurate. We consider location-specific search intent, clear contact details, relevant service information, local content and a Google Business Profile when the business is eligible and genuinely serves that area.",
+        "For example, a business in Modasa or elsewhere in Gujarat should be easy for local customers to understand and contact. If you also serve clients remotely, the site should explain that honestly rather than inventing office addresses in new cities. Consistency across your website and real business listings matters more than stuffing city names into every paragraph."
+      ],
+      "takeaway": "Credible local discovery that reflects where and how your business actually serves customers."
+    },
+    {
+      "step": "Accelerate",
+      "slug": "campaigns",
+      "title": "We build advertisements around a clear next action.",
+      "paragraphs": [
+        "Paid advertising can help test an offer, introduce a new product or reach people while longer-term SEO work develops. But an ad is only valuable when the audience, message, landing page and budget make sense together. We look at what you want people to do after they click and whether the experience gives them enough confidence to act.",
+        "Depending on the scope, we can plan Google Ads search campaigns, Meta advertising, audience segmentation, creative tests and landing-page improvements. We discuss budgets and expectations clearly, and distinguish media spend from the work needed to build and manage campaigns. No responsible agency can guarantee a specific number of leads, sales or top search positions."
+      ],
+      "takeaway": "A more deliberate performance marketing plan aligned with relevant audiences, offers and conversions."
+    },
+    {
+      "step": "Learn",
+      "slug": "measurement",
+      "title": "We improve the parts that matter to your business.",
+      "paragraphs": [
+        "Rankings, impressions and clicks can be useful signals, but they are only part of the picture. We also think about qualified enquiries, calls, form submissions, useful website engagement and the quality of conversations that follow. Measurement should be appropriate to the business, respectful of users and clear about its limitations.",
+        "We review what the available evidence shows, identify friction points and prioritise experiments. That might mean clarifying a landing-page message, testing different creative, improving a service page or shifting budget away from a weak audience. The goal is to make decisions with more confidence as we learn, not to produce reports that sound impressive but change nothing."
+      ],
+      "takeaway": "SEO and advertising decisions guided by practical reporting, genuine demand and continuous improvement.",
+      "related": "Search and performance work best alongside <a href=\"/service/strategy/\">business strategy</a>, <a href=\"/service/web/\">better websites</a> and <a href=\"/service/brand/\">clear brand messaging</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "Discoverability with purpose",
+    "title": "Visibility matters. What happens after someone finds you matters more.",
+    "copy": "We help businesses connect useful search visibility, honest advertising and a better digital experience. From local SEO in Gujarat to focused campaigns for a wider audience, every recommendation should lead back to the customer and the real objective behind the spend.",
+    "cta": "Discuss your search and growth goals"
+  }
+},
   "social":{
   "eyebrow": "Social media marketing, reels and video content",
   "title": "Make content people <span class=\"gradient\">want to spend time with.</span>",
