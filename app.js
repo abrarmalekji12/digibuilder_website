@@ -1,7 +1,7 @@
 "use strict";
 
 const services=[
-  ["strategy","01","Strategy & Growth Consulting","Know where to focus next.","We turn scattered marketing activity into a practical plan, from audience research and positioning to campaigns and measurement.",["Growth strategy","Market research","Positioning","Marketing audits"]],
+  ["strategy","01","Strategy & Growth Consulting","Know your roots. Grow with purpose.","We uncover your business DNA, legacy and customer connections before shaping brand positioning, marketing strategy and a practical growth plan.",["Business DNA discovery","Brand positioning","Growth roadmaps","Marketing strategy"]],
   ["brand","02","Branding & Creative","Look distinctive. Sound like yourself.","From naming and visual identity to campaign design, we build brands that feel consistent, recognisable and ready to grow.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
   ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
   ["social","04","Social Media, Reels & Video","Make content worth watching.","We plan and create social-first content, from Instagram reels and video shoots to editing, design and publishing ideas.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
@@ -11,9 +11,9 @@ const services=[
 
 const serviceDetails={
   "strategy": [
-    "The problem usually isn't a lack of ideas. It's deciding what matters, who it matters to and what to do first.",
-    "We audit your current channels, clarify your positioning and build a growth roadmap your team can actually use.",
-    "You'll leave with priorities, recommended experiments and a clearer way to measure what is working."
+    "Every business has a story worth understanding before a marketing plan is written.",
+    "We explore the business DNA, legacy, customer emotions and market context before choosing the right growth direction.",
+    "The next step is a practical roadmap that connects brand positioning, content, marketing channels and meaningful measurement."
   ],
   "brand": [
     "A good brand does more than look polished. It helps people recognise you, understand you and remember why they chose you.",
@@ -124,7 +124,87 @@ function servicesPage(){
   );
 }
 
+function strategyPage(){
+  return `<section class="section strategy-intro" aria-labelledby="strategy-title">
+    <div class="wrap">
+      <div class="eyebrow">Brand strategy and growth consulting</div>
+      <h1 id="strategy-title">Growth strategy starts with <span class="gradient">your business DNA.</span></h1>
+      <p class="lead">Before we talk about advertisements, social media or marketing budgets, we want to understand what makes your business yours. Where did it begin? What has it stood for? Why do customers choose you, trust you and come back? At DigiBuilder, these answers come before the strategy.</p>
+      <p class="strategy-intro-note">We connect your roots, your customers and your ambition to create a brand people can genuinely relate to, supported by a clear plan for sustainable business growth.</p>
+      <div class="actions"><a class="button primary" href="/contact/">Let's talk about your business</a><a class="button secondary" href="#our-approach">Explore our approach</a></div>
+      <div class="strategy-essentials" aria-label="Our strategic priorities"><span>Business understanding</span><span>Human connection</span><span>Brand clarity</span><span>Growth planning</span></div>
+    </div>
+  </section>
+
+  <section class="section strategy-chapter" id="our-approach" aria-labelledby="strategy-dna">
+    <div class="wrap strategy-chapter-layout">
+      <div class="strategy-chapter-heading"><div class="eyebrow">01 / Discover</div><h2 id="strategy-dna">First, we understand the DNA of your business.</h2></div>
+      <div class="strategy-chapter-copy">
+        <p>A business is more than a product, a logo or a service list. It is built from the founder's vision, the decisions that shaped it, the promises made to customers and the problems it set out to solve. Those details often explain why people care about a brand more than any advertising slogan could.</p>
+        <p>We begin with conversations, not assumptions. We listen to your story, understand your strengths and challenges, look at how your business currently reaches customers, and ask what kind of future you want to create. We explore your products, service experience, existing marketing, customer feedback and the opportunities you may not have had time to notice.</p>
+        <p class="strategy-takeaway"><strong>Our starting point:</strong> a clearer picture of what should stay true to your business and what needs to change for it to grow.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section strategy-chapter" aria-labelledby="strategy-legacy">
+    <div class="wrap strategy-chapter-layout">
+      <div class="strategy-chapter-heading"><div class="eyebrow">02 / Connect</div><h2 id="strategy-legacy">We turn your legacy into a connection people can feel.</h2></div>
+      <div class="strategy-chapter-copy">
+        <p>Every brand carries something meaningful. It might be years of craftsmanship, a family tradition, a local reputation, the courage of a first-generation founder or a simple belief in treating customers better. That legacy should not disappear when a business goes digital. It can become the strongest part of its story.</p>
+        <p>We look for the human truth behind your brand: the values you live by, the experience you want people to remember and the emotions that bring them back. Then we help shape a brand narrative, tone of voice and positioning that feel natural to you and relevant to your audience. The goal is not to manufacture emotion. It is to make the real connection easier to recognise.</p>
+        <p class="strategy-takeaway"><strong>Our focus:</strong> brand storytelling and emotional positioning that build recognition, trust and a reason to choose you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section strategy-chapter" aria-labelledby="strategy-audience">
+    <div class="wrap strategy-chapter-layout">
+      <div class="strategy-chapter-heading"><div class="eyebrow">03 / Understand</div><h2 id="strategy-audience">We study the people your brand needs to reach.</h2></div>
+      <div class="strategy-chapter-copy">
+        <p>The right marketing strategy starts with the people on the other side of the screen. What do they want to achieve? What do they worry about? Which questions do they ask before buying, visiting or making an enquiry? Where do they discover businesses like yours, and what helps them decide whom to trust?</p>
+        <p>We use available customer insights, competitor research, search intent and your business context to find useful patterns. That could mean understanding local discovery in Modasa or Gujarat, reviewing how customers respond to content, or exploring how a remote audience may have different needs. We do not treat every platform or audience as equally important.</p>
+        <p class="strategy-takeaway"><strong>What this shapes:</strong> audience priorities, customer journeys, key messages and opportunities for more relevant marketing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section strategy-chapter" aria-labelledby="strategy-direction">
+    <div class="wrap strategy-chapter-layout">
+      <div class="strategy-chapter-heading"><div class="eyebrow">04 / Build</div><h2 id="strategy-direction">Only then do we build the strategy.</h2></div>
+      <div class="strategy-chapter-copy">
+        <p>Once we understand your business and the people it serves, we turn insight into direction. We clarify how your brand should be positioned, what you want to be known for, which offers deserve attention and what a meaningful next step looks like for your customers.</p>
+        <p>The plan may bring together branding, website experience, search engine optimisation, local SEO, social media marketing, content creation, video storytelling or performance advertising. But it is not about doing everything. It is about choosing the right mix, in the right order, for your goals and resources. Every recommendation should have a purpose and a reason behind it.</p>
+        <p class="strategy-takeaway"><strong>What you can work toward:</strong> a focused brand and digital marketing strategy with clear priorities rather than disconnected campaigns.</p>
+        <p class="strategy-related">Explore the connected capabilities: <a href="/service/brand/">branding and creative</a>, <a href="/service/social/">social media and video</a>, and <a href="/service/seo/">SEO and performance marketing</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section strategy-chapter" aria-labelledby="strategy-plan">
+    <div class="wrap strategy-chapter-layout">
+      <div class="strategy-chapter-heading"><div class="eyebrow">05 / Grow</div><h2 id="strategy-plan">A strong idea needs a practical growth plan.</h2></div>
+      <div class="strategy-chapter-copy">
+        <p>A strategy has value only when people know how to act on it. We break the direction into manageable steps, with suggested timelines, ownership, creative requirements, channel priorities and a realistic view of budget and capacity. Depending on your needs, that may mean a focused 90-day roadmap, a launch plan or a longer-term brand growth framework.</p>
+        <p>We also decide what to learn as we go. Instead of chasing likes or making empty ranking promises, we consider meaningful signals such as qualified enquiries, website engagement, customer response, conversion opportunities and brand consistency. The plan should be flexible enough to improve when real feedback arrives, while staying connected to the purpose that started it all.</p>
+        <p class="strategy-takeaway"><strong>Our aim:</strong> thoughtful execution, honest measurement and a stronger relationship between your brand and the people it wants to serve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section strategy-finish" aria-labelledby="strategy-finish-title">
+    <div class="wrap">
+      <div class="eyebrow">More than another marketing plan</div>
+      <h2 id="strategy-finish-title">We don't want your business to just be seen. We want it to be understood.</h2>
+      <p>For us, growth is not only about reaching more people. It is about helping the right people recognise your value, remember your story and feel confident choosing you. Whether you're building a new venture or carrying forward a legacy business, your next chapter should feel like a natural continuation of who you are.</p>
+      <div class="actions"><a class="button primary" href="/contact/">Start your strategy conversation</a><a class="button secondary" href="/services/">See all our services</a></div>
+      <p class="strategy-location">DigiBuilder is based in Modasa, Gujarat and works with businesses across India and remotely with international teams.</p>
+    </div>
+  </section>`;
+}
+
 function servicePage(key){
+  if(key==='strategy')return strategyPage();
   const service=serviceMap[key];
   const detail=serviceDetails[key];
   return shell(
