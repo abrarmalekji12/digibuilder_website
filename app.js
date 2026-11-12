@@ -6,7 +6,7 @@ const services=[
   ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
   ["social","04","Social Media, Reels & Video","Tell stories people want to watch.","Audience-led social media marketing with meaningful content ideas, reel and video shoots, thoughtful editing and a practical publishing rhythm.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
   ["seo","05","SEO, Advertising & Performance","Be found when it matters.","Technical and local SEO, customer search intent, purposeful Google and Meta advertising, useful landing pages and measurement tied to business goals.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
-  ["ai","06","AI Automation & Workflows","Spend less time on repeat work.","We explore where practical AI tools and automation can speed up everyday tasks while keeping people in control.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
+  ["ai","06","AI Automation & Workflows","Save time without losing judgement.","We map business workflows first, then prototype useful AI assistants and human-supervised automation for repetitive work.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
 ];
 
 const serviceDetails={
@@ -126,6 +126,77 @@ function servicesPage(){
 
 /* Long-form service narratives share one layout but keep distinct content. */
 const detailedServicePages={
+  "ai":{
+  "eyebrow": "AI automation, assistants and business workflows",
+  "title": "Make the work <span class=\"gradient\">simpler.</span> Keep the human thinking.",
+  "lead": "AI should fit your business, not force your people into a new process they never asked for. Before suggesting an assistant or automation, we learn how the work happens, where time is being lost and which decisions still need a person.",
+  "note": "DigiBuilder explores practical, human-supervised AI workflows that reduce repetitive effort while respecting context, privacy and the way your team actually operates.",
+  "pillars": [
+    "Workflow discovery",
+    "Useful AI use cases",
+    "Careful prototypes",
+    "Human oversight"
+  ],
+  "chapters": [
+    {
+      "step": "Understand",
+      "slug": "workflow",
+      "title": "First, we understand how your business runs.",
+      "paragraphs": [
+        "The useful questions come before the tools. How does an enquiry arrive? Who responds? What information gets copied between systems? Which approvals slow down a task? What happens when someone is unavailable? We listen to the people doing the work and map the process as it really happens, including the exceptions that are easy to miss in a polished flowchart.",
+        "Sometimes a team does not need AI at all. A clearer form, a better shared document or a simple rule-based automation may solve the problem more reliably. We look for the smallest useful improvement rather than adding technology for its own sake. Your team should understand the problem before anyone tries to automate it."
+      ],
+      "takeaway": "A practical workflow map showing recurring friction, manual effort and opportunities worth exploring."
+    },
+    {
+      "step": "Prioritise",
+      "slug": "opportunities",
+      "title": "We choose AI use cases that have a real purpose.",
+      "paragraphs": [
+        "An assistant can be helpful for drafting, summarising, sorting information or helping staff find answers. Automation can support lead routing, status updates, content operations or repeatable handoffs. But each idea needs a clear benefit, an owner and a way to check whether it is helping.",
+        "We weigh potential time savings against setup effort, data sensitivity, error risk and how often the task changes. We also ask what happens when the tool produces an uncertain answer or cannot complete the job. The priority is not to automate as many tasks as possible. It is to free people to spend more attention on customers, quality and decisions that matter."
+      ],
+      "takeaway": "A ranked set of useful automation opportunities with realistic trade-offs and a human owner."
+    },
+    {
+      "step": "Prototype",
+      "slug": "experiments",
+      "title": "We test a focused solution before changing everything.",
+      "paragraphs": [
+        "Rather than promising a complicated AI system on day one, we start with a narrow, testable workflow. It could be an internal assistant that helps draft enquiry replies, a process that organises incoming requests or a small automation that keeps a team informed. We agree what the prototype should do, what it must never do and how a person can review its output.",
+        "We use representative examples to test normal situations and awkward edge cases. If the tool invents information, misclassifies a request or gets stuck, that is valuable feedback. A good pilot helps us decide what to improve, what to keep manual and whether the idea deserves further investment."
+      ],
+      "takeaway": "A useful proof of concept with clearer boundaries, review steps and evidence of what works."
+    },
+    {
+      "step": "Connect responsibly",
+      "slug": "safeguards",
+      "title": "We keep people, permissions and data in the loop.",
+      "paragraphs": [
+        "Business workflows often touch customer messages, documents, payments or internal decisions. That means access controls, consent, provider terms and information handling deserve attention from the beginning. We discuss what data is actually needed, which tools may receive it and where sensitive work should remain with an authorised person.",
+        "Where the agreed tools support it, we can explore connections between forms, team software, reporting workflows and AI assistants. We build in checkpoints for approval, error handling and a manual fallback. Automation should never quietly become the only way to complete a business-critical task, and your team should know how to pause or correct it."
+      ],
+      "takeaway": "A human-supervised workflow with transparent responsibilities and sensible safeguards."
+    },
+    {
+      "step": "Enable",
+      "slug": "adoption",
+      "title": "We make the workflow usable, measurable and maintainable.",
+      "paragraphs": [
+        "An automation that only its creator understands does not create lasting value. We document how it works, train the people who will use it and identify who should review its performance. Depending on the project, we can establish simple ways to check time saved, accuracy, handoff quality or how many steps a team no longer repeats.",
+        "Over time, tools, permissions and business requirements change. We plan for that reality by keeping the solution understandable and reviewing what needs adjustment. The objective is not to replace judgement. It is to give your team room to do more thoughtful work while everyday operations become a little easier to manage."
+      ],
+      "takeaway": "Clear handover, team confidence and a sensible plan for maintaining and improving the automation.",
+      "related": "Automation works best when connected to <a href=\"/service/strategy/\">business priorities</a>, <a href=\"/service/web/\">website journeys</a> and <a href=\"/service/social/\">content workflows</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "Technology in service of people",
+    "title": "Less repetitive work. More room for the work only your team can do.",
+    "copy": "We want AI to feel useful, understandable and under control. If your business has a repetitive process that causes delays or takes attention away from customers, we can start by understanding it together and decide whether automation is really the answer.",
+    "cta": "Explore an AI workflow"
+  }
+},
   "seo":{
   "eyebrow": "Search visibility, Google Ads and performance marketing",
   "title": "Get found by the <span class=\"gradient\">right people.</span> Give them a reason to choose you.",
