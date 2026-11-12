@@ -3,7 +3,7 @@
 const services=[
   ["strategy","01","Strategy & Growth Consulting","Know your roots. Grow with purpose.","We uncover your business DNA, legacy and customer connections before shaping brand positioning, marketing strategy and a practical growth plan.",["Business DNA discovery","Brand positioning","Growth roadmaps","Marketing strategy"]],
   ["brand","02","Branding & Creative","Build a brand people can feel and remember.","Identity design built on business roots, clear positioning, emotional storytelling and creative that feels consistent wherever customers meet your brand.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
-  ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
+  ["web","03","Websites & E-commerce","Your brand deserves a better digital home.","Business-led websites and e-commerce experiences that bring your story to life through thoughtful UX, responsive design, fast development and SEO foundations.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
   ["social","04","Social Media, Reels & Video","Tell stories people want to watch.","Audience-led social media marketing with meaningful content ideas, reel and video shoots, thoughtful editing and a practical publishing rhythm.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
   ["seo","05","SEO, Advertising & Performance","Be found when it matters.","Technical and local SEO, customer search intent, purposeful Google and Meta advertising, useful landing pages and measurement tied to business goals.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
   ["ai","06","AI Automation & Workflows","Save time without losing judgement.","We map business workflows first, then prototype useful AI assistants and human-supervised automation for repetitive work.",["AI assistants","Workflow automation","Lead handling","Team enablement"]]
@@ -126,6 +126,77 @@ function servicesPage(){
 
 /* Long-form service narratives share one layout but keep distinct content. */
 const detailedServicePages={
+  "web":{
+  "eyebrow": "Website design, development and e-commerce experiences",
+  "title": "A website that feels like <span class=\"gradient\">your brand.</span> And works for your customers.",
+  "lead": "A beautiful website is not enough if people cannot understand your business or find the next step. At DigiBuilder, we begin with your story, the customers you want to serve and what they need to believe before they take action. Then we turn that clarity into a website that looks distinctive, works smoothly and is built to grow.",
+  "note": "From a service website or focused landing page to an online store, we connect brand identity, thoughtful UX, mobile performance, SEO foundations and real business objectives.",
+  "pillars": [
+    "Business and audience discovery",
+    "UX and conversion design",
+    "Fast, accessible development",
+    "SEO and continuous improvement"
+  ],
+  "chapters": [
+    {
+      "step": "Discover",
+      "slug": "business",
+      "title": "First, we understand what your website needs to achieve.",
+      "paragraphs": [
+        "Before we open a design file or choose a technology, we want to understand your business DNA. How did the brand start? What has earned customer trust? Which services or products matter most? What questions do people ask before they decide to call, visit, book or buy? A website should carry the answers that make your business different, rather than look like the same template everyone else is using.",
+        "We look at your existing website if you have one, listen to your team, understand how enquiries arrive and learn what you want visitors to do. We consider your audience's devices, languages, location and priorities. A restaurant, an immigration service and a home decor business have very different customer journeys. Their websites should reflect that reality, not follow an identical formula."
+      ],
+      "takeaway": "A clear website brief with audience priorities, business goals and the pages that genuinely matter."
+    },
+    {
+      "step": "Structure",
+      "slug": "journey",
+      "title": "We design a customer journey that feels natural.",
+      "paragraphs": [
+        "A visitor should not have to work hard to understand who you are, what you offer or why they can trust you. We plan the information architecture around their questions: what they need to know first, where proof or helpful detail belongs and what step feels right when they are ready to enquire. That means clear navigation, meaningful page headings, readable copy and contact actions that are easy to find.",
+        "We bring your brand's emotion and personality into that journey. A premium creative business may need space for visual storytelling, while a local service provider may need a simple explanation of services, locations and how to contact the team. Good UX and conversion-focused website design do not mean pushing people with pop-ups. They mean reducing friction and making the useful next step obvious."
+      ],
+      "takeaway": "A thoughtful site structure, page-by-page messaging and a user experience built around real decisions."
+    },
+    {
+      "step": "Design",
+      "slug": "identity",
+      "title": "We turn your brand identity into a digital experience.",
+      "paragraphs": [
+        "Colours and typography matter, but so do the little interactions that make a website feel considered. We create a visual direction that respects your brand legacy, gives your content room to breathe and presents your business confidently. The design should feel like you, whether someone is browsing a portfolio, reading about a service or looking through products on a phone.",
+        "We consider responsive layouts from the start, not as a desktop design squeezed into a smaller screen later. Buttons need comfortable touch targets. Text must stay readable. Images should support the story without slowing everything down. Thoughtful motion can add character when it has a purpose, while accessibility and reduced-motion preferences ensure people can still use the experience comfortably."
+      ],
+      "takeaway": "Responsive website design with distinctive creative direction, accessible interactions and clear calls to action."
+    },
+    {
+      "step": "Build",
+      "slug": "development",
+      "title": "We build for speed, search visibility and everyday use.",
+      "paragraphs": [
+        "The best website is the one your customers can open, understand and use. We choose an appropriate approach for the agreed scope and focus on clean code, maintainability and fast loading. That can mean a lightweight business website, a campaign landing page or an e-commerce experience. We do not recommend complicated technology just because it sounds impressive.",
+        "Search engine optimisation begins with the fundamentals: useful page content, descriptive titles, logical headings, readable URLs, sensible internal links and indexable pages. We also consider mobile usability, image optimisation, page performance and structured data where it genuinely helps. For businesses serving Modasa, Gujarat or a wider market, location and service information should be accurate rather than stuffed with repeated keywords."
+      ],
+      "takeaway": "A practical website foundation that supports customers, search crawlers and future updates without unnecessary complexity."
+    },
+    {
+      "step": "Launch and learn",
+      "slug": "launch",
+      "title": "We launch carefully and improve what matters.",
+      "paragraphs": [
+        "A website is not complete when the last button is designed. We check important journeys across screen sizes, review accessibility basics, confirm that forms and contact links work and make sure the agreed pages communicate the right information. We can help plan the handover so your team understands how to maintain the site and what to review when your business changes.",
+        "After launch, we look at feedback and the signals available to the business. Are visitors finding the right services? Do enquiries include the details your team needs? Are people able to browse comfortably on mobile? We use those observations to recommend focused improvements. No website can guarantee first-place search rankings or a fixed number of sales, but a clearer experience gives your growth efforts a stronger place to land."
+      ],
+      "takeaway": "A tested launch, usable handover and a realistic improvement plan connected to your business goals.",
+      "related": "Build the bigger picture with <a href=\"/service/strategy/\">growth strategy</a>, <a href=\"/service/brand/\">brand identity</a> and <a href=\"/service/seo/\">SEO and performance marketing</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "A website with a purpose",
+    "title": "Your website should not just look impressive. It should help people choose you.",
+    "copy": "When a website understands the business behind it and the people in front of it, every page has a reason to exist. We bring strategy, creativity and practical engineering together to build digital experiences that respect your identity and help customers take the next step with confidence.",
+    "cta": "Discuss your website project"
+  }
+},
   "ai":{
   "eyebrow": "AI automation, assistants and business workflows",
   "title": "Make the work <span class=\"gradient\">simpler.</span> Keep the human thinking.",
