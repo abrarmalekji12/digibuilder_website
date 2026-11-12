@@ -42,21 +42,23 @@ DigiBuilder describes its base as **Modasa, Gujarat** and availability for remot
 
 The 22 project names are listed without invented service assignments, results or testimonials. Location tags reflect the user's supplied project descriptions and do not imply DigiBuilder offices. Add case studies with verified project scope, assets, permission and outcomes later.
 
-## Project showcase and client logos
+## Project showcase and individual client logos
 
-The homepage includes **22 projects** in a vertical-scroll-driven, horizontally moving 3D-style card stack before the "Built in Gujarat" section. The Work page uses the same `projects` data in `app.js`. The stack uses no second 3D library, does not intercept scrolling and falls back to a swipeable row without JavaScript or when reduced motion is preferred.
+The homepage includes **22 projects** in a vertical-scroll-driven, horizontally moving 3D-style card stack before the "Built in Gujarat" section. The Work page uses the same `projects` data in `app.js`. The stack uses no additional 3D library and keeps a swipeable row when JavaScript is unavailable or reduced-motion is preferred.
 
-**19 client logo images supplied by the owner** are displayed in both places from an optimized `project-logos/client-logos.avif` atlas (about 15 KB), with a `client-logos.webp` fallback for older browsers (about 32 KB). Each project's `spriteIndex` selects the corresponding tile. The atlas is a standard AVIF image; the original client artwork stays visible, including its supplied background colours. The logos for NDS Life Coaching and Sydney Taxi Service are still pending. Pink Nail Art uses a clearly labelled, hand-free CSS text wordmark for now because the supplied graphic was a hand-held photo, not a standalone logo. Replace it with an approved isolated logo when available.
+Each of the **21 supplied logo/portrait assets** is an independent compressed WebP file under `project-logos/`, rendered with the native `<img>` element at its original aspect ratio and without upscaling small originals in CSS. The shared low-resolution sprite has been removed. These assets are loaded lazily and together are approximately 447 KB. **NDS Life Coaching** uses the owner's latest portrait logo. **Sydney Premium Taxi Service (Australia)** uses the newly supplied yellow-and-black taxi logo.
 
-Unique Led Light and Crabby Hunt have the requested **E-Commerce Business** caption below their logos. The additional projects Flutter Pilot and Scholar Career Academy have also been added, using the supplied logos. Region labels are limited to what the owner supplied.
+Several supplied originals were themselves small (e.g. 150 px for NDS and Sharp Travel, 189 px for Scholar Career Academy), so they may still appear less detailed than higher-resolution originals on retina devices. Supply a larger source file or a proper vector logo for further quality improvements. Never claim that upscaling restores missing detail.
+
+**Pink Nail Art** keeps a clearly labeled, hand-free styled text wordmark because the earlier photo contained hands holding the artwork. Use an approved isolated logo if one is supplied later. **Unique Led Light** and **Crabby Hunt** retain the requested **E-Commerce Business** caption.
 
 ### Adding or replacing logos later
 
-1. Put an approved, compressed logo asset in `project-logos/`. Prefer an individually named AVIF, WebP or SVG where appropriate.
-2. Add its `logo` path to the matching `projects` object in `app.js`, for example `{name:"Sharp Travel",regions:"Canada, India",logo:"/project-logos/sharp-travel.webp"}`. An individual logo always overrides the atlas slot, with no card markup changes.
-3. Run `node build-site.js`; the generator copies `project-logos/` to `_site/` for the homepage and Work page.
+1. Add the approved high-resolution logo to `project-logos/` using a unique, lowercase file name. Prefer SVG or optimized WebP where suitable.
+2. Update that project's `logo` in `app.js`. Both the homepage stack and Work grid use the same image automatically.
+3. Run `node build-site.js`; the builder copies the `project-logos/` directory into the published `_site/`.
 
-Use only client artwork cleared for portfolio display. Do not invent project outcomes, services or customer testimonials without supporting facts.
+Do not invent client services, campaign outcomes, rankings, or testimonials without verified details.
 
 ## Privacy and compliance
 
