@@ -41,11 +41,11 @@ const pages=[
 ];
 const serviceMeta={
  strategy:['Brand & Growth Strategy Consulting in Gujarat | DigiBuilder','Explore DigiBuilder’s business DNA approach to brand strategy, emotional storytelling, customer insights and practical digital marketing growth plans in Gujarat.'],
- brand:['Branding & Creative Design Agency in Gujarat | DigiBuilder','Build a clear identity with DigiBuilder branding, logo and creative design, ad creatives and campaign direction.'],
+ brand:["Branding & Brand Identity Design in Gujarat | DigiBuilder","DigiBuilder builds brands from business DNA, with thoughtful positioning, visual identity, meaningful storytelling and consistent creative design in Gujarat."],
  web:['Website Design & E-commerce Development | DigiBuilder','Responsive website design, landing pages, online stores and conversion-focused web development from DigiBuilder.'],
- social:['Social Media Marketing, Reels & Video Production | DigiBuilder','Social media management, Instagram reels, video shoots, editing, content creation and creative campaigns by DigiBuilder.'],
- seo:['SEO, Google Ads & Performance Marketing Agency | DigiBuilder','Get found with local and technical SEO, Google Ads, Meta advertising and measurable performance marketing from DigiBuilder.'],
- ai:['AI Automation & Workflow Services | DigiBuilder','Explore practical AI assistants, workflow automation and lead-management processes with DigiBuilder.']
+ social:["Social Media Marketing, Reels & Video in Gujarat | DigiBuilder","Build a meaningful social media presence with DigiBuilder through audience-led content strategy, Instagram reels, video shoots, editing and publishing."],
+ seo:["SEO, Google Ads & Performance Marketing | DigiBuilder Gujarat","DigiBuilder connects technical SEO, local search, Google Ads, Meta advertising and useful landing pages to customer intent and practical business goals."],
+ ai:["AI Automation & Workflow Consulting in Gujarat | DigiBuilder","Explore human-supervised AI automation with DigiBuilder: business workflow discovery, focused AI assistants, careful prototypes and practical team handover."]
 };
 services.forEach(service=>{
   const meta=serviceMeta[service.slug];
