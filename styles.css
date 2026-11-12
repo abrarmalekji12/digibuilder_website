@@ -113,7 +113,7 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
    can replace an atlas slot without modifying any Work or homepage card markup. */
 .project-sprite-logo{
   display:block;flex:0 1 100%;width:100%;max-width:355px;
-  aspect-ratio:26/15;
+  aspect-ratio:22/13;
   border-radius:12px;
   background-image:url('/project-logos/client-logos.avif');
   background-size:600% 400%;background-repeat:no-repeat;
