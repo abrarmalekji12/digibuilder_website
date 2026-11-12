@@ -260,44 +260,44 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
   .card:hover,.button:hover,.cta:hover{transform:none}
 }
 
-/* Strategy service story: five readable chapters with a premium editorial rhythm. */
-.strategy-intro{border-top:0;padding-bottom:clamp(64px,7vw,92px)}
-.strategy-intro h1{max-width:1030px;font-size:clamp(2.8rem,6.7vw,6.1rem);line-height:1.01;letter-spacing:-.07em;text-wrap:balance}
-.strategy-intro .lead{max-width:790px;font-size:clamp(1.08rem,1.65vw,1.35rem);line-height:1.7}
-.strategy-intro-note{max-width:760px;margin:22px 0 0;color:var(--paper);font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.75}
-.strategy-essentials{display:flex;flex-wrap:wrap;gap:9px;margin-top:clamp(24px,4vw,46px)}
-.strategy-essentials span{border:1px solid rgba(124,216,227,.23);background:rgba(6,43,67,.48);border-radius:999px;padding:8px 15px;font-size:.78rem;color:#c9dce0}
-.strategy-chapter{padding-block:clamp(64px,7.5vw,110px)}
-.strategy-chapter:nth-of-type(odd){background:linear-gradient(115deg,rgba(11,69,84,.2),rgba(3,20,31,.05))}
-.strategy-chapter-layout{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);column-gap:clamp(38px,7vw,110px);align-items:start}
-.strategy-chapter-heading{min-width:0}
-.strategy-chapter-heading h2{max-width:610px;margin:18px 0 0;font-size:clamp(2.15rem,3.5vw,3.95rem);line-height:1.08;letter-spacing:-.055em;text-wrap:balance}
-.strategy-chapter-copy{min-width:0;max-width:670px}
-.strategy-chapter-copy p{font-size:clamp(1rem,1.2vw,1.11rem);line-height:1.78;color:var(--muted);margin:0 0 20px}
-.strategy-chapter-copy p:last-child{margin-bottom:0}
-.strategy-chapter-copy .strategy-takeaway{border-left:2px solid var(--gold);padding:8px 0 8px 20px;margin-top:28px;color:#d8e9e9}
-.strategy-takeaway strong{color:var(--paper)}
-.strategy-chapter-copy a{color:var(--cyan);text-decoration:underline;text-decoration-color:rgba(124,216,227,.5);text-underline-offset:4px}
-.strategy-chapter-copy a:hover{color:var(--gold)}
-.strategy-chapter-copy .strategy-related{font-size:.93rem}
-.strategy-finish{padding-block:clamp(78px,9vw,126px);background:radial-gradient(circle at 92% 22%,rgba(21,148,184,.19),transparent 31rem),linear-gradient(112deg,#062b43b8,#03141fdf);border-block:1px solid var(--line)}
-.strategy-finish h2{max-width:940px;font-size:clamp(2.5rem,5vw,5rem);line-height:1.05;text-wrap:balance}
-.strategy-finish p{max-width:760px;color:var(--muted);font-size:clamp(1rem,1.25vw,1.16rem);line-height:1.72}
-.strategy-finish .strategy-location{font-size:.86rem;color:#90b7c0;margin-top:18px}
+/* Shared premium editorial layout for all long-form service pages. */
+.service-story-intro{border-top:0;padding-bottom:clamp(64px,7vw,92px)}
+.service-story-intro h1{max-width:1030px;font-size:clamp(2.8rem,6.7vw,6.1rem);line-height:1.01;letter-spacing:-.07em;text-wrap:balance}
+.service-story-intro .lead{max-width:790px;font-size:clamp(1.08rem,1.65vw,1.35rem);line-height:1.7}
+.service-story-intro-note{max-width:760px;margin:22px 0 0;color:var(--paper);font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.75}
+.service-story-essentials{display:flex;flex-wrap:wrap;gap:9px;margin-top:clamp(24px,4vw,46px)}
+.service-story-essentials span{border:1px solid rgba(124,216,227,.23);background:rgba(6,43,67,.48);border-radius:999px;padding:8px 15px;font-size:.78rem;color:#c9dce0}
+.service-story-chapter{padding-block:clamp(64px,7.5vw,110px)}
+.service-story-chapter:nth-of-type(odd){background:linear-gradient(115deg,rgba(11,69,84,.2),rgba(3,20,31,.05))}
+.service-story-chapter-layout{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);column-gap:clamp(38px,7vw,110px);align-items:start}
+.service-story-chapter-heading{min-width:0}
+.service-story-chapter-heading h2{max-width:610px;margin:18px 0 0;font-size:clamp(2.15rem,3.5vw,3.95rem);line-height:1.08;letter-spacing:-.055em;text-wrap:balance}
+.service-story-chapter-copy{min-width:0;max-width:670px}
+.service-story-chapter-copy p{font-size:clamp(1rem,1.2vw,1.11rem);line-height:1.78;color:var(--muted);margin:0 0 20px}
+.service-story-chapter-copy p:last-child{margin-bottom:0}
+.service-story-chapter-copy .service-story-takeaway{border-left:2px solid var(--gold);padding:8px 0 8px 20px;margin-top:28px;color:#d8e9e9}
+.service-story-takeaway strong{color:var(--paper)}
+.service-story-chapter-copy a{color:var(--cyan);text-decoration:underline;text-decoration-color:rgba(124,216,227,.5);text-underline-offset:4px}
+.service-story-chapter-copy a:hover{color:var(--gold)}
+.service-story-chapter-copy .service-story-related{font-size:.93rem}
+.service-story-finish{padding-block:clamp(78px,9vw,126px);background:radial-gradient(circle at 92% 22%,rgba(21,148,184,.19),transparent 31rem),linear-gradient(112deg,#062b43b8,#03141fdf);border-block:1px solid var(--line)}
+.service-story-finish h2{max-width:940px;font-size:clamp(2.5rem,5vw,5rem);line-height:1.05;text-wrap:balance}
+.service-story-finish p{max-width:760px;color:var(--muted);font-size:clamp(1rem,1.25vw,1.16rem);line-height:1.72}
+.service-story-finish .service-story-location{font-size:.86rem;color:#90b7c0;margin-top:18px}
 @media(max-width:900px){
-  .strategy-chapter-layout{grid-template-columns:1fr;row-gap:28px}
-  .strategy-chapter-heading h2{max-width:730px}
-  .strategy-chapter-copy{max-width:770px}
+  .service-story-chapter-layout{grid-template-columns:1fr;row-gap:28px}
+  .service-story-chapter-heading h2{max-width:730px}
+  .service-story-chapter-copy{max-width:770px}
 }
 @media(max-width:600px){
-  .strategy-intro h1{font-size:clamp(2.35rem,10vw,3.45rem);line-height:1.04}
-  .strategy-intro .lead{font-size:1.05rem;line-height:1.65}
-  .strategy-essentials span{font-size:.72rem;padding:7px 12px}
-  .strategy-chapter{padding-block:60px}
-  .strategy-chapter-heading h2{font-size:clamp(2rem,8vw,2.8rem);line-height:1.1}
-  .strategy-chapter-copy p{line-height:1.7}
-  .strategy-finish h2{font-size:clamp(2.3rem,9.5vw,3.2rem)}
-  .strategy-finish .actions .button{width:100%}
+  .service-story-intro h1{font-size:clamp(2.35rem,10vw,3.45rem);line-height:1.04}
+  .service-story-intro .lead{font-size:1.05rem;line-height:1.65}
+  .service-story-essentials span{font-size:.72rem;padding:7px 12px}
+  .service-story-chapter{padding-block:60px}
+  .service-story-chapter-heading h2{font-size:clamp(2rem,8vw,2.8rem);line-height:1.1}
+  .service-story-chapter-copy p{line-height:1.7}
+  .service-story-finish h2{font-size:clamp(2.3rem,9.5vw,3.2rem)}
+  .service-story-finish .actions .button{width:100%}
 }
 
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}body:before,body:after{transform:none!important}}
