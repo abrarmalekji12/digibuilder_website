@@ -104,31 +104,15 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
 
 /* Name-first project grid. Logo assets can replace these wordmarks later. */
 .project-card{justify-content:flex-start;gap:0}
-.project-logo-slot{min-height:95px;display:flex;align-items:center;margin:20px 0 0;max-width:100%}
+.project-logo-slot{min-height:128px;display:flex;align-items:center;justify-content:center;margin:18px 0 0;width:100%;max-width:100%}
 .project-wordmark{font-size:clamp(1.4rem,2.35vw,2.2rem);font-weight:780;line-height:1.12;letter-spacing:-.045em;overflow-wrap:anywhere}
 .project-card .project-regions{margin:16px 0 0;font-size:.88rem;color:#b4cbd1}
-.project-logo{display:block;max-width:100%;max-height:104px;width:auto;height:auto;object-fit:contain}
+/* Native-sized, sharp per-project logo; never stretch small source images. */
+.project-logo{display:block;width:auto;height:auto;max-width:100%;max-height:148px;object-fit:contain;border-radius:9px;image-rendering:auto}
 
-/* Supplied client artwork shares one compressed atlas. New individual logo files
-   can replace an atlas slot without modifying any Work or homepage card markup. */
-.project-sprite-logo{
-  display:block;flex:0 1 100%;width:100%;max-width:355px;
-  aspect-ratio:22/13;
-  border-radius:12px;
-  background-image:url('/project-logos/client-logos.webp');
-  background-image:image-set(
-    url('/project-logos/client-logos.avif') type('image/avif') 1x,
-    url('/project-logos/client-logos.webp') type('image/webp') 1x
-  );
-  background-size:600% 400%;background-repeat:no-repeat;
-  background-color:rgba(255,255,255,.95);
-  border:1px solid rgba(255,255,255,.07);
-}
 .project-card .project-logo-slot{width:100%;max-width:100%}
-.project-card .project-sprite-logo{max-width:100%}
 .project-card .project-category{margin:12px 0 0;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);font-weight:760}
 .project-card .project-category+.project-regions{margin-top:8px}
-.project-slide-brand .project-sprite-logo{max-width:100%;height:auto}
 .project-slide-category{color:var(--gold);font-weight:760;text-transform:uppercase;letter-spacing:.04em}
 .project-pink-wordmark{
   display:flex;flex-direction:column;justify-content:center;align-items:center;
@@ -144,7 +128,6 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
 .project-slide-brand .project-pink-wordmark{min-height:142px}
 @media(max-width:600px){
   .project-slide-brand .project-pink-wordmark{min-height:110px}
-  .project-sprite-logo{border-radius:9px}
   .project-pink-wordmark strong{font-size:1.15rem}
 }
 
@@ -164,9 +147,9 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
 .project-slide-top,.project-slide-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:1;font-size:.7rem;letter-spacing:.13em;color:#bcd4d9}
 .project-slide-top{color:var(--gold);font-weight:700}
 .project-slide-symbol{font-size:1.8rem;color:rgba(124,216,227,.38)}
-.project-slide-brand{position:relative;z-index:1;display:flex;align-items:center;min-height:110px;max-width:100%;flex:1}
+.project-slide-brand{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:110px;max-width:100%;flex:1}
 .project-slide-brand .project-wordmark{font-size:clamp(1.85rem,3.25vw,3rem);font-weight:750;line-height:1.04;letter-spacing:-.06em;overflow-wrap:anywhere;text-wrap:balance}
-.project-slide-brand .project-logo{max-height:146px}
+.project-slide-brand .project-logo{max-height:172px;max-width:100%}
 .project-slide-bottom{align-items:flex-end;letter-spacing:.02em;font-size:.76rem}
 .project-slide-regions{max-width:75%;line-height:1.4}
 .project-slide-index{color:var(--gold);white-space:nowrap;letter-spacing:.1em}
