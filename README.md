@@ -40,19 +40,23 @@ An alternative **URL-prefix property** supports a unique HTML meta tag or HTML v
 
 DigiBuilder describes its base as **Modasa, Gujarat** and availability for remote work in Sydney, Brampton and London. These are service markets, **not claimed branch addresses or verified physical offices**. Do not create city landing pages, business listings or fake address schema without genuine local business evidence. Update content once local client and service details are available.
 
-The 20 project names are listed without invented service assignments, results or testimonials. Location tags reflect the user's supplied project descriptions and do not imply DigiBuilder offices. Add case studies with verified project scope, assets, permission and outcomes later.
+The 22 project names are listed without invented service assignments, results or testimonials. Location tags reflect the user's supplied project descriptions and do not imply DigiBuilder offices. Add case studies with verified project scope, assets, permission and outcomes later.
 
-## Project showcase and future logos
+## Project showcase and client logos
 
-The homepage includes all 20 projects in a vertical-scroll-driven, horizontally moving 3D-style card stack before the "Built in Gujarat" section. The Work page uses the same `projects` data in `app.js`. The stack needs no 3D library, does not intercept scrolling, and falls back to a swipeable horizontal row with JavaScript disabled or reduced-motion enabled.
+The homepage includes **22 projects** in a vertical-scroll-driven, horizontally moving 3D-style card stack before the "Built in Gujarat" section. The Work page uses the same `projects` data in `app.js`. The stack uses no second 3D library, does not intercept scrolling and falls back to a swipeable row without JavaScript or when reduced motion is preferred.
 
-Each project currently uses a **text wordmark**. To replace it with a real approved logo:
+**19 client logo images supplied by the owner** are displayed in both places from the optimized `project-logos/client-logos.avif` atlas (about 15 KB total), using each project's `spriteIndex` to select the corresponding tile. The atlas is a standard AVIF image; the original client artwork stays visible, including its supplied background colours. The logos for NDS Life Coaching and Sydney Taxi Service are still pending. Pink Nail Art uses a clearly labelled, hand-free CSS text wordmark for now because the supplied graphic was a hand-held photo, not a standalone logo. Replace it with an approved isolated logo when available.
 
-1. Add an optimized file (preferably WebP or SVG with appropriate permission) to `project-logos/` at the repository root.
-2. In `app.js`, add a `logo` field to that project's object, e.g. `{name:"Sharp Travel",regions:"Canada, India",logo:"/project-logos/sharp-travel.webp"}`.
-3. Run `node build-site.js`. The builder copies the entire `project-logos/` directory into `_site/`. The same logo is then shown on the homepage stack and the Work page, without a markup rewrite.
+Unique Led Light and Crabby Hunt have the requested **E-Commerce Business** caption below their logos. The additional projects Flutter Pilot and Scholar Career Academy have also been added, using the supplied logos. Region labels are limited to what the owner supplied.
 
-Keep names visible as accessible image alt text and provide logos only once the owner approves their use.
+### Adding or replacing logos later
+
+1. Put an approved, compressed logo asset in `project-logos/`. Prefer an individually named AVIF, WebP or SVG where appropriate.
+2. Add its `logo` path to the matching `projects` object in `app.js`, for example `{name:"Sharp Travel",regions:"Canada, India",logo:"/project-logos/sharp-travel.webp"}`. An individual logo always overrides the atlas slot, with no card markup changes.
+3. Run `node build-site.js`; the generator copies `project-logos/` to `_site/` for the homepage and Work page.
+
+Use only client artwork cleared for portfolio display. Do not invent project outcomes, services or customer testimonials without supporting facts.
 
 ## Privacy and compliance
 
