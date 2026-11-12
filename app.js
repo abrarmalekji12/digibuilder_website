@@ -68,6 +68,7 @@ const projects=[
 const app=document.getElementById('app');
 let towerCleanup=null;
 let navigationBound=false;
+let projectJourneyCleanup=null;
 
 function shell(eyebrow,title,copy,body=''){
   return `<section class="section reveal"><div class="wrap"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${copy?`<p class="lead">${copy}</p>`:''}${body}</div></section>`;
@@ -103,8 +104,8 @@ function projectShowcase(){
         <p>Scroll down to explore our project portfolio as the cards move across the screen. More project details will be added as they're documented.</p>
       </div>
       <div class="project-stage" id="project-stage" aria-label="Project cards">
-        <div class="project-track">
-          ${projects.map((project,index)=>`<article class="project-slide" data-project-index="${index}" aria-label="${project.name}${project.regions?', '+project.regions:''}">
+        <div class="project-track" role="list" tabindex="0" aria-label="DigiBuilder project portfolio">
+          ${projects.map((project,index)=>`<article class="project-slide" role="listitem" data-project-index="${index}" aria-label="${project.name}${project.regions?', '+project.regions:''}">
             <div class="project-slide-top"><span>PROJECT / ${String(index+1).padStart(2,'0')}</span><span class="project-slide-symbol" aria-hidden="true">✳</span></div>
             <div class="project-slide-brand" data-project-logo-slot>${projectIdentity(project)}</div>
             <div class="project-slide-bottom">
@@ -471,7 +472,113 @@ function legacyHashTarget(){
   return match[1].startsWith('service/')?'/'+match[1]+'/':routePaths[match[1]];
 }
 
+/* Scroll down to move the project stack sideways, with no scroll interception. */
+function initProjectJourney(){
+  const journey=document.getElementById('project-journey');
+  if(!journey||typeof window.requestAnimationFrame!=='function')return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const cards=[...journey.querySelectorAll('.project-slide')];
+  const indicator=document.getElementById('project-journey-count');
+  if(cards.length<2||!indicator)return;
+
+  let frameId=0;
+  let current=0;
+  let target=0;
+  let journeyTop=0;
+  let scrollRange=1;
+  let horizontalStep=180;
+  let lastIndex=-1;
+  let disposed=false;
+  const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
+  const schedule=()=>{
+    if(!frameId&&!disposed&&!document.hidden)frameId=window.requestAnimationFrame(paint);
+  };
+
+  const paint=()=>{
+    frameId=0;
+    if(disposed)return;
+    const bounds=journey.getBoundingClientRect();
+    if(bounds.bottom<=0||bounds.top>=window.innerHeight)return;
+
+    current+=((target-current)*.15);
+    if(Math.abs(current-target)<.002)current=target;
+
+    cards.forEach((card,index)=>{
+      const offset=index-current;
+      const distance=Math.abs(offset);
+      const visible=distance<4.1;
+      if(!visible){
+        if(card.style.visibility!=='hidden'){
+          card.style.visibility='hidden';
+          card.style.opacity='0';
+        }
+        return;
+      }
+      const spread=clamp(offset,-4,4);
+      const z=-Math.min(distance,4)*62;
+      const x=offset*horizontalStep;
+      const y=Math.min(distance,3)*5;
+      const angle=-spread*7.5;
+      const scale=1-Math.min(distance,3)*.07;
+      card.style.visibility='visible';
+      card.style.opacity=String(clamp((4.1-distance)*.85,0,1));
+      card.style.zIndex=String(100-Math.round(distance*12));
+      card.style.transform=`translate3d(calc(-50% + ${x.toFixed(1)}px),calc(-50% + ${y.toFixed(1)}px),${z.toFixed(1)}px) rotateY(${angle.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+    });
+
+    const index=clamp(Math.round(current),0,cards.length-1);
+    if(index!==lastIndex){
+      lastIndex=index;
+      indicator.textContent=`${String(index+1).padStart(2,'0')} / ${String(cards.length).padStart(2,'0')}`;
+      indicator.setAttribute('aria-label',`Project ${index+1} of ${cards.length}`);
+    }
+    if(Math.abs(current-target)>.002)schedule();
+  };
+
+  const scroll=()=>{
+    target=clamp((window.scrollY-journeyTop)/scrollRange,0,1)*(cards.length-1);
+    schedule();
+  };
+
+  const measure=()=>{
+    const small=window.innerWidth<=600;
+    horizontalStep=small?clamp(window.innerWidth*.51,148,210):clamp(window.innerWidth*.25,210,305);
+    const scrollPerProject=small?clamp(window.innerHeight*.35,170,270):clamp(window.innerHeight*.42,215,355);
+    const verticalTravel=Math.round((cards.length-1)*scrollPerProject);
+    journey.style.setProperty('--project-scroll-height',`${Math.round(window.innerHeight+verticalTravel)}px`);
+    journeyTop=journey.getBoundingClientRect().top+window.scrollY;
+    scrollRange=Math.max(1,journey.offsetHeight-window.innerHeight);
+    target=clamp((window.scrollY-journeyTop)/scrollRange,0,1)*(cards.length-1);
+    current=target;
+    schedule();
+  };
+
+  journey.classList.add('is-animated');
+  window.addEventListener('scroll',scroll,{passive:true});
+  window.addEventListener('resize',measure,{passive:true});
+  document.addEventListener('visibilitychange',scroll);
+  measure();
+
+  projectJourneyCleanup=()=>{
+    disposed=true;
+    if(frameId)window.cancelAnimationFrame(frameId);
+    window.removeEventListener('scroll',scroll);
+    window.removeEventListener('resize',measure);
+    document.removeEventListener('visibilitychange',scroll);
+    journey.classList.remove('is-animated');
+    journey.style.removeProperty('--project-scroll-height');
+    cards.forEach(card=>{
+      card.style.transform='';
+      card.style.opacity='';
+      card.style.zIndex='';
+      card.style.visibility='';
+    });
+  };
+}
+
 function render(){
+  projectJourneyCleanup?.();
+  projectJourneyCleanup=null;
   const legacy=legacyHashTarget();
   if(legacy && typeof location.replace==='function'){
     location.replace(legacy);
@@ -487,6 +594,7 @@ function render(){
       link.classList.toggle('active',href===routePaths[view]||(view==='service'&&href==='/services/'));
     });
     bind();
+    initProjectJourney();
     return;
   }
 
@@ -500,6 +608,7 @@ function render(){
   app.innerHTML=output;
   setMenuOpen(false);
   bind();
+  initProjectJourney();
   window.scrollTo(0,0);
 }
 
