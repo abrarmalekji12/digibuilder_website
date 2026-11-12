@@ -109,6 +109,42 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
 .project-card .project-regions{margin:16px 0 0;font-size:.88rem;color:#b4cbd1}
 .project-logo{display:block;max-width:100%;max-height:104px;width:auto;height:auto;object-fit:contain}
 
+/* Supplied client artwork shares one compressed atlas. New individual logo files
+   can replace an atlas slot without modifying any Work or homepage card markup. */
+.project-sprite-logo{
+  display:block;flex:0 1 100%;width:100%;max-width:355px;
+  aspect-ratio:26/15;
+  border-radius:12px;
+  background-image:url('/project-logos/client-logos.avif');
+  background-size:600% 400%;background-repeat:no-repeat;
+  background-color:rgba(255,255,255,.95);
+  border:1px solid rgba(255,255,255,.07);
+}
+.project-card .project-logo-slot{width:100%;max-width:100%}
+.project-card .project-sprite-logo{max-width:100%}
+.project-card .project-category{margin:12px 0 0;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);font-weight:760}
+.project-card .project-category+.project-regions{margin-top:8px}
+.project-slide-brand .project-sprite-logo{max-width:100%;height:auto}
+.project-slide-category{color:var(--gold);font-weight:760;text-transform:uppercase;letter-spacing:.04em}
+.project-pink-wordmark{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  width:100%;min-height:115px;padding:16px 12px;
+  text-align:center;border:1px solid rgba(242,170,40,.2);
+  border-radius:12px;color:#ffe8f3;
+  background:linear-gradient(140deg,#5e193d,#bb4684 55%,#631f48);
+  letter-spacing:.12em;
+}
+.project-pink-wordmark>span{color:#ffd4ee;font-size:1.45rem;line-height:1}
+.project-pink-wordmark strong{font-weight:800;font-size:clamp(1.15rem,2vw,1.7rem);line-height:1.18;letter-spacing:.06em}
+.project-pink-wordmark small{font-size:.73rem;letter-spacing:.22em;margin-top:4px;font-weight:650}
+.project-slide-brand .project-pink-wordmark{min-height:142px}
+@media(max-width:600px){
+  .project-slide-brand .project-pink-wordmark{min-height:110px}
+  .project-sprite-logo{border-radius:9px}
+  .project-pink-wordmark strong{font-size:1.15rem}
+}
+
+
 /* Vertical scrolling drives a restrained horizontal 3D card stack. */
 .project-journey{position:relative;border-top:1px solid var(--line);background:radial-gradient(circle at 65% 60%,rgba(21,148,184,.12),transparent 36rem)}
 .project-sticky{position:relative;min-height:680px;padding:clamp(72px,8vw,104px) 0 54px;overflow:hidden}
