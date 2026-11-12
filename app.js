@@ -2,7 +2,7 @@
 
 const services=[
   ["strategy","01","Strategy & Growth Consulting","Know your roots. Grow with purpose.","We uncover your business DNA, legacy and customer connections before shaping brand positioning, marketing strategy and a practical growth plan.",["Business DNA discovery","Brand positioning","Growth roadmaps","Marketing strategy"]],
-  ["brand","02","Branding & Creative","Look distinctive. Sound like yourself.","From naming and visual identity to campaign design, we build brands that feel consistent, recognisable and ready to grow.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
+  ["brand","02","Branding & Creative","Build a brand people can feel and remember.","Identity design built on business roots, clear positioning, emotional storytelling and creative that feels consistent wherever customers meet your brand.",["Brand identity","Logo & design systems","Ad creatives","Campaign direction"]],
   ["web","03","Websites & E-commerce","Make every visit count.","Clear, responsive websites and online stores designed for real people: easy to explore, easy to trust and simple to contact.",["Website design","Landing pages","E-commerce","Conversion optimisation"]],
   ["social","04","Social Media, Reels & Video","Make content worth watching.","We plan and create social-first content, from Instagram reels and video shoots to editing, design and publishing ideas.",["Social media marketing","Reel & video shoots","Video editing","Content creation"]],
   ["seo","05","SEO, Advertising & Performance","Get found by the right audience.","Build visibility through search engine optimisation, thoughtful Google and social advertising, and landing pages built to convert.",["Technical & local SEO","Google Ads","Meta advertising","Performance reporting"]],
@@ -126,6 +126,77 @@ function servicesPage(){
 
 /* Long-form service narratives share one layout but keep distinct content. */
 const detailedServicePages={
+  "brand":{
+  "eyebrow": "Brand identity, positioning and creative design",
+  "title": "Your brand deserves to be <span class=\"gradient\">recognised and remembered.</span>",
+  "lead": "A logo is only the beginning. A meaningful brand carries your story, values and promises into every interaction. At DigiBuilder, we learn what makes your business different before deciding how it should look, sound and make people feel.",
+  "note": "Whether you are creating something new or refreshing a business with years of history, we build identity from what is real, not from a trend that will disappear next season.",
+  "pillars": [
+    "Business DNA",
+    "Brand positioning",
+    "Visual identity",
+    "Connected storytelling"
+  ],
+  "chapters": [
+    {
+      "step": "Discover",
+      "slug": "roots",
+      "title": "We begin with the story behind your business.",
+      "paragraphs": [
+        "Before colours, fonts or a logo concept, we ask why your business exists. Was it started to carry forward a family legacy, solve a problem that no one else was addressing or give customers a better kind of experience? We want to know the decisions and beliefs that shaped the business, because the most recognisable brands rarely begin with decoration.",
+        "We listen to the founder, look at the products and services, review what customers already say and examine how your brand currently appears across signs, packaging, websites and social media. We also talk about what you want to preserve as you grow. This discovery helps separate the parts of your identity that are truly yours from the parts that may be holding you back."
+      ],
+      "takeaway": "A brand foundation rooted in your purpose, history and the experience customers should remember."
+    },
+    {
+      "step": "Position",
+      "slug": "promise",
+      "title": "We find the promise that makes you worth choosing.",
+      "paragraphs": [
+        "Good branding does not try to appeal to everyone. It helps the right people understand why a business matters to them. We explore your customers' needs, the alternatives they consider and the words they use when they describe a great experience. Then we work toward a clear point of difference that your team can actually deliver.",
+        "This is where brand strategy becomes human. We connect your values with your audience's motivations, define a useful personality and shape a tone of voice that fits the business. A heritage brand may need to feel warm and trusted. An emerging business might need to communicate confidence and fresh thinking. Neither should sound like a copy of its competitors."
+      ],
+      "takeaway": "Brand positioning, messaging and a distinct voice that feel believable to your audience."
+    },
+    {
+      "step": "Design",
+      "slug": "identity",
+      "title": "We give that meaning a visual identity.",
+      "paragraphs": [
+        "Design should make the strategy visible. From the logo and typography to colour, imagery, graphic elements and layout, we work toward a consistent visual language that people can recognise in a moment. Each choice should have a reason, whether it makes the brand more legible, more expressive or easier to use across different formats.",
+        "A brand is experienced on tiny phone screens, storefronts, product packaging, presentation decks, reels and advertisements. We consider those real-world touchpoints while building the identity, not as an afterthought. The aim is not simply a beautiful mock-up. It is a usable system that looks considered wherever the business appears."
+      ],
+      "takeaway": "Thoughtful brand identity and creative direction designed for everyday use, online and offline."
+    },
+    {
+      "step": "Express",
+      "slug": "touchpoints",
+      "title": "We bring the brand into every customer touchpoint.",
+      "paragraphs": [
+        "A brand feels stronger when the same character comes through in everything it does. We think about how the message carries from a website headline to a social media post, a video, an advertisement, an email or the experience someone has while asking a question. Consistency matters, but it should never make your business sound robotic.",
+        "We can connect brand storytelling with social content, campaigns and digital experiences, helping the team create work that feels like it belongs together. This is especially valuable when different people are responsible for design, sales, customer service and marketing. They should all be able to tell the same story in their own natural way."
+      ],
+      "takeaway": "Connected storytelling, creative assets and guidelines that help your brand show up as one brand."
+    },
+    {
+      "step": "Evolve",
+      "slug": "growth",
+      "title": "We help your identity grow without losing its roots.",
+      "paragraphs": [
+        "A brand launch is a beginning, not the finish line. We plan how the identity will be introduced, what assets the team needs first and how to keep things consistent when new products, locations or campaigns arrive. Depending on the engagement, that may include launch creative, usage guidelines, templates or a practical handover for your team.",
+        "As customers respond, we look at what is clear, what causes confusion and where the brand can become more useful. Recognition and trust are built over many experiences, not by promising instant results from a design refresh. Our job is to give you a foundation that can grow with the business while still feeling unmistakably yours."
+      ],
+      "takeaway": "A lasting creative foundation with realistic next steps for launch, consistency and brand growth.",
+      "related": "A strong identity becomes even more valuable with <a href=\"/service/strategy/\">business strategy</a>, <a href=\"/service/social/\">social storytelling</a> and a <a href=\"/service/web/\">conversion-minded website</a>."
+    }
+  ],
+  "finish": {
+    "eyebrow": "More than attractive design",
+    "title": "Let people recognise your business before they even read the name.",
+    "copy": "We want your brand to feel familiar, credible and full of character. Something your team is proud to represent and your customers are happy to return to. That begins by respecting what you have built, then giving it a clear identity for what comes next.",
+    "cta": "Talk about your brand"
+  }
+},
 };
 
 function detailedServicePage(key){
