@@ -162,9 +162,15 @@ for(const page of pages){
   fs.mkdirSync(dir,{recursive:true});
   fs.writeFileSync(path.join(dir,'index.html'),html);
 }
+// Publish the supplied standalone portfolio without overwriting the /work/ route.
+const portfolioSource=path.join(__dirname,'portfolio','index.html');
+const portfolioOutput=path.join(OUT,'portfolio');
+fs.mkdirSync(portfolioOutput,{recursive:true});
+fs.copyFileSync(portfolioSource,path.join(portfolioOutput,'index.html'));
+
 fs.writeFileSync(path.join(OUT,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+ORIGIN+'/sitemap.xml\n');
-const urls=pages.map(p=>'  <url><loc>'+ORIGIN+p.route+'</loc></url>').join('\n');
+const urls=[...pages.map(p=>'  <url><loc>'+ORIGIN+p.route+'</loc></url>'),'  <url><loc>'+ORIGIN+'/portfolio/</loc></url>'].join('\n');
 fs.writeFileSync(path.join(OUT,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+'\n</urlset>\n');
 fs.writeFileSync(path.join(OUT,'CNAME'),'digibuilderai.com\n');
 fs.writeFileSync(path.join(OUT,'.nojekyll'),'');
-console.log('Generated '+pages.length+' crawlable pages, sitemap.xml and robots.txt');
+console.log('Generated '+(pages.length+1)+' crawlable pages, sitemap.xml and robots.txt');
