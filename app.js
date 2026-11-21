@@ -770,7 +770,7 @@ function work(){
     'Our work',
     'The names behind the projects.',
     'Explore the names in our growing project portfolio. We will add each project’s industry, services delivered and the work involved as those details are confirmed.',
-    `<div class="cards project-grid content-gap">${projects.map(projectCard).join('')}</div>`
+    `<div class="actions"><a class="button primary" href="/portfolio/">Explore linked portfolio</a></div><div class="cards project-grid content-gap">${projects.map(projectCard).join('')}</div>`
   );
 }
 
