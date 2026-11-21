@@ -9,9 +9,10 @@ The source for [digibuilderai.com](https://digibuilderai.com) is a **static HTML
 - `styles.css`: responsive layout, colors, global animated dot/grid atmosphere
 - `experience.css` and `experience.js`: optional homepage 3D tower
 - `build-site.js`: creates crawlable page HTML, metadata, JSON-LD, `sitemap.xml` and `robots.txt`
+- `portfolio/index.html`: self-contained linked portfolio page; copied into `_site/portfolio/index.html` by the builder and linked from `/work/`
 - `.github/workflows/deploy.yml`: deploys the generated `_site/` directory from pushes to `main`
 
-Routes: `/`, `/about/`, `/services/`, `/work/`, `/contact/`, `/privacy/`, `/terms/`, and `/service/{strategy|brand|web|social|seo|ai}/`. Old `#/...` links redirect to their clean paths for returning visitors.
+Routes: `/`, `/about/`, `/services/`, `/work/`, `/contact/`, `/privacy/`, `/terms/`, and `/service/{strategy|brand|web|social|seo|ai}/`. The standalone `/portfolio/` page contains the user-supplied links to selected social accounts, videos and websites. Old `#/...` links redirect to their clean paths for returning visitors.
 
 Every route has its **own HTML response**, title, meta description, canonical URL, social metadata, and structured data. This replaces fragment-based navigation, which is unreliable for page-level indexing.
 
