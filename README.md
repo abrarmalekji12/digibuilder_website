@@ -72,3 +72,9 @@ The privacy and terms pages describe the form, hosting, optional CDN and current
 - WebGL initializes only when the tower approaches the viewport.
 - Pointer animation runs only on fine-pointer non-reduced-motion devices.
 - No analytics or advertising pixel is installed in this source.
+
+## Agent discovery and homepage tower preview
+
+The static builder publishes `llms.txt` from the public page inventory, plus `/.well-known/ard.json` (ARD v0.91) and a `rel="ard"` link. The manifest intentionally has an empty `entries` array because no callable agent or MCP server is currently published. The files are included in `_site`, alongside `.nojekyll`. After deployment, verify both public URLs return HTTP 200, Markdown/plain text and JSON respectively, and rerun Lighthouse. GitHub Pages controls response MIME types and hosting availability; a schema-valid local file cannot resolve an upstream 503 by itself.
+
+The hero crown and tower fallback are two adjoining views of one inline SVG illustration. Both use the same responsive width and horizontal position. The existing WebGL scene is still lazily loaded and fades in as the visitor enters the tower; no second renderer or extra network asset is added.

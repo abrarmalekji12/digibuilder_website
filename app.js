@@ -1034,6 +1034,35 @@ function projectShowcase(){
   </section>`;
 }
 
+function towerSilhouette(part){
+  // Two adjoining viewBoxes of the same illustration share an exact seam.
+  // Decorative only: the actual six-floor story is still in the existing markup.
+  const crown=part==='crown';
+  const viewBox=crown?'0 0 360 180':'0 180 360 600';
+  return `<svg class="tower-silhouette" viewBox="${viewBox}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="tower-front-${part}" x1="0" x2="1"><stop stop-color="#092534"/><stop offset=".52" stop-color="#123c4b"/><stop offset="1" stop-color="#071d29"/></linearGradient>
+      <linearGradient id="tower-side-${part}" x1="0" x2="1"><stop stop-color="#0a2736"/><stop offset="1" stop-color="#03121c"/></linearGradient>
+      <linearGradient id="tower-metal-${part}" x1="0" x2="1"><stop stop-color="#7c4816"/><stop offset=".5" stop-color="#e6a83f"/><stop offset="1" stop-color="#a35f20"/></linearGradient>
+    </defs>
+    <path fill="#06141f" d="M46 158L79 138 271 126 310 151 310 695 270 730 46 713Z"/>
+    <path fill="url(#tower-front-${part})" d="M46 158L271 143 271 730 46 713Z"/>
+    <path fill="url(#tower-side-${part})" d="M271 143L310 151 310 695 271 730Z"/>
+    <path fill="#0d3341" d="M59 145L59 112 248 99 280 115 280 142 271 151 59 164Z"/>
+    <path fill="#041723" d="M248 99L280 115 280 142 248 155Z"/>
+    <path fill="#102b38" d="M96 112V80L218 70 248 84V99L218 120Z"/>
+    <path fill="#071722" d="M218 70L248 84V99L218 106Z"/>
+    <path fill="url(#tower-metal-${part})" d="M123 81V72L203 65 224 73 218 81Z"/>
+    <path stroke="url(#tower-metal-${part})" stroke-width="3" d="M170 68V12"/>
+    <circle cx="170" cy="11" r="3.5" fill="#f2aa28"/>
+    <path stroke="#4f92a0" stroke-opacity=".34" fill="none" d="M59 163L259 149M59 170V702M87 167V706M131 162V710M194 156V716M243 152V724M270 147V725M287 151V711M302 154V700"/>
+    ${[0,1,2,3,4,5].map((n)=>{const y=205+n*79;return `<path fill="${n===0?'#15546a':'#0b3546'}" stroke="#397180" stroke-opacity=".5" d="M62 ${y}L257 ${y-9}V${y+32}L62 ${y+41}Z"/><path fill="#082632" d="M271 ${y-9}L299 ${y-4}V${y+32}L271 ${y+40}Z"/><path stroke="#367080" stroke-opacity=".55" d="M94 ${y}V${y+39}M126 ${y-2}V${y+37}M158 ${y-4}V${y+36}M190 ${y-5}V${y+34}M223 ${y-7}V${y+33}"/><path stroke="#a86b27" stroke-width="2" d="M${n%2?75:219} ${y+39}h24"/>`;}).join('')}
+    <path fill="#09212d" d="M35 713L271 730 322 693V718L274 752 35 736Z"/>
+    <path fill="#12303c" d="M23 736L274 752 333 718V732L274 765 23 749Z"/>
+    <path stroke="#36717d" stroke-opacity=".5" fill="none" d="M46 158L271 143 310 151M271 143V730"/>
+  </svg>`;
+}
+
 function building(){
   return `<section class="tower-journey" id="tower-journey" aria-labelledby="tower-title">
     <h2 id="tower-title" class="case-sr">Explore DigiBuilder’s six capabilities</h2>
@@ -1044,7 +1073,7 @@ function building(){
       <div class="tower-viewport" id="tower-viewport">
         <div class="tower-webgl" id="tower-webgl" aria-hidden="true"></div>
         <div class="tower-fallback" id="tower-fallback" aria-hidden="true">
-          <div class="tower-fallback-building">${services.map(()=>'<i></i>').join('')}</div>
+          ${towerSilhouette('body')}
         </div>
         <div class="tower-label-layer" id="tower-label-layer">
           ${services.map((service,index)=>`<article class="tower-floor-label ${index===0?'active':''}" data-index="${index}" ${index===0?'':'aria-hidden="true"'}>
@@ -1068,7 +1097,7 @@ function building(){
 }
 
 function home(){
-  return `<section class="hero"><div class="wrap hero-content">
+  return `<section class="hero hero-tower-connected"><div class="hero-tower-crown" aria-hidden="true">${towerSilhouette('crown')}</div><div class="wrap hero-content">
     <div class="eyebrow">Digital marketing, built around your business</div>
     <h1>Ideas that look <span class="gradient">good.</span> Growth that makes sense.</h1>
     <p class="lead">DigiBuilder brings branding, digital marketing, social media reels, websites, advertising and AI automation into one thoughtful growth partner.</p>

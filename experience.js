@@ -378,6 +378,7 @@
 
     const syncScroll=()=>{
       targetProgress=clamp((window.scrollY-journeyTop)/maxScroll);
+      stage.classList.toggle('tower-entered',window.scrollY>=journeyTop-window.innerHeight*.2);
       if(journeyVisible)scheduleFrame();
     };
 
