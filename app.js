@@ -1035,7 +1035,8 @@ function projectShowcase(){
 }
 
 function building(){
-  return `<section class="tower-journey" id="tower-journey" aria-label="DigiBuilder capability building journey">
+  return `<section class="tower-journey" id="tower-journey" aria-labelledby="tower-title">
+    <h2 id="tower-title" class="case-sr">Explore DigiBuilder’s six capabilities</h2>
     <div class="tower-stage" id="tower-stage" data-floor="01">
       <div class="tower-atmosphere" aria-hidden="true"><div class="city-glow"></div><div class="city-grid"></div></div>
       <div class="tower-heading" aria-hidden="true"><span>The DigiBuilder tower</span><span>Six capability levels · one connected system</span></div>
