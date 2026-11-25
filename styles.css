@@ -324,3 +324,46 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
 }
 
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}body:before,body:after{transform:none!important}}
+
+
+/* Case studies — use the existing visual language without additional libraries. */
+.project-card .case-card-name{font-size:clamp(1.1rem,1.7vw,1.45rem);line-height:1.25;margin:16px 0 0;letter-spacing:-.025em}
+.case-card-link{display:block;margin-top:auto;padding-top:18px;color:var(--cyan);font-size:.86rem;font-weight:700}
+.project-card:hover .case-card-link,.project-slide:hover .project-slide-index{color:var(--gold)}
+.project-slide:focus-visible{outline-offset:-5px}
+.case-crumbs{display:flex;flex-wrap:wrap;gap:8px;color:var(--muted);font-size:.86rem;margin-bottom:clamp(24px,4vw,48px)}
+.case-crumbs a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+.case-hero{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,64px)}
+.case-hero h1{font-size:clamp(2.5rem,6vw,5.5rem);line-height:1.04;overflow-wrap:anywhere;margin:10px 0 16px}
+.case-headline{font-size:clamp(1.2rem,2.2vw,1.8rem);color:var(--paper);line-height:1.4;margin:0 0 10px}
+.case-logo{display:flex;align-items:center;justify-content:center;min-height:180px}
+.case-logo .project-logo{max-height:220px;max-width:100%}
+.case-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin:clamp(28px,5vw,56px) 0}
+.case-metrics strong{font-size:clamp(1.7rem,4vw,3.2rem);color:var(--gold);line-height:1.15;overflow-wrap:anywhere}
+.case-metrics p{margin:8px 0 0;color:var(--muted)}
+.case-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(24px,5vw,68px);margin:clamp(32px,6vw,72px) 0}
+.case-copy{min-width:0;max-width:74ch}
+.case-copy section{border-top:1px solid var(--line);padding:26px 0}
+.case-copy h2,.case-side h2{font-size:clamp(1.35rem,2.8vw,2.05rem);line-height:1.25;margin:8px 0 14px}
+.case-copy p,.case-side li{color:var(--muted);line-height:1.8}
+.case-copy p{margin:0 0 14px}
+.case-copy .case-note{font-size:.78rem;line-height:1.5;margin-top:20px}
+.case-side{display:grid;gap:16px;align-content:start;min-width:0}
+.case-side h2{font-size:1.25rem}
+.case-side ul{padding-left:1.15em;margin:0}
+.case-side li+li{margin-top:6px}
+.case-external{display:grid;gap:10px}
+.case-external .button{width:100%;white-space:normal;text-align:center;justify-content:center}
+.case-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.case-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:linear-gradient(130deg,#0b3545b3,#122935)}
+.case-cta h2{font-size:clamp(1.65rem,3.6vw,2.7rem);line-height:1.2;margin:8px 0}
+.case-related{margin-top:clamp(36px,7vw,80px)}
+.case-related .section-head{flex-wrap:wrap}
+@media(max-width:760px){
+ .case-hero,.case-layout{grid-template-columns:minmax(0,1fr)}
+ .case-logo{min-height:150px}
+ .case-hero .case-logo .project-logo{max-height:165px}
+ .case-copy{max-width:none}
+ .case-copy section{padding:20px 0}
+ .case-cta .button{width:100%;justify-content:center;text-align:center}
+}
