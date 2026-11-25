@@ -46,8 +46,8 @@ body:after{
   animation:ambient-glow 20s ease-in-out infinite alternate;
 }
 @keyframes ambient-drift{
-  from{background-position:0 0}
-  to{background-position:54px -36px}
+  from{transform:translate3d(calc(var(--ambient-x) - 22px),calc(var(--ambient-y) + 16px),0)}
+  to{transform:translate3d(calc(var(--ambient-x) + 22px),calc(var(--ambient-y) - 16px),0)}
 }
 @keyframes ambient-glow{to{opacity:.44}}
 main#app,.footer{position:relative;z-index:1}
@@ -372,3 +372,12 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
 .project-card:target{border-color:var(--gold);box-shadow:0 0 0 2px rgba(242,170,40,.24)}
 .case-cta>div{flex:1 1 420px;min-width:0}
 .case-cta>.button{flex-shrink:0}
+
+/* Keep the visual identity while avoiding full-screen paint work on phones. */
+@media (pointer:coarse), (max-width:760px){
+ body:before,body:after{animation:none;transform:none}
+ .site-header{backdrop-filter:none;background:#03141ff5}
+ .reveal{animation:none}
+}
+.links a[aria-current]{color:var(--paper)}
+@media(prefers-reduced-motion:reduce){body:before,body:after{animation:none!important;transform:none!important}}
