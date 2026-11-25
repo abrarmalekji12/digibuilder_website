@@ -163,6 +163,7 @@ function head(page){
     '  <meta name="description" content="'+description+'">',
     '  <title>'+title+'</title>',
     '  <link rel="canonical" href="'+url+'">',
+    '  <link rel="ard" href="/.well-known/ard.json">',
     ...(googleVerification&&page.route==='/'?['  <meta name="google-site-verification" content="'+escaped(googleVerification)+'">']:[]),
     '  <link rel="icon" href="/digibuilder-logo.webp" type="image/webp">',
     '  <link rel="preload" as="image" href="/digibuilder-logo.webp?v='+cacheVersion+'">',
@@ -217,9 +218,42 @@ for(const page of pages){
 const portfolioSource=path.join(__dirname,'portfolio','index.html');
 const portfolioOutput=path.join(OUT,'portfolio');
 fs.mkdirSync(portfolioOutput,{recursive:true});
-fs.copyFileSync(portfolioSource,path.join(portfolioOutput,'index.html'));
+const portfolioHTML=fs.readFileSync(portfolioSource,'utf8');
+fs.writeFileSync(path.join(portfolioOutput,'index.html'),portfolioHTML.replace('</head>','<link rel="ard" href="/.well-known/ard.json">\n</head>'));
 
-fs.writeFileSync(path.join(OUT,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+ORIGIN+'/sitemap.xml\n');
+// Agent discovery is generated from the same public routes as the sitemap.
+const mdLink=(label,route,description)=>'- ['+label+']('+ORIGIN+route+')'+(description?': '+description:'');
+const llms=[
+  '# DigiBuilder',
+  '',
+  '> DigiBuilder is a digital marketing and growth agency based in Modasa, Gujarat, India, working with local and international businesses on strategy, branding, social media, websites, advertising and AI workflows.',
+  '',
+  'The site is public and contains service descriptions and client case studies. Project outcomes are reported by DigiBuilder, not guaranteed results. Use the contact page for enquiries; this site does not currently publish a callable AI agent or MCP server.',
+  '',
+  '## About and contact',
+  ...pages.filter(p=>['/','/about/','/services/','/work/','/contact/'].includes(p.route)).map(p=>mdLink(p.name,p.route,p.description)),
+  '',
+  '## Services',
+  ...pages.filter(p=>p.service).map(p=>mdLink(p.name,p.route,p.description)),
+  '',
+  '## Client case studies',
+  ...pages.filter(p=>p.caseStudy).map(p=>mdLink(p.name,p.route,p.description)),
+  '',
+  '## Optional',
+  mdLink('Linked portfolio','/portfolio/','Selected client social profiles, videos and websites.'),
+  ...pages.filter(p=>['/privacy/','/terms/'].includes(p.route)).map(p=>mdLink(p.name,p.route,p.description)),
+  mdLink('XML sitemap','/sitemap.xml','Index of public website pages.'),
+  ''
+].join('\n');
+fs.writeFileSync(path.join(OUT,'llms.txt'),llms);
+// ARD v0.91 permits an empty entries array. Do not advertise non-existent
+// callable agents, APIs, MCP servers or unverified third-party resources.
+const ard={entries:[]};
+const wellKnown=path.join(OUT,'.well-known');
+fs.mkdirSync(wellKnown,{recursive:true});
+fs.writeFileSync(path.join(wellKnown,'ard.json'),JSON.stringify(ard,null,2)+'\n');
+
+fs.writeFileSync(path.join(OUT,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+ORIGIN+'/sitemap.xml\nAgentmap: '+ORIGIN+'/.well-known/ard.json\n');
 const urls=[...pages.map(p=>'  <url><loc>'+ORIGIN+p.route+'</loc></url>'),'  <url><loc>'+ORIGIN+'/portfolio/</loc></url>'].join('\n');
 fs.writeFileSync(path.join(OUT,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+'\n</urlset>\n');
 fs.writeFileSync(path.join(OUT,'CNAME'),'digibuilderai.com\n');
