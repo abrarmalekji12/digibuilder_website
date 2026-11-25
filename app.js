@@ -59,7 +59,7 @@ const projects=[
     "logo": "/project-logos/meghreji-home-decor.webp"
   },
   {
-    "name": "Unique Led Light",
+    "name": "Unique LED Light",
     "category": "E-Commerce Business",
     "logo": "/project-logos/unique-led-light.webp"
   },
@@ -76,11 +76,11 @@ const projects=[
     "logo": "/project-logos/palate-restaurant.webp"
   },
   {
-    "name": "Recut",
+    "name": "House of Recut",
     "logo": "/project-logos/recut.webp"
   },
   {
-    "name": "Cubixcraft",
+    "name": "Cubixkraft",
     "logo": "/project-logos/cubixcraft.webp"
   },
   {
@@ -119,7 +119,7 @@ const projects=[
     "logo": "/project-logos/dental-spot.webp"
   },
   {
-    "name": "Distric Dentistry",
+    "name": "District Dentistry",
     "regions": "USA",
     "logo": "/project-logos/distric-dentistry.webp"
   },
@@ -142,6 +142,803 @@ const projects=[
     "logo": "/project-logos/scholar-career-academy.webp"
   }
 ];
+const caseStudies=[
+  {
+    "slug": "sharp-immigration",
+    "name": "Sharp Immigration",
+    "industry": "Immigration consulting",
+    "region": "Canada, India & Nigeria",
+    "period": "2022–present",
+    "headline": "Rebuilding digital trust and scaling immigration enquiries",
+    "about": "Sharp Immigration helps students, families and professionals explore international immigration and study options across Canada, India and Nigeria.",
+    "challenge": "Restricted Meta advertising access and a banned page challenged the brand's ability to reach relevant audiences across three markets.",
+    "approach": "We supported recovery of advertising access, developed informative content and aligned campaigns with students, parents and entrepreneurs. Campaign direction was reviewed every 15 days using performance feedback.",
+    "scope": [
+      "Branding and creative",
+      "Social media management",
+      "Reels and video production",
+      "AI content",
+      "Meta and Google Ads",
+      "SEO, blogs and landing pages",
+      "Lead generation"
+    ],
+    "impact": "The project reported over seven million organic views, including one reel exceeding six million views, and over 900 monthly leads during the reported campaign period.",
+    "metrics": [
+      [
+        "7M+",
+        "Organic views"
+      ],
+      [
+        "900+",
+        "Reported monthly leads"
+      ],
+      [
+        "6M+",
+        "Featured reel views"
+      ]
+    ],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/sharpimmigration/"
+      ],
+      [
+        "Website",
+        "https://www.siis.ca/"
+      ],
+      [
+        "Featured reel",
+        "https://www.instagram.com/reel/DBf-WNHtqX5/"
+      ]
+    ],
+    "services": [
+      "social",
+      "seo",
+      "web",
+      "brand",
+      "strategy",
+      "ai"
+    ]
+  },
+  {
+    "slug": "saathi4u",
+    "name": "Saathi4u",
+    "industry": "Matchmaking & technology",
+    "region": "India, Canada & USA",
+    "period": "2024–present",
+    "headline": "Launching an AI-powered matchmaking brand",
+    "about": "Saathi4u is an AI-based matchmaking platform focused on NRI audiences and people seeking meaningful relationships across India and North America.",
+    "challenge": "From the initial idea, the business needed a brand identity, digital platform and launch strategy that could earn trust in an established category.",
+    "approach": "We supported the brand from its early concept through website and app launch. Content and advertising focused on relevance, privacy-conscious communication and awareness among prospective members.",
+    "scope": [
+      "Strategy and consulting",
+      "Brand identity",
+      "Website and landing pages",
+      "Social media and reels",
+      "AI content",
+      "Meta and Google Ads",
+      "App marketing and lead generation"
+    ],
+    "impact": "The platform reported over 10,000 registrations within its first year, with viral visibility in Gujarat and Canada.",
+    "metrics": [
+      [
+        "10K+",
+        "Registrations in first year"
+      ]
+    ],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/saathi4u/"
+      ],
+      [
+        "Website",
+        "https://www.saathi4u.com/"
+      ]
+    ],
+    "services": [
+      "strategy",
+      "brand",
+      "web",
+      "social",
+      "seo"
+    ]
+  },
+  {
+    "slug": "meghreji-home-decor",
+    "name": "Meghreji Home Decor",
+    "industry": "Architecture & home decor",
+    "region": "Gujarat, India",
+    "period": "2022–present",
+    "headline": "Making natural cladding a recognisable regional brand",
+    "about": "Meghreji Home Decor supplies and installs natural cladding and interior and exterior elevation materials for homes and buildings.",
+    "challenge": "The established business wanted to introduce expanded offerings and refresh its brand for architects, engineers, builders and homeowners.",
+    "approach": "Showroom reels, product photography, installation progress and real building transformations demonstrated materials in context. Before-and-after storytelling made their benefits easier to understand.",
+    "scope": [
+      "Brand strategy",
+      "Graphic design",
+      "Social media management",
+      "Product photography",
+      "Reels and video production",
+      "Content planning"
+    ],
+    "impact": "Content gained viral local visibility in Modasa and Gujarat. The business reported projects across Gujarat, supported by growing recognition for its natural cladding offerings.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/meghreji_home_decor/"
+      ]
+    ],
+    "services": [
+      "strategy",
+      "brand",
+      "social"
+    ]
+  },
+  {
+    "slug": "unique-led-light",
+    "name": "Unique LED Light",
+    "industry": "Automotive & e-commerce",
+    "region": "India",
+    "period": "2026",
+    "headline": "Building a new automotive e-commerce brand",
+    "about": "Unique LED Light is an e-commerce business focused on car LED lighting products.",
+    "challenge": "As a new brand, it needed a professional storefront, product visibility and an online sales strategy.",
+    "approach": "We developed a Shopify storefront, organised product presentation and combined social media support with Meta advertising focused on online purchases. The goal was a clear journey from product discovery to checkout.",
+    "scope": [
+      "Business strategy",
+      "Shopify development",
+      "E-commerce management",
+      "Social media management",
+      "Meta Ads"
+    ],
+    "impact": "The project established a digital storefront and performance marketing foundation for online sales.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/uniqueledlight/"
+      ],
+      [
+        "Website",
+        "https://theuniqueledlight.com/"
+      ]
+    ],
+    "services": [
+      "web",
+      "social",
+      "seo",
+      "strategy"
+    ]
+  },
+  {
+    "slug": "simun-bake-cake",
+    "name": "Simun Bake & Cake (Simun Tea)",
+    "industry": "Bakery & FMCG",
+    "region": "Modasa, Gujarat, India",
+    "period": "2025–present",
+    "headline": "Taking a local bakery to a nationwide marketplace",
+    "about": "Simun Bake & Cake is a premium bakery in Modasa, offering cookies, toast, rusk and a newer tea offering under Simun Tea.",
+    "challenge": "The business needed to launch its FMCG products digitally and generate sales without an established Amazon history. Diwali gift hampers offered a separate regional opportunity.",
+    "approach": "We supported Amazon listings and organic marketplace visibility, alongside food photography, reels and a festive gifting campaign. Meta advertising helped generate gift hamper enquiries.",
+    "scope": [
+      "Business consulting",
+      "Amazon catalogue and launch",
+      "Food and product photography",
+      "Reels",
+      "Festive campaigns",
+      "Meta lead generation"
+    ],
+    "impact": "The brand reported 30+ organic Amazon orders in its first month without Amazon PPC. The Diwali campaign gained visibility in Modasa and generated sales and enquiries across Gujarat.",
+    "metrics": [
+      [
+        "30+",
+        "Organic Amazon orders in first month"
+      ],
+      [
+        "No PPC",
+        "Amazon launch"
+      ]
+    ],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/simunbakery/"
+      ]
+    ],
+    "services": [
+      "web",
+      "social",
+      "seo",
+      "strategy"
+    ]
+  },
+  {
+    "slug": "gulbarg-garden",
+    "name": "Gulbarg Garden Restaurant & Party Plot",
+    "industry": "Hospitality & events",
+    "region": "Modasa, Gujarat, India",
+    "period": "2026",
+    "headline": "Turning a new restaurant into a talked-about destination",
+    "about": "Gulbarg offers garden dining, gazebo seating, food and a party venue in Modasa.",
+    "challenge": "As a new restaurant, it needed to communicate what made its atmosphere and food distinctive and encourage visits and event bookings.",
+    "approach": "Cinematic drone footage, creative transitions, customer review reels and new platter promotions brought the dining experience to life. Scripts, editing and social management supported a consistent content approach.",
+    "scope": [
+      "Social media management",
+      "Content planning and scripts",
+      "Drone and restaurant videography",
+      "Reel editing",
+      "Menu design"
+    ],
+    "impact": "The restaurant reported 65,000+ views on one reel, 1,500+ new followers in a month, fully occupied weekends and advance bookings for new platters, alongside party plot bookings.",
+    "metrics": [
+      [
+        "65K+",
+        "Views on one reel"
+      ],
+      [
+        "1,500+",
+        "Followers gained in one month"
+      ]
+    ],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/gulbarg_restaurant_party_plot/"
+      ]
+    ],
+    "services": [
+      "social",
+      "brand"
+    ]
+  },
+  {
+    "slug": "palate-restaurant",
+    "name": "Palate Restaurant",
+    "industry": "Hospitality & food",
+    "region": "Gujarat, India",
+    "period": "",
+    "headline": "Bringing the dining experience to life",
+    "about": "Palate Restaurant offers a dining experience centred on food and hospitality.",
+    "challenge": "The restaurant wanted a stronger digital presence and engaging communication for local food lovers.",
+    "approach": "We applied an experience-led approach, using food and ambience visuals, reels and creative editing to communicate the brand's personality.",
+    "scope": [
+      "Social media content",
+      "Reel production and editing",
+      "Food and ambience storytelling"
+    ],
+    "impact": "The work focused on local visibility and encouraging potential guests to discover the restaurant.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/palaterestaurantkolikhad/"
+      ]
+    ],
+    "services": [
+      "social",
+      "brand"
+    ]
+  },
+  {
+    "slug": "house-of-recut",
+    "name": "House of Recut",
+    "industry": "Sustainable fashion",
+    "region": "Vadodara, Gujarat, India",
+    "period": "2026",
+    "headline": "Preserving generations of memories through AI storytelling",
+    "about": "House of Recut reimagines treasured family garments, including grandparents' wedding and traditional attire, into outfits for meaningful modern occasions.",
+    "challenge": "The new concept needed original premium AI video narratives with visual consistency across each reel.",
+    "approach": "We combined prompt engineering, AI fashion models, product visuals and creative direction to express the emotional value of heritage garments. Each reel explored a different story rather than repeating a single promotional formula.",
+    "scope": [
+      "Social media management",
+      "AI fashion models",
+      "AI product photography",
+      "AI video and reels",
+      "Content planning and copywriting"
+    ],
+    "impact": "The distinctive concept and consistent advertising-style visuals attracted attention in Vadodara and Gujarat's fashion community.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/houseofrecut/"
+      ]
+    ],
+    "services": [
+      "ai",
+      "social",
+      "brand"
+    ]
+  },
+  {
+    "slug": "cubixkraft",
+    "name": "Cubixkraft",
+    "industry": "AI automation & SaaS",
+    "region": "",
+    "period": "",
+    "headline": "Humanising technology through founder-led AI content",
+    "about": "Cubixkraft is an AI automation and software company.",
+    "challenge": "Its technology needed clear, relatable communication and consistent video content that could showcase software capabilities.",
+    "approach": "We developed consistent founder-character AI videos, AI voice production, edited reels and SaaS product showcases. The approach made technical features easier to communicate in short-form formats.",
+    "scope": [
+      "Social media management",
+      "Reel editing",
+      "AI founder avatar videos",
+      "AI voice production",
+      "SaaS software showcases"
+    ],
+    "impact": "The project established a repeatable creative approach for founder-led communication and software product demonstrations.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/cubixkraft/"
+      ]
+    ],
+    "services": [
+      "ai",
+      "social"
+    ]
+  },
+  {
+    "slug": "crabby-hunt",
+    "name": "Crabby Hunt",
+    "industry": "Leather products & e-commerce",
+    "region": "India",
+    "period": "2025–2026",
+    "headline": "Scaling a leather brand across four sales channels",
+    "about": "Crabby Hunt sells leather products through its Shopify store and Indian marketplaces.",
+    "challenge": "After around eighteen months in business, the brand faced limited visibility and low daily sales.",
+    "approach": "Customer feedback, product research, improved catalogue content, marketplace SEO and influencer collaborations supported discovery and customer confidence. We worked on product and seller ratings across channels.",
+    "scope": [
+      "Shopify development",
+      "Marketplace management",
+      "Product research and listings",
+      "Product photography",
+      "Social media and reels",
+      "Influencer collaborations",
+      "Conversion optimisation"
+    ],
+    "impact": "Reported Flipkart orders grew from around five per day to over 100, with similar growth reported on the website. Myntra was launched and reached over 30 daily orders; Amazon also saw progress.",
+    "metrics": [
+      [
+        "5 to 100+",
+        "Daily Flipkart orders"
+      ],
+      [
+        "30+",
+        "Daily Myntra orders after launch"
+      ],
+      [
+        "4",
+        "Sales channels"
+      ]
+    ],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/crabbyhunt/"
+      ],
+      [
+        "Website",
+        "https://www.crabbyhunt.com/"
+      ]
+    ],
+    "services": [
+      "web",
+      "seo",
+      "social",
+      "strategy"
+    ]
+  },
+  {
+    "slug": "nds-life-coaching",
+    "name": "NDS Life Coaching",
+    "industry": "Life coaching & wellness",
+    "region": "",
+    "period": "2024–2025",
+    "headline": "Building trust before generating enquiries",
+    "about": "NDS Life Coaching, led by Nisha Shah, provides guidance for personal challenges and life decisions.",
+    "challenge": "As a new coaching business, it needed visibility and trust with people considering a personal service.",
+    "approach": "Informative reels, thoughtful scripts and personal branding communicated the coach's approach. A dedicated landing page and targeted Meta campaigns created a path from discovery to enquiry.",
+    "scope": [
+      "Personal branding",
+      "Business strategy",
+      "Social media",
+      "Scriptwriting and video production",
+      "Meta Ads",
+      "Landing page and lead generation"
+    ],
+    "impact": "The campaigns reported low-cost qualified leads, some of which converted into coaching clients.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/nishashah_lifecoach/"
+      ]
+    ],
+    "services": [
+      "brand",
+      "social",
+      "seo",
+      "web",
+      "strategy"
+    ]
+  },
+  {
+    "slug": "sharp-travel",
+    "name": "Sharp Travel",
+    "industry": "Travel & tourism",
+    "region": "Canada & India",
+    "period": "",
+    "headline": "Connecting travellers with their next destination",
+    "about": "Sharp Travel is a Canadian-based travel company with an office in India, offering travel packages to customers in both markets.",
+    "challenge": "The business wanted to reach prospective travellers and generate relevant package enquiries across Canada and India.",
+    "approach": "Travel-focused social content and promotional graphics were combined with Meta and Google advertising to reach audiences interested in travel packages.",
+    "scope": [
+      "Social media content",
+      "Promotional creatives",
+      "Meta Ads",
+      "Google Ads",
+      "International lead generation"
+    ],
+    "impact": "The campaigns generated travel package enquiries from both markets.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/travel_sharp/"
+      ]
+    ],
+    "services": [
+      "social",
+      "seo"
+    ]
+  },
+  {
+    "slug": "mahenoor-foods",
+    "name": "Mahenoor Foods",
+    "industry": "Food manufacturing & FMCG",
+    "region": "Gujarat, India",
+    "period": "",
+    "headline": "Bringing a legacy manufacturer into the digital market",
+    "about": "Mahenoor Foods is a food business established in 2008 that has begun building a digital presence.",
+    "challenge": "The objective was to translate years of business experience into a modern identity and attract dealer and distributor attention in Gujarat.",
+    "approach": "Premium manufacturing reels combined production visuals with emotional storytelling to communicate the brand's legacy and business credibility.",
+    "scope": [
+      "Digital launch strategy",
+      "Manufacturing reel production",
+      "Creative direction",
+      "Premium editing",
+      "Dealer and distributor-focused communication"
+    ],
+    "impact": "The new digital content reported over 50,000 reach in seven days. Dealer and distributor enquiries were a campaign objective.",
+    "metrics": [
+      [
+        "50K+",
+        "Reach in seven days"
+      ],
+      [
+        "2008",
+        "Business established"
+      ]
+    ],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/mahenoorfoods/"
+      ]
+    ],
+    "services": [
+      "social",
+      "brand",
+      "strategy"
+    ]
+  },
+  {
+    "slug": "zapnut",
+    "name": "Zapnut",
+    "industry": "Business rebranding & revival",
+    "region": "Modasa, Gujarat, India",
+    "period": "",
+    "headline": "Reviving an established business through owner-led storytelling",
+    "about": "Zapnut has a business legacy dating back to 2002 and is refreshing its brand for a new digital audience.",
+    "challenge": "The established business needed renewed relevance and a stronger regional identity.",
+    "approach": "Owner-led reels put personality and business experience at the centre of the story. Premium shoots, attention-grabbing concepts and professional editing helped present the business in a fresh way.",
+    "scope": [
+      "Rebranding",
+      "Owner-led creative direction",
+      "Social media reels",
+      "Video shooting and editing",
+      "Regional awareness"
+    ],
+    "impact": "The content reported over 100,000 reach and 200 new followers, with viral visibility in Modasa and nearby areas.",
+    "metrics": [
+      [
+        "100K+",
+        "Reported reach"
+      ],
+      [
+        "200+",
+        "New followers"
+      ],
+      [
+        "2002",
+        "Business legacy since"
+      ]
+    ],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/zapnuttt/"
+      ]
+    ],
+    "services": [
+      "brand",
+      "social"
+    ]
+  },
+  {
+    "slug": "raj-shah-photography",
+    "name": "Raj Shah Photography",
+    "industry": "Photography & events",
+    "region": "Mumbai, India",
+    "period": "",
+    "headline": "Turning creative talent into a discoverable photography brand",
+    "about": "Raj Shah Photography is a new Mumbai-based studio offering wedding and event photography.",
+    "challenge": "The studio needed a professional portfolio and digital visibility to attract potential clients.",
+    "approach": "We combined social media content and graphics with a portfolio website that showcased the studio's work and supported photography enquiries.",
+    "scope": [
+      "Social media management",
+      "Content and graphics",
+      "Portfolio website development",
+      "Wedding and event lead generation"
+    ],
+    "impact": "The collaboration established a professional digital presence and generated wedding and event photography enquiries.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/rajshahphotography/"
+      ]
+    ],
+    "services": [
+      "web",
+      "social",
+      "brand"
+    ]
+  },
+  {
+    "slug": "pink-nail-art",
+    "name": "Pink Nail Art",
+    "industry": "Beauty & personal care",
+    "region": "Ahmedabad, Gujarat, India",
+    "period": "",
+    "headline": "Building local visibility through beauty-focused content",
+    "about": "Pink Nail Art is a nail art studio in Ahmedabad.",
+    "challenge": "The studio wanted stronger local awareness and customer enquiries for its promotional offers.",
+    "approach": "Customer review reels, showroom content, creative editing and offer-focused advertising showcased the studio and its services.",
+    "scope": [
+      "Customer review reel editing",
+      "Showroom reels",
+      "Promotional content",
+      "Enquiry-focused advertising"
+    ],
+    "impact": "The offer campaigns gained viral visibility in Ahmedabad and supported customer enquiries.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/pink_nails_studioo/"
+      ]
+    ],
+    "services": [
+      "social",
+      "seo"
+    ]
+  },
+  {
+    "slug": "dental-spot",
+    "name": "Dental Spot",
+    "industry": "Dental healthcare",
+    "region": "Mooresville, North Carolina, USA",
+    "period": "",
+    "headline": "Connecting dental care with patients through search advertising",
+    "about": "The Dental Spot is a dental practice in Mooresville, North Carolina.",
+    "challenge": "The practice wanted engaging digital communication and appointment-focused advertising in a competitive healthcare market.",
+    "approach": "We combined creative social posters and content planning with Google Ads campaigns aimed at people searching for relevant dental services.",
+    "scope": [
+      "Social media content",
+      "Creative graphic design",
+      "Content planning",
+      "Google Ads management",
+      "Appointment-focused marketing"
+    ],
+    "impact": "The campaign reported strong appointment booking results. Exact booking totals were not provided.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/thedentalspotnc/"
+      ],
+      [
+        "Website",
+        "https://thedentalspotnc.com/"
+      ]
+    ],
+    "services": [
+      "social",
+      "seo"
+    ]
+  },
+  {
+    "slug": "district-dentistry",
+    "name": "District Dentistry",
+    "industry": "Dental healthcare",
+    "region": "Charlotte, North Carolina, USA",
+    "period": "",
+    "headline": "Supporting patient acquisition through creative and search marketing",
+    "about": "District Dentistry is a dental practice in Charlotte, North Carolina.",
+    "challenge": "The practice sought greater digital visibility and relevant appointment enquiries.",
+    "approach": "We provided social content, visually engaging posters and Google Ads to support communication and connect with people searching for dental care.",
+    "scope": [
+      "Creative posters",
+      "Social media content",
+      "Content planning",
+      "Google Ads",
+      "Patient acquisition"
+    ],
+    "impact": "The collaboration supported appointment-focused digital marketing and patient acquisition.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/districtdentistry/"
+      ],
+      [
+        "Website",
+        "https://districtdentistryclt.com/"
+      ]
+    ],
+    "services": [
+      "social",
+      "seo"
+    ]
+  },
+  {
+    "slug": "sydney-premium-taxi",
+    "name": "Sydney Premium Taxi Service",
+    "industry": "Transportation",
+    "region": "Sydney, Australia",
+    "period": "",
+    "headline": "Generating taxi enquiries on a focused advertising budget",
+    "about": "Sydney Premium Taxi Service provides taxi services across Sydney.",
+    "challenge": "The business wanted to generate more customer enquiries with a limited advertising budget.",
+    "approach": "We managed Google Ads focused on local, high-intent searches and enquiry generation rather than visibility alone.",
+    "scope": [
+      "Google Ads management",
+      "Local search advertising",
+      "Keyword targeting",
+      "Budget optimisation",
+      "Lead generation"
+    ],
+    "impact": "The campaign reported over ten leads per day. The revenue and ad budget require currency and reporting-period confirmation.",
+    "metrics": [
+      [
+        "10+",
+        "Reported daily leads"
+      ]
+    ],
+    "links": [],
+    "services": [
+      "seo"
+    ]
+  },
+  {
+    "slug": "ska-moto-bike",
+    "name": "SKA Moto Bike",
+    "industry": "Motorcycle rental",
+    "region": "London, United Kingdom",
+    "period": "",
+    "headline": "Accelerating motorcycle rental enquiries in London",
+    "about": "SKA Moto Bike is a motorcycle rental business serving customers in London.",
+    "challenge": "The company wanted stronger digital visibility and relevant rental enquiries.",
+    "approach": "We combined Google Ads with social media management, a structured content calendar and visually striking graphics to communicate rental services.",
+    "scope": [
+      "Social media management",
+      "Content calendar",
+      "Creative graphics",
+      "Google Ads",
+      "Local lead generation"
+    ],
+    "impact": "The work generated rental enquiries from London.",
+    "metrics": [],
+    "links": [
+      [
+        "Website",
+        "https://skamotors.com/"
+      ]
+    ],
+    "services": [
+      "social",
+      "seo"
+    ]
+  },
+  {
+    "slug": "flutter-pilot",
+    "name": "Flutter Pilot",
+    "industry": "AI app development & SaaS",
+    "region": "",
+    "period": "",
+    "headline": "Making AI-powered app development easier to understand",
+    "about": "Flutter Pilot is an AI app-building platform with a visual studio for generating, editing and exporting Flutter applications.",
+    "challenge": "The platform needed to explain its capabilities clearly and attract users organically.",
+    "approach": "AI-generated promotional videos and SaaS product showcases demonstrated practical app-building use cases, including working with prompts, designs and business data.",
+    "scope": [
+      "Organic app marketing",
+      "AI promotional videos",
+      "SaaS product showcases",
+      "Product storytelling",
+      "Organic user acquisition"
+    ],
+    "impact": "The project reported more than 10,000 organic app downloads.",
+    "metrics": [
+      [
+        "10K+",
+        "Reported organic app downloads"
+      ]
+    ],
+    "links": [
+      [
+        "Website",
+        "https://flutterpilot.com/"
+      ],
+      [
+        "Flutter Pilot Studio",
+        "https://studio.flutterpilot.com/"
+      ]
+    ],
+    "services": [
+      "ai",
+      "social"
+    ]
+  },
+  {
+    "slug": "scholar-career-academy",
+    "name": "Scholar Career Academy",
+    "industry": "NEET & JEE education",
+    "region": "Ahmedabad, Gujarat, India",
+    "period": "",
+    "headline": "Connecting students with academic opportunities",
+    "about": "Scholar Career Academy is an Ahmedabad-based coaching institute for NEET and JEE aspirants.",
+    "challenge": "The academy wanted stronger local visibility and student registrations, including for its Talent Hunt examination.",
+    "approach": "Institute reels, teacher-led videos, academic programme coverage and graphic design highlighted the learning environment and exam opportunities.",
+    "scope": [
+      "Institute reels",
+      "Teacher videos",
+      "Creative graphics",
+      "Talent Hunt promotion",
+      "Programme coverage",
+      "Student registration campaigns"
+    ],
+    "impact": "The content gained viral visibility in Ahmedabad and Gujarat, supporting student registrations and awareness of the Talent Hunt exam.",
+    "metrics": [],
+    "links": [
+      [
+        "Instagram",
+        "https://www.instagram.com/sca_ahmedabad/"
+      ]
+    ],
+    "services": [
+      "social",
+      "brand"
+    ]
+  }
+];
+const projectBySlug=Object.fromEntries(caseStudies.map((study,index)=>[study.slug,{study,project:projects[index],index}]));
+const casePath=study=>'/work/'+study.slug+'/';
 const app=document.getElementById('app');
 let towerCleanup=null;
 let navigationBound=false;
@@ -169,12 +966,42 @@ function projectIdentity(project){
 }
 
 function projectCard(project,index){
-  return `<article class="card project-card" aria-label="${project.name}${project.regions?', '+project.regions:''}">
+  const study=caseStudies[index];
+  return `<a class="card project-card" href="${casePath(study)}" aria-label="Read ${caseEscape(study.name)} case study">
     <span class="num">PROJECT / ${String(index+1).padStart(2,'0')}</span>
     <div class="project-logo-slot" data-project-logo-slot>${projectIdentity(project)}</div>
-    ${project.category?`<p class="project-category">${project.category}</p>`:''}
-    ${project.regions?`<p class="project-regions">(${project.regions})</p>`:''}
-  </article>`;
+    <h3 class="case-card-name">${caseEscape(study.name)}</h3>
+    <p class="project-category">${caseEscape(project.category||study.industry)}</p>
+    ${study.region?`<p class="project-regions">${caseEscape(study.region)}</p>`:''}
+    <span class="case-card-link">Read case study <span aria-hidden="true">↗</span></span>
+  </a>`;
+}
+
+function caseEscape(value){
+  return String(value).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function casePage(key){
+  const entry=projectBySlug[key];
+  if(!entry)return work();
+  const {study:s,project,index}=entry;
+  const esc=caseEscape;
+  const related=caseStudies.map((other,i)=>({other,i,score:other.services.filter(x=>s.services.includes(x)).length})).filter(x=>x.i!==index).sort((a,b)=>b.score-a.score||a.i-b.i).slice(0,3);
+  return `<article class="section case-study"><div class="wrap">
+    <nav class="case-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/work/">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(s.name)}</span></nav>
+    <div class="case-hero"><div><div class="eyebrow">Case study / ${String(index+1).padStart(2,'0')}</div><h1>${esc(s.name)}</h1><p class="case-headline">${esc(s.headline)}</p><p class="muted">${esc([s.industry,s.region,s.period].filter(Boolean).join(' · '))}</p></div><div class="panel case-logo">${projectIdentity(project)}</div></div>
+    ${s.metrics.length?`<section class="case-metrics" aria-label="Reported project results">${s.metrics.map(m=>`<div class="panel"><strong>${esc(m[0])}</strong><p>${esc(m[1])}</p></div>`).join('')}</section>`:''}
+    <div class="case-layout"><div class="case-copy">
+      <section><div class="kicker">01 / Context</div><h2>About the business</h2><p>${esc(s.about)}</p></section>
+      <section><div class="kicker">02 / Objective</div><h2>The challenge</h2><p>${esc(s.challenge)}</p></section>
+      <section><div class="kicker">03 / Approach</div><h2>Our strategy</h2><p>${esc(s.approach)}</p></section>
+      <section><div class="kicker">04 / Impact</div><h2>Results and impact</h2><p>${esc(s.impact)}</p><p class="case-note">Results are reported by DigiBuilder and do not guarantee future performance.</p></section>
+    </div><aside class="case-side"><div class="panel"><h2>Scope of work</h2><ul>${s.scope.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+      ${s.links.length?`<div class="panel"><h2>Explore the client</h2><div class="case-external">${s.links.map(([label,url])=>`<a class="button secondary" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)} <span aria-hidden="true">↗</span><span class="case-sr"> (opens in a new tab)</span></a>`).join('')}</div></div>`:''}
+      <div class="panel"><h2>Related services</h2><ul>${s.services.map(slug=>{const service=services.find(x=>x[0]===slug);return service?`<li><a class="accent-link" href="/service/${slug}/">${esc(service[2])}</a></li>`:''}).join('')}</ul></div>
+    </aside></div>
+    <section class="panel case-cta"><div><div class="eyebrow">Your next project</div><h2>Let's build a story worth sharing.</h2><p class="muted">Tell us about your business and the growth you want to achieve.</p></div><a class="button primary" href="/contact/">Start your project</a></section>
+    <section class="case-related"><div class="section-head"><div><div class="eyebrow">More work</div><h2>Related case studies</h2></div><a class="accent-link" href="/work/">View all projects</a></div><div class="cards project-grid">${related.map(({i})=>projectCard(projects[i],i)).join('')}</div></section>
+  </div></article>`;
 }
 
 function projectShowcase(){
@@ -185,18 +1012,18 @@ function projectShowcase(){
           <div class="eyebrow">Explore our projects</div>
           <h2 id="project-journey-title">Different names. <span class="gradient">Distinct stories.</span></h2>
         </div>
-        <p>Scroll down to explore our project portfolio as the cards move across the screen. More project details will be added as they're documented.</p>
+        <p>Scroll down to explore our project portfolio as the cards move across the screen. Open any card to read the project story, services and results.</p>
       </div>
       <div class="project-stage" id="project-stage" aria-label="Project cards">
-        <div class="project-track" role="list" tabindex="0" aria-label="DigiBuilder project portfolio">
-          ${projects.map((project,index)=>`<article class="project-slide" role="listitem" data-project-index="${index}" aria-label="${project.name}${project.regions?', '+project.regions:''}">
+        <div class="project-track" role="group" tabindex="0" aria-label="DigiBuilder project portfolio">
+          ${projects.map((project,index)=>`<a class="project-slide" href="${casePath(caseStudies[index])}" data-project-index="${index}" aria-label="Read ${project.name} case study">
             <div class="project-slide-top"><span>PROJECT / ${String(index+1).padStart(2,'0')}</span><span class="project-slide-symbol" aria-hidden="true">✳</span></div>
             <div class="project-slide-brand" data-project-logo-slot>${projectIdentity(project)}</div>
             <div class="project-slide-bottom">
               ${project.category?`<span class="project-slide-regions project-slide-category">${project.category}</span>`:project.regions?`<span class="project-slide-regions">(${project.regions})</span>`:'<span class="project-slide-caption">DigiBuilder portfolio</span>'}
-              <span class="project-slide-index">${String(index+1).padStart(2,'0')} / ${String(projects.length).padStart(2,'0')}</span>
+              <span class="project-slide-index">Case study ↗</span>
             </div>
-          </article>`).join('')}
+          </a>`).join('')}
         </div>
       </div>
       <div class="wrap project-journey-footer">
@@ -769,7 +1596,7 @@ function work(){
   return shell(
     'Our work',
     'The names behind the projects.',
-    'Explore the names in our growing project portfolio. We will add each project’s industry, services delivered and the work involved as those details are confirmed.',
+    'Explore 22 client case studies across branding, social media, e-commerce, AI creative production and performance marketing.',
     `<div class="actions"><a class="button primary" href="/portfolio/">Explore linked portfolio</a></div><div class="cards project-grid content-gap">${projects.map(projectCard).join('')}</div>`
   );
 }
@@ -1090,7 +1917,7 @@ function render(){
   const path=location.pathname.split('/').filter(Boolean);
   const view=parts[0]||path[0]||'home';
   const key=parts[1]||path[1];
-  const output=view==='home'?home():view==='about'?about():view==='services'?servicesPage():view==='service'&&serviceMap[key]?servicePage(key):view==='work'?work():view==='contact'?contact():view==='privacy'?legal('privacy'):view==='terms'?legal('terms'):home();
+  const output=view==='home'?home():view==='about'?about():view==='services'?servicesPage():view==='service'&&serviceMap[key]?servicePage(key):view==='work'?(key?casePage(key):work()):view==='contact'?contact():view==='privacy'?legal('privacy'):view==='terms'?legal('terms'):home();
   app.innerHTML=output;
   setMenuOpen(false);
   bind();

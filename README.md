@@ -12,7 +12,7 @@ The source for [digibuilderai.com](https://digibuilderai.com) is a **static HTML
 - `portfolio/index.html`: self-contained linked portfolio page; copied into `_site/portfolio/index.html` by the builder and linked from `/work/`
 - `.github/workflows/deploy.yml`: deploys the generated `_site/` directory from pushes to `main`
 
-Routes: `/`, `/about/`, `/services/`, `/work/`, `/contact/`, `/privacy/`, `/terms/`, and `/service/{strategy|brand|web|social|seo|ai}/`. The standalone `/portfolio/` page contains the user-supplied links to selected social accounts, videos and websites. Old `#/...` links redirect to their clean paths for returning visitors.
+Routes: `/`, `/about/`, `/services/`, `/work/`, `/contact/`, `/privacy/`, `/terms/`, `/work/{project-slug}/`, and `/service/{strategy|brand|web|social|seo|ai}/`. The standalone `/portfolio/` page contains the user-supplied links to selected social accounts, videos and websites. Old `#/...` links redirect to their clean paths for returning visitors.
 
 Every route has its **own HTML response**, title, meta description, canonical URL, social metadata, and structured data. This replaces fragment-based navigation, which is unreliable for page-level indexing.
 
@@ -41,11 +41,11 @@ An alternative **URL-prefix property** supports a unique HTML meta tag or HTML v
 
 DigiBuilder describes its base as **Modasa, Gujarat** and availability for remote work in Sydney, Brampton and London. These are service markets, **not claimed branch addresses or verified physical offices**. Do not create city landing pages, business listings or fake address schema without genuine local business evidence. Update content once local client and service details are available.
 
-The 22 project names are listed without invented service assignments, results or testimonials. Location tags reflect the user's supplied project descriptions and do not imply DigiBuilder offices. Add case studies with verified project scope, assets, permission and outcomes later.
+The 22 project case studies use the supplied project interviews, with reported results identified as such. Confirm analytics, testimonial and AI-likeness permissions before publishing supporting assets; do not infer missing figures or locations. Location tags do not imply DigiBuilder offices.
 
 ## Project showcase and individual client logos
 
-The homepage includes **22 projects** in a vertical-scroll-driven, horizontally moving 3D-style card stack before the "Built in Gujarat" section. The Work page uses the same `projects` data in `app.js`. The stack uses no additional 3D library and keeps a swipeable row when JavaScript is unavailable or reduced-motion is preferred.
+The homepage includes **22 projects** in a vertical-scroll-driven, horizontally moving 3D-style card stack before the "Built in Gujarat" section. The Work page and homepage use the same `projects` and `caseStudies` data in `app.js`; both link to the 22 prerendered project pages. Keep the project and case study order aligned when adding a new project. The builder generates case study metadata, article and breadcrumb schema, and sitemap entries automatically. The stack uses no additional 3D library and keeps a swipeable row when JavaScript is unavailable or reduced-motion is preferred.
 
 Each of the **21 supplied logo/portrait assets** is an independent compressed WebP file under `project-logos/`, rendered with the native `<img>` element at its original aspect ratio and without upscaling small originals in CSS. The shared low-resolution sprite has been removed. These assets are loaded lazily and together are approximately 447 KB. **NDS Life Coaching** uses the owner's latest portrait logo. **Sydney Premium Taxi Service (Australia)** uses the newly supplied yellow-and-black taxi logo.
 

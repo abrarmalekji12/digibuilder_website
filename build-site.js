@@ -34,7 +34,7 @@ const pages=[
  {route:'/',hash:'#/',title:'Digital Marketing & Branding Agency in Modasa, Gujarat | DigiBuilder',description:'DigiBuilder helps brands grow with digital marketing, branding, social media reels, websites, SEO, advertising and AI automation in Modasa, Gujarat and beyond.',name:'Home'},
  {route:'/about/',hash:'#/about',title:'About DigiBuilder | Creative Digital Marketing Team in Gujarat',description:'Meet DigiBuilder, a creative digital marketing team based in Modasa, Gujarat. Branding, content, websites, performance marketing and practical AI workflows.',name:'About'},
  {route:'/services/',hash:'#/services',title:'Digital Marketing, Branding & AI Automation Services | DigiBuilder',description:'Explore DigiBuilder services: brand identity, social media marketing, reels and video editing, websites, Google Ads, local SEO and AI automation.',name:'Services'},
- {route:'/work/',hash:'#/work',title:'Our Work | Branding & Digital Projects | DigiBuilder',description:'Explore DigiBuilder’s growing project portfolio, including Sharp Immigration, Saathi4u, Sharp Travel, Mahenoor Foods and more. Project details are coming soon.',name:'Work'},
+ {route:'/work/',hash:'#/work',title:'Our Work | Branding & Digital Projects | DigiBuilder',description:'Explore 22 DigiBuilder case studies covering social media, branding, advertising, e-commerce and AI creative production in India and international markets.',name:'Work'},
  {route:'/contact/',hash:'#/contact',title:'Contact DigiBuilder | Digital Marketing Agency in Modasa',description:'Tell DigiBuilder about your project. Contact our Gujarat-based team for branding, social media, advertising, web design, SEO and AI automation.',name:'Contact'},
  {route:'/privacy/',hash:'#/privacy',title:'Privacy Policy | DigiBuilder',description:'Learn how DigiBuilder handles website enquiries, contact details, form submissions and third-party services.',name:'Privacy'},
  {route:'/terms/',hash:'#/terms',title:'Website Terms & Project Enquiries | DigiBuilder',description:'Read DigiBuilder website terms, project enquiry expectations, creative work, third-party platforms and scope agreements.',name:'Terms'}
@@ -50,6 +50,14 @@ const serviceMeta={
 services.forEach(service=>{
   const meta=serviceMeta[service.slug];
   pages.push({route:'/service/'+service.slug+'/',hash:'#/service/'+service.slug,title:meta[0],description:meta[1],name:service.name,service});
+});
+
+const studies=vm.runInContext('caseStudies.map((study,index)=>({...study,logo:projects[index].logo}))',ctx);
+if(studies.length!==22||new Set(studies.map(s=>s.slug)).size!==studies.length)throw new Error('Expected 22 unique project case studies');
+studies.forEach(study=>{
+  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(study.slug))throw new Error('Invalid case study slug: '+study.slug);
+  const description=study.name+': '+study.headline+'. Explore DigiBuilder’s '+study.industry.toLowerCase()+' case study, strategy, scope and reported results.';
+  pages.push({route:'/work/'+study.slug+'/',hash:'#/work/'+study.slug,title:study.name+' Case Study | DigiBuilder',description,name:study.name,caseStudy:study});
 });
 
 function escaped(value){
@@ -91,9 +99,9 @@ function jsonLd(page){
   if(page.route!=='/'){
     const crumbs=[
       {'@type':'ListItem',position:1,name:'Home',item:ORIGIN+'/'},
-      {'@type':'ListItem',position:2,name:page.service?'Services':page.name,item:ORIGIN+(page.service?'/services/':page.route)}
+      {'@type':'ListItem',position:2,name:page.service?'Services':page.caseStudy?'Work':page.name,item:ORIGIN+(page.service?'/services/':page.caseStudy?'/work/':page.route)}
     ];
-    if(page.service)crumbs.push({'@type':'ListItem',position:3,name:page.name,item:canonical});
+    if(page.service||page.caseStudy)crumbs.push({'@type':'ListItem',position:3,name:page.name,item:canonical});
     graph.push({'@type':'BreadcrumbList','@id':canonical+'#breadcrumbs',itemListElement:crumbs});
   }
   if(page.service){
@@ -101,11 +109,18 @@ function jsonLd(page){
       serviceType:page.service.name,description:page.service.description,
       provider:{'@id':ORIGIN+'/#organization'},url:canonical,areaServed:served});
   }
+  if(page.caseStudy){
+    graph.push({'@type':'Article','@id':canonical+'#article',headline:page.caseStudy.headline,description:page.description,
+      mainEntityOfPage:{'@id':canonical+'#webpage'},author:{'@id':ORIGIN+'/#organization'},
+      publisher:{'@id':ORIGIN+'/#organization'},about:{'@type':'Organization',name:page.caseStudy.name},
+      image:ORIGIN+(page.caseStudy.logo||'/digibuilder-logo.webp'),inLanguage:'en'});
+  }
   return JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
 }
 function head(page){
   const url=ORIGIN+page.route;
   const title=escaped(page.title),description=escaped(page.description);
+  const image=ORIGIN+(page.caseStudy?.logo||'/digibuilder-logo.webp');
   return [
     '<head>',
     '  <meta charset="utf-8">',
@@ -118,14 +133,14 @@ function head(page){
     ...(googleVerification&&page.route==='/'?['  <meta name="google-site-verification" content="'+escaped(googleVerification)+'">']:[]),
     '  <link rel="icon" href="/digibuilder-logo.webp" type="image/webp">',
     '  <link rel="preload" as="image" href="/digibuilder-logo.webp">',
-    '  <meta property="og:type" content="website">',
+    '  <meta property="og:type" content="'+(page.caseStudy?'article':'website')+'">',
     '  <meta property="og:site_name" content="DigiBuilder">',
     '  <meta property="og:locale" content="en_IN">',
     '  <meta property="og:title" content="'+title+'">',
     '  <meta property="og:description" content="'+description+'">',
     '  <meta property="og:url" content="'+url+'">',
-    '  <meta property="og:image" content="'+ORIGIN+'/digibuilder-logo.webp">',
-    '  <meta property="og:image:alt" content="DigiBuilder logo">',
+    '  <meta property="og:image" content="'+image+'">',
+    '  <meta property="og:image:alt" content="'+escaped(page.caseStudy?.logo?page.name+' logo':'DigiBuilder logo')+'">',
     '  <meta name="twitter:card" content="summary">',
     '  <meta name="twitter:title" content="'+title+'">',
     '  <meta name="twitter:description" content="'+description+'">',
@@ -150,14 +165,14 @@ for(const page of pages){
   location.hash=page.hash;
   location.pathname=page.route;
   vm.runInContext('render()',ctx);
-  let html=template.replace(/<head>[\s\S]*?<\/head>/,head(page));
-  html=html.replace('<main id="app"></main>','<main id="app" data-prerendered="true">'+app.innerHTML+'</main>');
+  let html=template.replace(/<head>[\s\S]*?<\/head>/,()=>head(page));
+  html=html.replace('<main id="app"></main>',()=>'<main id="app" data-prerendered="true">'+app.innerHTML+'</main>');
   html=html.replace('src="/app.js"','src="/app.js?v='+cacheVersion+'"');
   html=html.replace('src="/experience.js"','src="/experience.js?v='+cacheVersion+'"');
   html=html.replaceAll('src="/digibuilder-logo.webp"','src="/digibuilder-logo.webp?v='+cacheVersion+'"');
   if(page.route!=='/')html=html.replace(/\s*<script src="\/experience\.js\?v=[^"]+" defer><\/script>/,'');
-  const activeRoute=page.service?'/services/':page.route;
-  html=html.replace('href="'+activeRoute+'"','href="'+activeRoute+'" aria-current="page"');
+  const activeRoute=page.service?'/services/':page.caseStudy?'/work/':page.route;
+  html=html.replace('href="'+activeRoute+'"','href="'+activeRoute+'" aria-current="'+(page.caseStudy||page.service?'location':'page')+'"');
   const dir=path.join(OUT,page.route);
   fs.mkdirSync(dir,{recursive:true});
   fs.writeFileSync(path.join(dir,'index.html'),html);
