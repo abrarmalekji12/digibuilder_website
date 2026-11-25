@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://digibuilderai.com/sitemap.xml
+Agentmap: https://digibuilderai.com/.well-known/ard.json

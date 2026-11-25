@@ -1,0 +1,50 @@
+# DigiBuilder
+
+> DigiBuilder is a digital marketing and growth agency based in Modasa, Gujarat, India, working with local and international businesses on strategy, branding, social media, websites, advertising and AI workflows.
+
+The site is public and contains service descriptions and client case studies. Project outcomes are reported by DigiBuilder, not guaranteed results. Use the contact page for enquiries; this site does not currently publish a callable AI agent or MCP server.
+
+## About and contact
+- [Home](https://digibuilderai.com/): DigiBuilder helps brands grow with digital marketing, branding, social media reels, websites, SEO, advertising and AI automation in Modasa, Gujarat and beyond.
+- [About](https://digibuilderai.com/about/): Meet DigiBuilder, a creative digital marketing team based in Modasa, Gujarat. Branding, content, websites, performance marketing and practical AI workflows.
+- [Services](https://digibuilderai.com/services/): Explore DigiBuilder services: brand identity, social media marketing, reels and video editing, websites, Google Ads, local SEO and AI automation.
+- [Work](https://digibuilderai.com/work/): Explore 22 DigiBuilder case studies covering social media, branding, advertising, e-commerce and AI creative production in India and international markets.
+- [Contact](https://digibuilderai.com/contact/): Tell DigiBuilder about your project. Contact our Gujarat-based team for branding, social media, advertising, web design, SEO and AI automation.
+
+## Services
+- [Strategy & Growth Consulting](https://digibuilderai.com/service/strategy/): Explore DigiBuilder’s business DNA approach to brand strategy, emotional storytelling, customer insights and practical digital marketing growth plans in Gujarat.
+- [Branding & Creative](https://digibuilderai.com/service/brand/): DigiBuilder builds brands from business DNA, with thoughtful positioning, visual identity, meaningful storytelling and consistent creative design in Gujarat.
+- [Websites & E-commerce](https://digibuilderai.com/service/web/): DigiBuilder designs fast, mobile-friendly websites and e-commerce experiences built around your brand, customer journey, SEO foundations and business growth.
+- [Social Media, Reels & Video](https://digibuilderai.com/service/social/): Build a meaningful social media presence with DigiBuilder through audience-led content strategy, Instagram reels, video shoots, editing and publishing.
+- [SEO, Advertising & Performance](https://digibuilderai.com/service/seo/): DigiBuilder connects technical SEO, local search, Google Ads, Meta advertising and useful landing pages to customer intent and practical business goals.
+- [AI Automation & Workflows](https://digibuilderai.com/service/ai/): Explore human-supervised AI automation with DigiBuilder: business workflow discovery, focused AI assistants, careful prototypes and practical team handover.
+
+## Client case studies
+- [Sharp Immigration](https://digibuilderai.com/work/sharp-immigration/): Sharp Immigration: Rebuilding digital trust and scaling immigration enquiries. Explore DigiBuilder’s immigration consulting case study, strategy, scope and reported results.
+- [Saathi4u](https://digibuilderai.com/work/saathi4u/): Saathi4u: Launching an AI-powered matchmaking brand. Explore DigiBuilder’s matchmaking & technology case study, strategy, scope and reported results.
+- [Meghreji Home Decor](https://digibuilderai.com/work/meghreji-home-decor/): Meghreji Home Decor: Making natural cladding a recognisable regional brand. Explore DigiBuilder’s architecture & home decor case study, strategy, scope and reported results.
+- [Unique LED Light](https://digibuilderai.com/work/unique-led-light/): Unique LED Light: Building a new automotive e-commerce brand. Explore DigiBuilder’s automotive & e-commerce case study, strategy, scope and reported results.
+- [Simun Bake & Cake (Simun Tea)](https://digibuilderai.com/work/simun-bake-cake/): Simun Bake & Cake (Simun Tea): Taking a local bakery to a nationwide marketplace. Explore DigiBuilder’s bakery & fmcg case study, strategy, scope and reported results.
+- [Gulbarg Garden Restaurant & Party Plot](https://digibuilderai.com/work/gulbarg-garden/): Gulbarg Garden Restaurant & Party Plot: Turning a new restaurant into a talked-about destination. Explore DigiBuilder’s hospitality & events case study, strategy, scope and reported results.
+- [Palate Restaurant](https://digibuilderai.com/work/palate-restaurant/): Palate Restaurant: Bringing the dining experience to life. Explore DigiBuilder’s hospitality & food case study, strategy, scope and reported results.
+- [House of Recut](https://digibuilderai.com/work/house-of-recut/): House of Recut: Preserving generations of memories through AI storytelling. Explore DigiBuilder’s sustainable fashion case study, strategy, scope and reported results.
+- [Cubixkraft](https://digibuilderai.com/work/cubixkraft/): Cubixkraft: Humanising technology through founder-led AI content. Explore DigiBuilder’s ai automation & saas case study, strategy, scope and reported results.
+- [Crabby Hunt](https://digibuilderai.com/work/crabby-hunt/): Crabby Hunt: Scaling a leather brand across four sales channels. Explore DigiBuilder’s leather products & e-commerce case study, strategy, scope and reported results.
+- [NDS Life Coaching](https://digibuilderai.com/work/nds-life-coaching/): NDS Life Coaching: Building trust before generating enquiries. Explore DigiBuilder’s life coaching & wellness case study, strategy, scope and reported results.
+- [Sharp Travel](https://digibuilderai.com/work/sharp-travel/): Sharp Travel: Connecting travellers with their next destination. Explore DigiBuilder’s travel & tourism case study, strategy, scope and reported results.
+- [Mahenoor Foods](https://digibuilderai.com/work/mahenoor-foods/): Mahenoor Foods: Bringing a legacy manufacturer into the digital market. Explore DigiBuilder’s food manufacturing & fmcg case study, strategy, scope and reported results.
+- [Zapnut](https://digibuilderai.com/work/zapnut/): Zapnut: Reviving an established business through owner-led storytelling. Explore DigiBuilder’s business rebranding & revival case study, strategy, scope and reported results.
+- [Raj Shah Photography](https://digibuilderai.com/work/raj-shah-photography/): Raj Shah Photography: Turning creative talent into a discoverable photography brand. Explore DigiBuilder’s photography & events case study, strategy, scope and reported results.
+- [Pink Nail Art](https://digibuilderai.com/work/pink-nail-art/): Pink Nail Art: Building local visibility through beauty-focused content. Explore DigiBuilder’s beauty & personal care case study, strategy, scope and reported results.
+- [Dental Spot](https://digibuilderai.com/work/dental-spot/): Dental Spot: Connecting dental care with patients through search advertising. Explore DigiBuilder’s dental healthcare case study, strategy, scope and reported results.
+- [District Dentistry](https://digibuilderai.com/work/district-dentistry/): District Dentistry: Supporting patient acquisition through creative and search marketing. Explore DigiBuilder’s dental healthcare case study, strategy, scope and reported results.
+- [Sydney Premium Taxi Service](https://digibuilderai.com/work/sydney-premium-taxi/): Sydney Premium Taxi Service: Generating taxi enquiries on a focused advertising budget. Explore DigiBuilder’s transportation case study, strategy, scope and reported results.
+- [SKA Moto Bike](https://digibuilderai.com/work/ska-moto-bike/): SKA Moto Bike: Accelerating motorcycle rental enquiries in London. Explore DigiBuilder’s motorcycle rental case study, strategy, scope and reported results.
+- [Flutter Pilot](https://digibuilderai.com/work/flutter-pilot/): Flutter Pilot: Making AI-powered app development easier to understand. Explore DigiBuilder’s ai app development & saas case study, strategy, scope and reported results.
+- [Scholar Career Academy](https://digibuilderai.com/work/scholar-career-academy/): Scholar Career Academy: Connecting students with academic opportunities. Explore DigiBuilder’s neet & jee education case study, strategy, scope and reported results.
+
+## Optional
+- [Linked portfolio](https://digibuilderai.com/portfolio/): Selected client social profiles, videos and websites.
+- [Privacy](https://digibuilderai.com/privacy/): Learn how DigiBuilder handles website enquiries, contact details, form submissions and third-party services.
+- [Terms](https://digibuilderai.com/terms/): Read DigiBuilder website terms, project enquiry expectations, creative work, third-party platforms and scope agreements.
+- [XML sitemap](https://digibuilderai.com/sitemap.xml): Index of public website pages.
