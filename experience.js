@@ -21,7 +21,9 @@
   function canUseWebGL(){
     try{
       const canvas=document.createElement('canvas');
-      return !!(window.WebGL2RenderingContext&&canvas.getContext('webgl2'))||!!canvas.getContext('webgl');
+      const gl=(window.WebGL2RenderingContext&&canvas.getContext('webgl2'))||canvas.getContext('webgl');
+      if(gl)gl.getExtension('WEBGL_lose_context')?.loseContext();
+      return !!gl;
     }catch(_error){
       return false;
     }
@@ -43,6 +45,8 @@
     journey.dataset.experience='ready';
     const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
     let disposed=false;
+    let journeyVisible=false;
+    let visibilityObserver=null;
     let frameId=0;
     let activeFloor=-1;
     let targetProgress=0;
@@ -357,7 +361,7 @@
 
     const tick=now=>{
       frameId=0;
-      if(disposed)return;
+      if(disposed||!journeyVisible||document.hidden)return;
       const reduced=reducedMotion.matches;
       visualProgress=reduced?targetProgress:lerp(visualProgress,targetProgress,.14);
       if(Math.abs(visualProgress-targetProgress)<.0005)visualProgress=targetProgress;
@@ -368,12 +372,12 @@
     };
 
     const scheduleFrame=()=>{
-      if(!frameId&&!disposed)frameId=requestAnimationFrame(tick);
+      if(!frameId&&!disposed&&journeyVisible&&!document.hidden)frameId=requestAnimationFrame(tick);
     };
 
     const syncScroll=()=>{
       targetProgress=clamp((window.scrollY-journeyTop)/maxScroll);
-      scheduleFrame();
+      if(journeyVisible)scheduleFrame();
     };
 
     const measure=()=>{
@@ -417,11 +421,26 @@
     reducedMotion.addEventListener?.('change',onMotionChange);
     reducedMotion.addListener?.(onMotionChange);
     stage.classList.toggle('reduced-motion',reducedMotion.matches);
+    const onVisibility=()=>{
+      if(document.hidden){if(frameId)cancelAnimationFrame(frameId);frameId=0;}
+      else if(journeyVisible){visualProgress=targetProgress;scheduleFrame();}
+    };
+    document.addEventListener('visibilitychange',onVisibility);
+    if('IntersectionObserver' in window){
+      visibilityObserver=new IntersectionObserver(entries=>{
+        journeyVisible=entries.some(entry=>entry.isIntersecting);
+        if(journeyVisible){syncScroll();visualProgress=targetProgress;scheduleFrame();}
+        else if(frameId){cancelAnimationFrame(frameId);frameId=0;}
+      });
+      visibilityObserver.observe(journey);
+    }else journeyVisible=true;
     measure();
 
     towerCleanup=()=>{
       disposed=true;
       wakeRender?.();
+      visibilityObserver?.disconnect();
+      document.removeEventListener('visibilitychange',onVisibility);
       window.removeEventListener('scroll',syncScroll);
       window.removeEventListener('resize',measure);
       reducedMotion.removeEventListener?.('change',onMotionChange);
@@ -450,7 +469,7 @@
     // Keep the CSS scene only when WebGL is unavailable or the visitor requests data saving.
     // Reduced-motion phones still get a static 3D camera without animated transitions.
     const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-    if(!canUseWebGL()||network?.saveData){
+    if(network?.saveData){
       stage.classList.add('webgl-failed');
       scheduleFrame();
       return;
@@ -472,6 +491,11 @@
       if(disposed)return;
     }
 
+    if(!canUseWebGL()){
+      stage.classList.add('webgl-failed');
+      scheduleFrame();
+      return;
+    }
     try{
       THREE=await import(THREE_URL);
     }catch(error){
