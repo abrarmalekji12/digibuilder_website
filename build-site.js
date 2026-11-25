@@ -10,6 +10,39 @@ const ORIGIN='https://digibuilderai.com';
 const OUT=path.join(__dirname,'_site');
 const template=fs.readFileSync(path.join(__dirname,'index.html'),'utf8');
 const source=fs.readFileSync(path.join(__dirname,'app.js'),'utf8');
+// Prerendered pages need interactions, not the complete content renderer.
+const sliceSource=(start,end)=>{
+  const from=source.indexOf(start),to=source.indexOf(end,from);
+  if(from<0||to<=from)throw new Error('Runtime source markers missing: '+start);
+  return source.slice(from,to);
+};
+const runtimeSource=source=>{
+  const from=source.indexOf('function prepareWhatsApp()');
+  const to=source.indexOf('const routePaths=',from);
+  if(from<0||to<=from)throw new Error('Missing shared interaction functions');
+  return source.slice(from,to);
+};
+const sharedRuntime='"use strict";\nlet navigationBound=false;\n'+runtimeSource(source)+
+  sliceSource('const routePaths=','/* Scroll down to move the project stack sideways')+
+  sliceSource('function initAmbientPointer()', "document.getElementById('year').textContent=")+
+  `const legacy=legacyHashTarget();
+if(legacy)location.replace(legacy);
+else{
+  document.getElementById('year').textContent=new Date().getFullYear();
+  const view=location.pathname.split('/').filter(Boolean)[0]||'home';
+  document.querySelectorAll('.links a').forEach(link=>{
+    const href=link.getAttribute('href');
+    link.classList.toggle('active',href===routePaths[view]||(view==='service'&&href==='/services/'));
+  });
+  bind();
+  initAmbientPointer();
+}
+window.addEventListener('hashchange',()=>{const target=legacyHashTarget();if(target)location.replace(target);});
+`;
+const homepageRuntime='"use strict";\n'+sliceSource('const services=[','const serviceDetails=')+
+  'let towerCleanup=null;\nlet projectJourneyCleanup=null;\n'+
+  sliceSource('function initProjectJourney(){','function render(){')+
+  '\ninitProjectJourney();\n';
 const cacheVersion=(process.env.GITHUB_SHA||'local').slice(0,12);
 const googleVerification=(process.env.GOOGLE_SITE_VERIFICATION||'').trim();
 const app={innerHTML:'',dataset:{}};
@@ -132,7 +165,7 @@ function head(page){
     '  <link rel="canonical" href="'+url+'">',
     ...(googleVerification&&page.route==='/'?['  <meta name="google-site-verification" content="'+escaped(googleVerification)+'">']:[]),
     '  <link rel="icon" href="/digibuilder-logo.webp" type="image/webp">',
-    '  <link rel="preload" as="image" href="/digibuilder-logo.webp">',
+    '  <link rel="preload" as="image" href="/digibuilder-logo.webp?v='+cacheVersion+'">',
     '  <meta property="og:type" content="'+(page.caseStudy?'article':'website')+'">',
     '  <meta property="og:site_name" content="DigiBuilder">',
     '  <meta property="og:locale" content="en_IN">',
@@ -146,7 +179,7 @@ function head(page){
     '  <meta name="twitter:description" content="'+description+'">',
     '  <script type="application/ld+json">'+jsonLd(page)+'</script>',
     '  <link rel="stylesheet" href="/styles.css?v='+cacheVersion+'">',
-    '  <link rel="stylesheet" href="/experience.css?v='+cacheVersion+'">',
+    ...(page.route==='/'?['  <link rel="stylesheet" href="/experience.css?v='+cacheVersion+'">']:[]),
     '</head>'
   ].join('\n');
 }
@@ -155,6 +188,8 @@ fs.mkdirSync(OUT,{recursive:true});
 for(const asset of ['styles.css','experience.css','app.js','experience.js','digibuilder-logo.webp']){
   fs.copyFileSync(path.join(__dirname,asset),path.join(OUT,asset));
 }
+fs.writeFileSync(path.join(OUT,'site-runtime.js'),sharedRuntime);
+fs.writeFileSync(path.join(OUT,'home-runtime.js'),homepageRuntime);
 // Future client logos placed in project-logos/ are copied automatically on build.
 const projectLogoDir=path.join(__dirname,'project-logos');
 if(fs.existsSync(projectLogoDir)&&fs.statSync(projectLogoDir).isDirectory()){
@@ -167,8 +202,9 @@ for(const page of pages){
   vm.runInContext('render()',ctx);
   let html=template.replace(/<head>[\s\S]*?<\/head>/,()=>head(page));
   html=html.replace('<main id="app"></main>',()=>'<main id="app" data-prerendered="true">'+app.innerHTML+'</main>');
-  html=html.replace('src="/app.js"','src="/app.js?v='+cacheVersion+'"');
+  html=html.replace('src="/app.js"','src="/site-runtime.js?v='+cacheVersion+'"');
   html=html.replace('src="/experience.js"','src="/experience.js?v='+cacheVersion+'"');
+  if(page.route==='/')html=html.replace('<script src="/experience.js?v='+cacheVersion+'" defer>','<script src="/home-runtime.js?v='+cacheVersion+'" defer></script>\n  <script src="/experience.js?v='+cacheVersion+'" defer>');
   html=html.replaceAll('src="/digibuilder-logo.webp"','src="/digibuilder-logo.webp?v='+cacheVersion+'"');
   if(page.route!=='/')html=html.replace(/\s*<script src="\/experience\.js\?v=[^"]+" defer><\/script>/,'');
   const activeRoute=page.service?'/services/':page.caseStudy?'/work/':page.route;
