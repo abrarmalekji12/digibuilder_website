@@ -367,3 +367,8 @@ main>.section:first-child{padding-top:calc(var(--header) + clamp(28px,4vw,54px))
  .case-copy section{padding:20px 0}
  .case-cta .button{width:100%;justify-content:center;text-align:center}
 }
+
+/* Make the selected project easy to identify when arriving from the homepage. */
+.project-card:target{border-color:var(--gold);box-shadow:0 0 0 2px rgba(242,170,40,.24)}
+.case-cta>div{flex:1 1 420px;min-width:0}
+.case-cta>.button{flex-shrink:0}

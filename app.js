@@ -965,9 +965,9 @@ function projectIdentity(project){
   return `<span class="project-wordmark">${project.name}</span>`;
 }
 
-function projectCard(project,index){
+function projectCard(project,index,anchor=false){
   const study=caseStudies[index];
-  return `<a class="card project-card" href="${casePath(study)}" aria-label="Read ${caseEscape(study.name)} case study">
+  return `<a class="card project-card"${anchor?` id="project-${study.slug}"`: ''} href="${casePath(study)}" aria-label="Read ${caseEscape(study.name)} case study">
     <span class="num">PROJECT / ${String(index+1).padStart(2,'0')}</span>
     <div class="project-logo-slot" data-project-logo-slot>${projectIdentity(project)}</div>
     <h3 class="case-card-name">${caseEscape(study.name)}</h3>
@@ -1012,16 +1012,16 @@ function projectShowcase(){
           <div class="eyebrow">Explore our projects</div>
           <h2 id="project-journey-title">Different names. <span class="gradient">Distinct stories.</span></h2>
         </div>
-        <p>Scroll down to explore our project portfolio as the cards move across the screen. Open any card to read the project story, services and results.</p>
+        <p>Scroll down to explore our project portfolio as the cards move across the screen. Select a project to explore its case study on our Work page.</p>
       </div>
       <div class="project-stage" id="project-stage" aria-label="Project cards">
         <div class="project-track" role="group" tabindex="0" aria-label="DigiBuilder project portfolio">
-          ${projects.map((project,index)=>`<a class="project-slide" href="${casePath(caseStudies[index])}" data-project-index="${index}" aria-label="Read ${project.name} case study">
+          ${projects.map((project,index)=>`<a class="project-slide" href="/work/#project-${caseStudies[index].slug}" data-project-index="${index}" aria-label="Find ${caseEscape(project.name)} on the Work page">
             <div class="project-slide-top"><span>PROJECT / ${String(index+1).padStart(2,'0')}</span><span class="project-slide-symbol" aria-hidden="true">✳</span></div>
             <div class="project-slide-brand" data-project-logo-slot>${projectIdentity(project)}</div>
             <div class="project-slide-bottom">
               ${project.category?`<span class="project-slide-regions project-slide-category">${project.category}</span>`:project.regions?`<span class="project-slide-regions">(${project.regions})</span>`:'<span class="project-slide-caption">DigiBuilder portfolio</span>'}
-              <span class="project-slide-index">Case study ↗</span>
+              <span class="project-slide-index">View project ↗</span>
             </div>
           </a>`).join('')}
         </div>
@@ -1095,7 +1095,7 @@ function servicesPage(){
     'Digital marketing services',
     'The right mix makes the difference.',
     'Need a brand people remember, better social media content, an advertising campaign or an easier way to handle enquiries? Start with what matters to your business. We can help with one focused project or connect several services.',
-    `<div class="cards content-gap">${services.map(card).join('')}</div><div class="panel content-gap"><div class="kicker">Not sure where to start?</div><h2>Tell us what you want to change.</h2><p>We will help you narrow down the next practical step before discussing the scope.</p><a href="/contact/" class="button primary">Discuss your goals</a></div>`
+    `<div class="cards content-gap">${services.map(card).join('')}</div><section class="panel case-cta content-gap"><div><div class="eyebrow">Build your growth strategy</div><h2>Ready to turn your business goals into a growth strategy?</h2><p class="muted">From branding and creative content to websites, advertising and AI, let’s find the right mix of services for your business.</p></div><a href="/contact/" class="button primary">Book a consultation</a></section>`
   );
 }
 
@@ -1597,7 +1597,7 @@ function work(){
     'Our work',
     'The names behind the projects.',
     'Explore 22 client case studies across branding, social media, e-commerce, AI creative production and performance marketing.',
-    `<div class="actions"><a class="button primary" href="/portfolio/">Explore linked portfolio</a></div><div class="cards project-grid content-gap">${projects.map(projectCard).join('')}</div>`
+    `<div class="actions"><a class="button primary" href="/portfolio/">Explore linked portfolio</a></div><div class="cards project-grid content-gap">${projects.map((project,index)=>projectCard(project,index,true)).join('')}</div><section class="panel case-cta content-gap"><div><div class="eyebrow">Your brand could be next</div><h2>Let’s build your next success story.</h2><p class="muted">Have a business idea, a brand to grow or a new market to reach? Let’s talk about how DigiBuilder can help you move forward.</p></div><a class="button primary" href="/contact/">Start your project</a></section>`
   );
 }
 
@@ -1913,7 +1913,7 @@ function render(){
 
   towerCleanup?.();
   towerCleanup=null;
-  const parts=location.hash.replace(/^#\/?/,'').split('/');
+  const parts=location.hash.startsWith('#/')?location.hash.slice(2).split('/'):[];
   const path=location.pathname.split('/').filter(Boolean);
   const view=parts[0]||path[0]||'home';
   const key=parts[1]||path[1];
