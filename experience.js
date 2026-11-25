@@ -431,11 +431,12 @@
     if('IntersectionObserver' in window){
       visibilityObserver=new IntersectionObserver(entries=>{
         journeyVisible=entries.some(entry=>entry.isIntersecting);
+        stage.classList.toggle('is-visible',journeyVisible);
         if(journeyVisible){syncScroll();visualProgress=targetProgress;scheduleFrame();}
         else if(frameId){cancelAnimationFrame(frameId);frameId=0;}
       });
       visibilityObserver.observe(journey);
-    }else journeyVisible=true;
+    }else{journeyVisible=true;stage.classList.add('is-visible');}
     measure();
 
     towerCleanup=()=>{
