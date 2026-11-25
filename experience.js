@@ -2,7 +2,8 @@
 
 /* Homepage-only WebGL tower controller. app.js owns routing/markup; this file owns the 3D tower and scroll journey. */
 (() => {
-  const THREE_URL='https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js';
+  const THREE_URL='https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.min.js';
+  const THREE_FALLBACK_URL='https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js';
   const FLOOR_START=.11;
   const FLOOR_END=.89;
   const clamp=value=>Math.max(0,Math.min(1,value));
@@ -55,6 +56,7 @@
     let maxScroll=1;
     let viewportWidth=1;
     let viewportHeight=1;
+    let railHeight=0;
     let renderer=null;
     let scene=null;
     let camera=null;
@@ -286,14 +288,13 @@
       const amount=clamp(raw/(services.length-1));
       if(index!==activeFloor)startStoryTransition(index,now);
       progress.style.transform=`scaleY(${amount})`;
-      marker.style.top=`${amount*100}%`;
+      marker.style.transform=`translate3d(-50%,${amount*railHeight-3.5}px,0)`;
       stage.style.setProperty('--journey-progress',String(value));
     };
 
     const applyScene=value=>{
       if(!THREE||!camera||!towerRoot||!renderer)return;
-      const bounds=stage.getBoundingClientRect();
-      if(bounds.bottom<=0||bounds.top>=window.innerHeight)return;
+      if(!journeyVisible||document.hidden)return;
       const mobile=isMobile();
       const tablet=isTablet();
       const reduced=reducedMotion.matches;
@@ -385,6 +386,7 @@
       maxScroll=Math.max(1,journey.offsetHeight-window.innerHeight);
       viewportWidth=Math.max(1,host.clientWidth||stage.clientWidth);
       viewportHeight=Math.max(1,host.clientHeight||stage.clientHeight);
+      railHeight=marker.parentElement.clientHeight;
 
       if(renderer&&camera){
         const mobile=isMobile();
@@ -475,21 +477,43 @@
       return;
     }
 
-    // Let the hero become interactive before fetching a 3D engine.
-    if('IntersectionObserver' in window){
-      await new Promise(resolve=>{
-        const observer=new IntersectionObserver(entries=>{
-          if(entries.some(entry=>entry.isIntersecting)){
-            observer.disconnect();
-            resolve();
-          }
-        },{rootMargin:'0px 0px -18% 0px'});
-        wakeRender=()=>{observer.disconnect();resolve();};
+    // Seeing the edge of the tower on a large desktop is not a request to
+    // initialise WebGL. Keep the CSS scene usable until the visitor scrolls
+    // toward the tower (or arrives at it via restored scroll or a deep link).
+    await new Promise(resolve=>{
+      let near=false;
+      let observer=null;
+      let settled=false;
+      const finish=()=>{
+        if(settled)return;
+        settled=true;
+        observer?.disconnect();
+        window.removeEventListener('scroll',check);
+        window.removeEventListener('resize',check);
+        document.removeEventListener('visibilitychange',check);
+        resolve();
+      };
+      const check=()=>{
+        if(disposed){finish();return;}
+        if(document.hidden||window.scrollY<32)return;
+        if(!observer)near=journey.getBoundingClientRect().top<window.innerHeight*.9&&journey.getBoundingClientRect().bottom>0;
+        if(near)finish();
+      };
+      if('IntersectionObserver' in window){
+        observer=new IntersectionObserver(entries=>{
+          near=entries.some(entry=>entry.isIntersecting);
+          check();
+        },{rootMargin:'0px 0px -10% 0px'});
         observer.observe(journey);
-      });
-      wakeRender=null;
-      if(disposed)return;
-    }
+      }
+      window.addEventListener('scroll',check,{passive:true});
+      window.addEventListener('resize',check,{passive:true});
+      document.addEventListener('visibilitychange',check);
+      wakeRender=finish;
+      check();
+    });
+    wakeRender=null;
+    if(disposed||!stage.isConnected)return;
 
     if(!canUseWebGL()){
       stage.classList.add('webgl-failed');
@@ -497,7 +521,8 @@
       return;
     }
     try{
-      THREE=await import(THREE_URL);
+      try{THREE=await import(THREE_URL);}
+      catch(_minifiedError){THREE=await import(THREE_FALLBACK_URL);}
     }catch(error){
       console.warn('DigiBuilder tower: Three.js could not load, using the static fallback.',error);
       if(!disposed)stage.classList.add('webgl-failed');
