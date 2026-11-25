@@ -217,8 +217,8 @@ main>.hero:after{
 .tower-fallback-building i:nth-child(1){top:13%}.tower-fallback-building i:nth-child(2){top:27%}.tower-fallback-building i:nth-child(3){top:41%}.tower-fallback-building i:nth-child(4){top:55%}.tower-fallback-building i:nth-child(5){top:69%}.tower-fallback-building i:nth-child(6){top:83%}
 
 @keyframes tower-grid-drift{
-  from{background-position:0 0}
-  to{background-position:24px -16px}
+  from{transform:perspective(700px) rotateX(68deg) translate3d(0,0,0)}
+  to{transform:perspective(700px) rotateX(68deg) translate3d(24px,-16px,0)}
 }
 
 /* Cinematic service story plane, aligned high in the scene. */
@@ -365,7 +365,7 @@ main>.hero:after{
   transform:translate(-50%,-50%);
   background:var(--gold);
   box-shadow:0 0 0 4px rgba(242,170,40,.1),0 0 14px rgba(242,170,40,.34);
-  will-change:top;
+  will-change:transform;
 }
 .tower-tracker button{
   position:relative;
@@ -568,3 +568,6 @@ main>.hero:after{
   .tower-webgl,.tower-fallback,.tower-tracker button,.tower-tracker button:before{transition:none}
   .tower-floor-label{will-change:auto}
 }
+
+/* Tower grid stays still when offscreen; the CSS fallback remains visible. */
+.tower-stage:not(.is-visible) .city-grid,.tower-stage:not(.is-visible) .scroll-cue b{animation-play-state:paused}
